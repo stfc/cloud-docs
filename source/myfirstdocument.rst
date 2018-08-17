@@ -37,3 +37,9 @@ Magic?      Yesss       Yer a wizard arry!
 Clouds?     Yessss      Magic Clouds
 Science?    No!         Dont be boring
 ==========  ==========  ======
+
+---------------------
+Subtitle 3
+---------------------
+
+Just added this new section to make sure the git hooks all work.
