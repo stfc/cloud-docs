@@ -6,8 +6,6 @@ Test Primary Title
 Test Subtitle
 -------------
 
-
-
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam dictum tincidunt diam. Nemo enim ipsam voluptatem quia
 voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
 nesciunt. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.
