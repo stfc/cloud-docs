@@ -7,3 +7,4 @@ Fault Fixes
 
    ConnectOpenstackWebInterface
    FixVMErrorState
+   CloudVMHostUncontactable
