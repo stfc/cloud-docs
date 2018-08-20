@@ -8,3 +8,5 @@ How-To Articles
    OpenStackCommandline
    MonitoringCloudInfrastructure
    PruneUnusedVMs
+   AddAndRemoveHypervisors
+   DrainingHypervisor
