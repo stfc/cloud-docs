@@ -9,9 +9,10 @@ Welcome to stfc-cloud-docs's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-   myfirstdocument
-   myseconddocument
+   
+   howto/index
+   faultfixes/index
+   faqs
 
 
 Indices and tables
