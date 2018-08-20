@@ -12,8 +12,9 @@ Welcome to stfc-cloud-docs's documentation!
    
    howto/index
    faultfixes/index
-   knowledgebase/index
+   policies/index
    faqs
+   CommonCommands
 
 
 Indices and tables

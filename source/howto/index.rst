@@ -10,3 +10,9 @@ How-To Articles
    PruneUnusedVMs
    AddAndRemoveHypervisors
    DrainingHypervisor
+   AddOpenstackFlavorsToCommandline
+   AdminAndUser
+   CreateVMFromCommandline
+   FaultFindOpenstackNetworkIssues
+   OpenStackNetworkSetup
+   STFCCloudNetworkInfrastructure

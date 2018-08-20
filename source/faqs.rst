@@ -3,66 +3,136 @@ FAQS
 ==============================
 
 
+##################################################
+Required Information for new Openstack Project
+##################################################
+Project proposal template form suggested which asks questions.
 
-########################
-Common Commands
-########################
+##################################################
+How do I get support for the STFC cloud?
+##################################################
+Covers E-mail, people, telephone numbers, and links to Service Level Agreement.
 
-On Queens, Hypervisors often disable themselves and remove their services from the pool of resources if 
-there are 10 build failures in a row on a hypervisor.
+##########################################
+How do I get access to the new-cloud?
+##########################################
 
------------------------
-List Hypervisor Service
------------------------
+#####################################
+How do I connect to my VM using ssh?
+#####################################
 
-To list hypervisor services do:
+########################################################
+How do I copy files to and from my VM and between VM's?	
+########################################################
 
-.. code-block:: bash
+#############################################################
+How do I run a command on lots of my VM's at the same time?	
+#############################################################
 
-  nova service-list
+###########################################################################################
+When I use "sudo" command on a VM I created, it says <my username> not in Sudoers - Help!
+###########################################################################################
 
-You will see output like below.
+#####################################################
+How do I get a remote X session displayed from a VM?
+#####################################################
 
-.. image:: /assets/faqs/list_hypervisor_output.png
-    :width: 400px
-    :height: 100px
-    :align: center
-    :alt: command line output
+################################################################################
+How do I get a remote lilnux desktop GUI display on my VM on my windows desktop?
+################################################################################
+Suggest using vncserver and VNC client to view.
 
+#######################################################################################################
+How can I view an Application on my Linux VM that requires some graphics acceleration and uses OpenGL?
+#######################################################################################################
 
------------------------------
-Re-enable Hypervisor services
------------------------------
+###########################################################
+How do I create a VM that has GPU capability in my project?	
+###########################################################
 
-To re-enable the service status on a hypervisor, run:
+###########################################################################
+How do I create a VM with shared disk space to my other VMs in my project?
+###########################################################################
 
-.. code-block:: bash
+#####################################################################
+How do I connect to another VM in my project which I did not create?
+#####################################################################
 
-  nova service-enable <ID of hypervisor>
+########################################################
+What do I do if a new VM that I create does not work?
+########################################################
 
-To batch enable all disabled hypervisors, something like:
+#########################################################
+How do I access my Virtual machines across the internet?	
+#########################################################
 
-.. code-block:: bash
+##############################
+How do I setup a new project?	
+##############################
 
-  Nova service-list | grep –I disabled | awk -F\| '{ print $2 }' | sed 's/ //g' | xargs –i nova service-enable {}
+##########################################################################
+Is there a default firewall policy on my project (and what does it say ?)
+##########################################################################
 
-This should re-enable each hypervisor one by one.
+###########################################################################################
+I have a Database listening on its defaut port, but I can't connect to it remotely - Why?
+###########################################################################################
+Talks about default policy and adding one-off "additonal" policies forspecific hosts
 
---------------------------------------------
-Show all openstack hosts across all projects
---------------------------------------------
+#######################################################################
+A VM machine I was using has died  - How can I get the data off of it?
+#######################################################################
+#######################################################################################################
+What are the current machine "flavors"? Can I have  a machine that looks like a flavor you don't have?
+#######################################################################################################
+Show the different Flavor types available, and answer how users can create their own local project flavours if needed.
 
-Showing all hosts in openstack across all projects:
+###################################################
+Can you provide operating system "X" on Openstack?
+###################################################
+Policy doc on how we deal with new OS requests
 
-.. code-block:: bash
+###############################################
+What sort of CPU performance should I expect?
+###############################################
+Shows latest benchmarks for CPU and when they were run,compared to known native systems.
 
-  openstack server list --all-projects
+###################################################################
+What sort of disk I/O performance should I expect locally on a VM?
+###################################################################
+Disk I/O sample benchmarks.
 
-----------------------
-Show a specific server
-----------------------
-Looking at a specific server:-
+########################################################
+What sort of network bandwidth should I expect on a VM?
+########################################################
 
-.. code-block:: bash
+#############################################
+Can you recover a VM I accidentally deleted?
+#############################################
 
-  openstack server show <server ID>
+###################################################################
+Is there a migration path from the "Old cloud" to the "New cloud"?
+###################################################################
+
+#########################################
+How do I login to the "admin" interface?
+#########################################
+
+#####################################################################
+How do I obtain a host certificate for my Openstack virtual machine?
+#####################################################################
+No pre-created Host certificates - user has to obtain them from Cert site.
+
+###################################################################
+My host seems to have rebooted since last time I logged in - why?
+###################################################################
+
+########################################################
+What are the default DNS servers for VMs on Openstack?	
+########################################################
+
+####################################################################
+How do I find out what my "port usage" is against my Project Quota?
+####################################################################
+Describe methods of finding out how many ports are in use by a project vs the allocated quota.
+
