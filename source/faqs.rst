@@ -1,21 +1,35 @@
 ==============================
 FAQS
 ==============================
-
+updated:2018-09-05
+version 0.2
 
 ##################################################
 Required Information for new Openstack Project
 ##################################################
-Project proposal template form suggested which asks questions.
-
+Suggest that as a bare minimum, the following are specified:-
+1) Project name (what you want your project to be called)
+2) Project description (a brief description of the project - not essential, but useful if other similar named projects)
+3) Users - their full names, and e-mail addresses. If they have internal STFC Federal ID logins, these are useful too. 
+4) Types of machines you use and how many (This is so that we can assign a resource quota for the project, how many CPUs, memory, disk space .etc.)
+5) If the project either now, or in the known future, needs to host internet accessible services - what those services are, their purpose and how many IP addresses that are externally facing will be required.
+ 
 ##################################################
 How do I get support for the STFC cloud?
 ##################################################
-Covers E-mail, people, telephone numbers, and links to Service Level Agreement.
+E-mail the Cloud support team on  cloud-support@helpdesk.gridpp.rl.ac.uk , cloud-support@gridpp.rl.ac.uk.
+There is no telephone support number at this time.
 
 ##########################################
 How do I get access to the new-cloud?
 ##########################################
+Contact the Cloud support team on cloud-support@helpdesk.gridpp.rl.ac.uk for a user logon account and a default project. Once you have these, you
+can connect using http://openstack.stfc.ac.uk (for advanced users),or https://new-cloud.stfc.ac.uk for a more basic user interface. 
+
+##########################################################
+Which Web browsers are supported for the web user interfaces ?
+##########################################################
+Recommended to use the latest Firefox or Google Chrome browser (date: 2018-09-05: Firefox version 61.0.2, Chrome version 68.0.3440.106)
 
 #####################################
 How do I connect to my VM using ssh?
@@ -38,7 +52,7 @@ How do I get a remote X session displayed from a VM?
 #####################################################
 
 ################################################################################
-How do I get a remote lilnux desktop GUI display on my VM on my windows desktop?
+How do I get a remote linux desktop GUI display on my VM on my windows desktop?
 ################################################################################
 Suggest using vncserver and VNC client to view.
 
