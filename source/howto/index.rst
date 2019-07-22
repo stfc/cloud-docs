@@ -5,14 +5,11 @@ How-To Articles
    :maxdepth: 2
    :caption: Contents:
 
-   OpenStackCommandline
-   MonitoringCloudInfrastructure
-   PruneUnusedVMs
-   AddAndRemoveHypervisors
-   DrainingHypervisor
-   AddOpenstackFlavorsToCommandline
-   AdminAndUser
-   CreateVMFromCommandline
-   FaultFindOpenstackNetworkIssues
-   OpenStackNetworkSetup
-   STFCCloudNetworkInfrastructure
+   GettingStarted
+   AddingSSHKeyToOpenStackWebInterface
+   CreateVMFromTheWebInterface
+   CreateVMFromCommandLine
+   PuttyAndFileZillaWithVMs
+   AddingUserAccountsToVMs
+   HowToGrowTheDiskOfAVolumeVM
+   ExportADirectoryOverNFS

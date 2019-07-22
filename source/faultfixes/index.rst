@@ -5,6 +5,4 @@ Fault Fixes
    :maxdepth: 2
    :caption: Contents:
 
-   ConnectOpenstackWebInterface
    FixVMErrorState
-   CloudVMHostUncontactable
