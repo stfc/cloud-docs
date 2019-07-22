@@ -6,4 +6,5 @@ How-To Articles
    :caption: Contents:
 
    GettingStarted
+   AddingSSHKeyToOpenStackWebInterface
    CreateVMFromCommandline
