@@ -21,10 +21,10 @@ E-mail the Cloud support team on  cloud-support@helpdesk.gridpp.rl.ac.uk , cloud
 There is no telephone support number at this time.
 
 ##########################################
-How do I get access to the new-cloud?
+How do I get access to the cloud?
 ##########################################
 Contact the Cloud support team on cloud-support@helpdesk.gridpp.rl.ac.uk for a user logon account and a default project. Once you have these, you
-can connect using http://openstack.stfc.ac.uk (for advanced users),or https://new-cloud.stfc.ac.uk for a more basic user interface. 
+can connect using http://openstack.stfc.ac.uk (for advanced users),or https://cloud.stfc.ac.uk for a more basic user interface. 
 
 ##########################################################
 Which Web browsers are supported for the web user interfaces ?
