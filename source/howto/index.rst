@@ -7,4 +7,5 @@ How-To Articles
 
    GettingStarted
    AddingSSHKeyToOpenStackWebInterface
-   CreateVMFromCommandline
+   CreateVMFromTheWebInterface
+   CreateVMFromCommandLine
