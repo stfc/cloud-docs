@@ -19,7 +19,7 @@ Procedure
 Login to the web site: https://openstack.stfc.ac.uk using the credentials you have been given. If you
 have a STFC FEDID account, make sure that you set the “Domain” to be “STFC Federal ID”:-
 
-.. image:: /assets/howtos/AddingyourSSHpublickeysintheOpenstackwebUserInterface/image1.png
+.. image:: /assets/howtos/AddingSSHKeysInWebInterface/image1.png
     :width: 603px
     :height: 108px
     :align: center
@@ -29,7 +29,7 @@ Once logged in, click on the Left Hand Side “Compute” option, and then “Ke
 a screen similar to below, with the exception that if this is your first time connecting in, no key pairs
 will be listed:-
 
-.. image:: /assets/howtos/AddingyourSSHpublickeysintheOpenstackwebUserInterface/image2.png
+.. image:: /assets/howtos/AddingSSHKeysInWebInterface/image2.png
     :width: 603px
     :height: 108px
     :align: center
@@ -39,7 +39,7 @@ If you do not already have an SSH key pair, you can use the “Create key pair�
 existing ssh key pair, you should click on the “Import Public Key” button. On doing so, a pop-up
 window will appear:-
 
-.. image:: /assets/howtos/AddingyourSSHpublickeysintheOpenstackwebUserInterface/image3.png
+.. image:: /assets/howtos/AddingSSHKeysInWebInterface/image3.png
     :width: 603px
     :height: 108px
     :align: center
