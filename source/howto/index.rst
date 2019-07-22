@@ -5,14 +5,5 @@ How-To Articles
    :maxdepth: 2
    :caption: Contents:
 
-   OpenStackCommandline
-   MonitoringCloudInfrastructure
-   PruneUnusedVMs
-   AddAndRemoveHypervisors
-   DrainingHypervisor
-   AddOpenstackFlavorsToCommandline
-   AdminAndUser
+   GettingStarted
    CreateVMFromCommandline
-   FaultFindOpenstackNetworkIssues
-   OpenStackNetworkSetup
-   STFCCloudNetworkInfrastructure

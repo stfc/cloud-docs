@@ -1,5 +1,5 @@
 ===============================================
-How to setup a command line Openstack Project
+Getting Started with OpenStack
 ===============================================
 
 #########
