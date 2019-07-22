@@ -9,4 +9,5 @@ How-To Articles
    AddingSSHKeyToOpenStackWebInterface
    CreateVMFromTheWebInterface
    CreateVMFromCommandLine
+   AddingUserAccountsToVMs
    HowToGrowTheDiskOfAVolumeVM
