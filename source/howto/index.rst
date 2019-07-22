@@ -12,3 +12,4 @@ How-To Articles
    PuttyAndFileZillaWithVMs
    AddingUserAccountsToVMs
    HowToGrowTheDiskOfAVolumeVM
+   ExportADirectoryOverNFS
