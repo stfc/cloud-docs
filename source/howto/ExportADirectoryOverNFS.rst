@@ -20,9 +20,11 @@ Then run the command “chmod 777 /data” This changes the ownership and the pe
     :align: center
     :alt:
 Now re-mount the volume using the command:-
-mount /dev/vdb1 /data
+.. code-block:: bash
+  mount /dev/vdb1 /data
 ….and then check it is mounted using the command:-
-df –h
+.. code-block:: bash
+  df –h
 ..should return something like:-
 .. image:: /assets/howtos/ExportADirectoryOverNFS/image2.png
     :width: 603px
@@ -57,10 +59,12 @@ nfs.service                            disabled
 nfslock.service                        static
 
 In this case, we need to enable the nfs-server.service, and make sure it starts up when the system reboots. Run the command:
-Systemctl enable nfs-server.service
+.. code-block:: bash
+  systemctl enable nfs-server.service
 Run the following command to export the filesystem in /default:-
-sudo exportfs –a
-sudo exportfs
+.. code-block:: bash
+  sudo exportfs
+  sudo exportfs –a
 The system should show all the filesystems being “exported” by the NFS server in the /etc/exports file:-
 .. image:: /assets/howtos/ExportADirectoryOverNFS/image4.png
     :width: 603px
@@ -103,12 +107,15 @@ Setting up the NFS Clients
 ######
 Ensure that you have added the security group to the NFS client host.
 Make sure the directory for where you wish to mount the remote file-system exists: In this case /data. You can create is with the command:-
-sudo mkdir /data
+.. code-block:: bash
+  sudo mkdir /data
 You can “manually” mount the NFS share using the following command:-
 sudo mount 192.168.248.26:/data /data
 …where the IP address 192.168.248.26 is the Private IP address of the NFS server, and the /data is the :/data is the directory that is being exported. The second “/data” is the “mount point” of where the remote file system is mounted.
 You can check if the filesystem is mounted by issuing the command:-
-df –h
+.. code-block:: bash
+.. code-block:: bash
+  df –h
 ..which should show something like:-
 [root@testing-day16-round1-24 ~]# df -h
 Filesystem            Size  Used Avail Use% Mounted on
@@ -121,14 +128,16 @@ tmpfs                 100M     0  100M   0% /run/user/0
 /dev/sr0              458K  458K     0 100% /mnt/context
 192.168.248.26:/data   19G  1.1G   17G   7% /data
 If you wish to mount the remote NFS share when the NFS client machine boots, you can add the following line to the /etc/fstab file:-
-192.168.248.26:/data    /data                           nfs defaults
+.. code-block:: bash
+  192.168.248.26:/data    /data                           nfs defaults
 All users on the NFS clients should now be able to read and write to the /data directory.
 Further things you may wish to investigate and make use of
 It is possible to create “quotas” on the filesystem that is exported via NFS, so that you can account for how much disk space each user and group are using. You can enforce these quotas such that a particular user account can’t use all the disk space up.
 In this model, it is possible that more than one user will have the same userID, so they will have access to each others files on the file-system. It is possible to create a centralised userID server that can make each using have a unique userid when accessing the VMs and the shared Volume (Setting up a NIS sever with Home NFS directories would be an example of this).
 You can export multiple filesystems from different disks at the same time.
 You can test the speed of writing a file from the NFS client to the NFS server using a command such as:-
-Time dd –if=/dev/zero of=1GB_test.iso bs=1M count=1024
+.. code-block:: bash
+  time dd –if=/dev/zero of=1GB_test.iso bs=1M count=1024
 ..will return something like
 1024+0 records in
 1024+0 records out
