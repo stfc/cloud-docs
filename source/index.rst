@@ -19,6 +19,7 @@ Welcome to stfc-cloud-docs's documentation!
    faqs
    CommonCommands
    contact
+   contributetodocs
 
 
 Indices and tables
