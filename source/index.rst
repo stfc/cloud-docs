@@ -18,6 +18,7 @@ Welcome to stfc-cloud-docs's documentation!
    Flavors
    faqs
    CommonCommands
+   contact
 
 
 Indices and tables
