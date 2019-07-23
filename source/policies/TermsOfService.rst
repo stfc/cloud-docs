@@ -1,3 +1,4 @@
+.. _tos:
 ==========
 Terms Of Service
 ==========
