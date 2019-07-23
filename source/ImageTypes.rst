@@ -9,6 +9,7 @@ These are images which have been preconfigured to meet our terms of service by h
 We currently provide 2 operating systems Scientific Linux (a RedHat derivative) and Ubuntu
 
 The Images we provide are:
+
 - ScientificLinux-6-AQ
 - ScientificLinux-6-Gui
 - ScientificLinux-6-NoGui
@@ -24,6 +25,7 @@ The Images we provide are:
 Image Variants
 #######
 We provide 3 different variants of images:
+
 - Gui - Includes a preinstalled desktop environment
 - NoGui - A minimal install
 - AQ - A minimal install bootstrapped into the Aquilon configuration management system (Only available to Aquilon users within STFC)
