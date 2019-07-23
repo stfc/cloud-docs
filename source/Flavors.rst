@@ -24,6 +24,7 @@ These flavors are great for computation and are optimised to either be within a 
 g*.*
 #######
 These have the same CPU configuration as c*.* flavors but have a GPU attached:
+
 - g-k620.* have a NVidia Quadro K620 card attached
 - g-p4000.* have one or more NVidia Quadro P4000 cards attached (the smallest has 1, the largest has 4)
 - g-p100.* have one or more NVidia Tesla P100 cards attached (the smallest has 1, the largest has 2)
