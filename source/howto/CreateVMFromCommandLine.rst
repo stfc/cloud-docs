@@ -7,14 +7,15 @@ It’s common to want to create VMs from command line. To do this, you need to b
 Setting up the environment to select project
 #########
 After logging into a host, you have to set your environment variables – preferably in a script:-
-export OS_AUTH_URL=https://openstack.nubes.rl.ac.uk:35357/v3
-export OS_IDENTITY_API_VERSION=3
-export OS_PASSWORD=************
-export OS_PROJECT_DOMAIN_NAME=default
-export OS_PROJECT_NAME="SCD Cloud Operations Team"
-export OS_TENANT_NAME="SCD Cloud Operations Team"
-export OS_USERNAME=admin-xbe91637
-export OS_USER_DOMAIN_NAME=default
+.. code-block:: bash
+  export OS_AUTH_URL=https://openstack.nubes.rl.ac.uk:5000/v3
+  export OS_IDENTITY_API_VERSION=3
+  export OS_PASSWORD=************
+  export OS_PROJECT_DOMAIN_NAME=default
+  export OS_PROJECT_NAME="SCD Cloud Operations Team"
+  export OS_TENANT_NAME="SCD Cloud Operations Team"
+  export OS_USERNAME=<username>
+  export OS_USER_DOMAIN_NAME=<userdomain>
 
 Take note of the “PROJECT-NAME” and “TENANT-NAME” – they are the project that you wish to create the new VMs in.  The USER_DOMAIN_NAME and USERNAME are the user and the domain that user is in, that you are using to create the VMs. PASSWORD is your login to openstack – in clear text.
 It is common to put all of the above in a shell file (just as above, but with a file extension of .sh) and then “source” the environment variables so that they are part of your command shell So, if I put the above list of commands in a file “martin_openstack.sh” then I need to run “source ./martin_openstack.sh” after I have logged into a openstack server.
@@ -23,7 +24,8 @@ Finding images and flavors available
 #########
 Once on the command line of a server, you need to list the flavours available for the project to use as well as the images available.
 To see the images available, run:-
-openstack flavor list
+.. code-block:: bash
+  openstack flavor list
 +--------------------------------------+----------------+--------+------+-----------+-------+-----------+
 | ID                                   | Name           |    RAM | Disk | Ephemeral | VCPUs | Is Public |
 +--------------------------------------+----------------+--------+------+-----------+-------+-----------+
@@ -62,7 +64,8 @@ openstack flavor list
 | fc04f5fc-c264-4aa9-b1bf-fc3aa7736cbc | m2.medium      |   4096 |   40 |         0 |     4 | True      |
 +--------------------------------------+----------------+--------+------+-----------+-------+-----------+
 To see the choice of images available, run the command:-
-openstack image list
+.. code-block:: bash
+  openstack image list
 +--------------------------------------+--------------------------------------+--------+
 | ID                                   | Name                                 | Status |
 +--------------------------------------+--------------------------------------+--------+
@@ -83,26 +86,31 @@ openstack image list
 | 147eefc8-ad2b-447f-8195-944fe4547ddd | xming_rdesktop_readthedocs_snapshot1 | active |
 +--------------------------------------+--------------------------------------+--------+
 To see the list of networks available, run the command:-
-Openstack network list
+.. code-block:: bash
+  openstack network list
 …this returns two networks named “External” and “Internal”. Since we can’t add VMs directly to External network, we will be using the “Internal” network.
 #########
 Putting it all together to create a new Instance
 #########
 
 Here is an example command, putting together information from the previous commands:-
-openstack server create --flavor m1.tiny --image ScientificLinux-7-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-29_1511
+.. code-block:: bash
+  openstack server create --flavor m1.tiny --image ScientificLinux-7-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-29_1511
 …where flavour and image are from the previous commands used, net_id is the name of the Network to be used (note you can use the actual Net_ID number instead if preferred – it can make things faster!). Security group is defining the specific security group, and key-name, chooses the ssh keypair to include when creating the host. “test_2018-10-29_1511” is the name of the host that is being created – known within openstack.
 Some useful extras
 Adding --timing after the openstack command provides some statistics of how quickly various calls are being completed. You will see the usual host creation data, but at the end, you will also see the response times of each openstack API module.
-openstack --timing server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
+.. code-block:: bash
+  openstack --timing server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
 
 
 
 To delete a host, you can use the command:-
-Openstack server delete <instance id>
+.. code-block:: bash
+  openstack server delete <instance id>
 You can also run with --debug after the openstack command – this will give you a step by step commentary as to what is happening when creating a virtual machine.
 For example:-
-openstack --debug server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
+.. code-block:: bash
+  openstack --debug server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
 #########
 References
 #########
