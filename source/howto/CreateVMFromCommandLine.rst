@@ -7,14 +7,14 @@ It’s common to want to create VMs from command line. To do this, you need to b
 Setting up the environment to select project
 #########
 After logging into a host, you have to set your environment variables – preferably in a script:-
-export OS_AUTH_URL=https://openstack.nubes.rl.ac.uk:35357/v3
+export OS_AUTH_URL=https://openstack.nubes.rl.ac.uk:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_PASSWORD=************
 export OS_PROJECT_DOMAIN_NAME=default
 export OS_PROJECT_NAME="SCD Cloud Operations Team"
 export OS_TENANT_NAME="SCD Cloud Operations Team"
-export OS_USERNAME=admin-xbe91637
-export OS_USER_DOMAIN_NAME=default
+export OS_USERNAME=<username>
+export OS_USER_DOMAIN_NAME=<userdomain>
 
 Take note of the “PROJECT-NAME” and “TENANT-NAME” – they are the project that you wish to create the new VMs in.  The USER_DOMAIN_NAME and USERNAME are the user and the domain that user is in, that you are using to create the VMs. PASSWORD is your login to openstack – in clear text.
 It is common to put all of the above in a shell file (just as above, but with a file extension of .sh) and then “source” the environment variables so that they are part of your command shell So, if I put the above list of commands in a file “martin_openstack.sh” then I need to run “source ./martin_openstack.sh” after I have logged into a openstack server.
