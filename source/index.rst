@@ -11,12 +11,15 @@ Welcome to stfc-cloud-docs's documentation!
    :caption: Contents:
 
    howto/index
+   tutorials/index
    faultfixes/index
    policies/index
    ImageTypes
    Flavors
    faqs
    CommonCommands
+   contact
+   contributetodocs
 
 
 Indices and tables

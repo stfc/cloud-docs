@@ -9,7 +9,16 @@ How-To Articles
    AddingSSHKeyToOpenStackWebInterface
    CreateVMFromTheWebInterface
    CreateVMFromCommandLine
+   AssociateAFloatingIP
+   CreateVolumeFromWebInterface
+   CreateVolumeFromCommandLine
+   SnapshotVM
+   ResizeVM
+   RebuildVM
+   UseCloudInit
+   CreateAHeatStack
    PuttyAndFileZillaWithVMs
    AddingUserAccountsToVMs
    HowToGrowTheDiskOfAVolumeVM
    ExportADirectoryOverNFS
+   ComplyWithSTFCCloudTerms
