@@ -9,10 +9,12 @@ Welcome to stfc-cloud-docs's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
+
    howto/index
    faultfixes/index
    policies/index
+   ImageTypes
+   Flavors
    faqs
    CommonCommands
 
