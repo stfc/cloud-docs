@@ -31,7 +31,7 @@ To see the images available, run:-
 
 
 .. csv-table:: flavor
-  :header:"ID", "Name","RAM","Disk","Ephemeral","VCPUs","Is Public"
+  :header: "ID", "Name","RAM","Disk","Ephemeral","VCPUs","Is Public"
 
   "026ace2c-5247-4bdc-8929-81d129cc69bf","c3.small","4096","20","0","2","True"
   "1","m1.tiny","1024","10","0","1","True"
