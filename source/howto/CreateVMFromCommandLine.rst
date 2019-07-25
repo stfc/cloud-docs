@@ -9,6 +9,7 @@ Setting up the environment to select project
 After logging into a host, you have to set your environment variables – preferably in a script:-
 
 .. code-block:: bash
+
   export OS_AUTH_URL=https://openstack.nubes.rl.ac.uk:5000/v3
   export OS_IDENTITY_API_VERSION=3
   export OS_PASSWORD=************
@@ -27,6 +28,7 @@ Once on the command line of a server, you need to list the flavours available fo
 To see the images available, run:-
 
 .. code-block:: bash
+
   openstack flavor list
 
 
@@ -70,6 +72,7 @@ To see the images available, run:-
 To see the choice of images available, run the command:-
 
 .. code-block:: bash
+
   openstack image list
 
 .. csv-table:: images
@@ -95,6 +98,7 @@ To see the choice of images available, run the command:-
 To see the list of networks available, run the command:-
 
 .. code-block:: bash
+
   openstack network list
 
 …this returns two networks named “External” and “Internal”. Since we can’t add VMs directly to External network, we will be using the “Internal” network.
@@ -105,6 +109,7 @@ Putting it all together to create a new Instance
 Here is an example command, putting together information from the previous commands:-
 
 .. code-block:: bash
+
   openstack server create --flavor m1.tiny --image ScientificLinux-7-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-29_1511
 
 …where flavour and image are from the previous commands used, net_id is the name of the Network to be used (note you can use the actual Net_ID number instead if preferred – it can make things faster!). Security group is defining the specific security group, and key-name, chooses the ssh keypair to include when creating the host. “test_2018-10-29_1511” is the name of the host that is being created – known within openstack.
@@ -112,6 +117,7 @@ Some useful extras
 Adding --timing after the openstack command provides some statistics of how quickly various calls are being completed. You will see the usual host creation data, but at the end, you will also see the response times of each openstack API module.
 
 .. code-block:: bash
+
   openstack --timing server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
 
 
@@ -119,12 +125,14 @@ Adding --timing after the openstack command provides some statistics of how quic
 To delete a host, you can use the command:-
 
 .. code-block:: bash
+
   openstack server delete <instance id>
 
 You can also run with --debug after the openstack command – this will give you a step by step commentary as to what is happening when creating a virtual machine.
 For example:-
 
 .. code-block:: bash
+
   openstack --debug server create --flavor m1.tiny --image Ubuntu-Xenial-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-30_1357
 
 #########
