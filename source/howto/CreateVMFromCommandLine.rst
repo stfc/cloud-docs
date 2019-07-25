@@ -3,9 +3,11 @@ How to Create a Virtual Machine from command line in STFC Openstack
 ===============================================
 
 It’s common to want to create VMs from command line. To do this, you need to be on a hot that has the openstack command line interface installed. Common examples are keystone1.nubes.rl.ac.uk, nova1.nubes.rl.ac.uk. It could be any of the infrastructure hosts.
+
 #########
 Setting up the environment to select project
 #########
+
 After logging into a host, you have to set your environment variables – preferably in a script:-
 
 .. code-block:: bash
