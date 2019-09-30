@@ -1,4 +1,4 @@
-=============
+===================
 How to use Putty and Filezilla to connect to an Openstack Virtual machine using putty and pageant
 ===================
 

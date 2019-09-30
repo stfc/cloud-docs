@@ -6,3 +6,4 @@ Tutorials
    :caption: Contents:
 
    WebServerInDockerContainer
+   JupyterHubDocumentation
