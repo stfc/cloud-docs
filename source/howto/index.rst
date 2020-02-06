@@ -22,3 +22,5 @@ How-To Articles
    HowToGrowTheDiskOfAVolumeVM
    ExportADirectoryOverNFS
    ComplyWithSTFCCloudTerms
+   ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
+   ConfigureAnXServerInWindowsSubsystemForLinux
