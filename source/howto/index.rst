@@ -24,3 +24,4 @@ How-To Articles
    ComplyWithSTFCCloudTerms
    ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
    ConfigureAnXServerInWindowsSubsystemForLinux
+   UpdateScientificLinuxAndCentosVMs
