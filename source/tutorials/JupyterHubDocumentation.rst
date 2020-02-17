@@ -4,7 +4,7 @@ JupyterHub Handover Documentation
 
 .. role:: bash(code)
     :language: bash
-    
+
 -----------
 Overview
 -----------
@@ -67,15 +67,15 @@ In order to correctly setup the authentication, I needed to set an SSL key passp
 Recreating Instance
 ----------------------
 
-JupyterHub requires Python 3 so I used Python 3.6 throughout for this proof of concept. 
+JupyterHub requires Python 3 so I used Python 3.6 throughout for this proof of concept.
 
 Inside :bash:`/home/USERNAME/jupyterhub/test-hub`, there's a :bash:`requirements.txt` file which is the output of a :bash:`pip freeze` done on the virtual environment used for this proof of concept. If you don't have access to this, I installed: :bash:`jupyterhub`, :bash:`jupyterhub-ldapauthenticator` and :bash:`libcloudspawner` using Pip.
 
-To launch notebook servers on OpenStack, JupyterHub must be installed on the VM. The easiest way to do this is by creating a VM using an image that has it pre-installed. On the OpenStack project used, there's an snapshot called :bash:`SL7 NoGui w/ JupyterHub-3` which has JupyterHub (including Python 3.6) installed, along with a 'user folder' - this is the intended base folder for notebook servers (this option is set in the jupyterhub config file). As of writing, this folder is :bash:`/home/USERNAME/jupyterhub-user-folder`.
+To launch notebook servers on OpenStack, JupyterHub must be installed on the VM. The easiest way to do this is by creating a VM using an image that has it pre-installed. You will need to create an image which has JupyterHub (including Python 3.6) installed, along with any software required by your community and a 'user folder' - this is the intended base folder for notebook servers (this option is set in the jupyterhub config file). As of writing, this folder is :bash:`/home/USERNAME/jupyterhub-user-folder`.
 
-This JupyterHub instance I used has a host certificate with it. This is because authentication uses SSL. The certificate expires May 2020.
+This JupyterHub instance I used has a host certificate with it. This is because authentication uses SSL. A self signed certificate will work for testing or various tiers of more trusted certificates can be requested via cloud-support@gridpp.rl.ac.uk
 
-It should be noted there's a security group on the project used for this for port 8000. 
+It should be noted the project needs a security group to allow port 8000.
 
 ----------------------
 LDAP Authentication
@@ -115,7 +115,7 @@ I've been communicating (via Gitter) with the developer of this spawner to get a
 Example Notebook Server - LPD Tile Testing
 ---------------------------------------------
 
-To ensure this instance works, I got an existing Jupyter notebook to function with JupyterHub. This notebook takes data files from a detector, and tests the tiles/chips on the detector function as they should. 
+To ensure this instance works, I got an existing Jupyter notebook to function with JupyterHub. This notebook takes data files from a detector, and tests the tiles/chips on the detector function as they should.
 
 .. image:: /assets/tutorials/JupyterHubDocumentation/image2.png
    :align: center
@@ -135,7 +135,7 @@ When first starting JupyterHub, a config file is generated for you. I've used th
     c.JupyterHub.cleanup_proxy = False
     c.JupyterHub.cleanup_servers = False
 
-When the JupyterHub service is shutdown, this means notebook servers won't be deleted. In the case of the LibCloudSpawner, VMs won't be changed at all (deleted, for example). 
+When the JupyterHub service is shutdown, this means notebook servers won't be deleted. In the case of the LibCloudSpawner, VMs won't be changed at all (deleted, for example).
 
 .. code:: python
 
@@ -146,6 +146,6 @@ The certificates from e-Science come in a :bash:`.pem` format. I converted this 
 
 .. code:: python
 
-    c.Spawner.start_timeout = 360    
+    c.Spawner.start_timeout = 360
 
 6 minutes is enough time to ensure OpenStack has done its job and beyond that, something has definitely gone wrong. The timeout used to be 90 seconds and this wasn't always enough time for the spawner to get an IP address from the VM it created.
