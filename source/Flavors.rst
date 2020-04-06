@@ -21,6 +21,21 @@ These are flavors with dedicated CPU cores meaning that a VCPU core assigned to 
 These flavors are great for computation and are optimised to either be within a single NUMA node providing great performance or balanced equally across the NUMA nodes in the hypervisor.
 
 #######
+l*.*
+#######
+These are flavors which utilize local SSD storage on the hypervisors with all of the storage being allocated to the root disk.
+
+Otherwise the flavors behave as c*.* flavors
+
+#######
+le*.*
+#######
+These are flavors which utilize local SSD storage on the hypervisors with 100GB being allocated to the root disk and the rest to an ephemeral disk.
+
+Otherwise the flavors behave as c*.* flavors
+
+
+#######
 g*.*
 #######
 These have the same CPU configuration as c*.* flavors but have a GPU attached:
@@ -28,3 +43,4 @@ These have the same CPU configuration as c*.* flavors but have a GPU attached:
 - g-k620.* have a NVidia Quadro K620 card attached
 - g-p4000.* have one or more NVidia Quadro P4000 cards attached (the smallest has 1, the largest has 4)
 - g-p100.* have one or more NVidia Tesla P100 cards attached (the smallest has 1, the largest has 2)
+- g-v100.* have one or more NVidia Tesla V100 32GB cards attached (small has 1,medium has 2 and large has 4)
