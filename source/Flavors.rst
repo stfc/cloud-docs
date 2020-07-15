@@ -30,7 +30,7 @@ Otherwise the flavors behave as c*.* flavors
 #######
 le*.*
 #######
-These are flavors which utilize local SSD storage on the hypervisors with 100GB being allocated to the root disk and the rest to an ephemeral disk.
+These are flavors which utilize local SSD storage on the hypervisors with 100GB being allocated to the root disk and the rest to an ephemeral disk. These instances currently cannot be live migrated.
 
 Otherwise the flavors behave as c*.* flavors
 
