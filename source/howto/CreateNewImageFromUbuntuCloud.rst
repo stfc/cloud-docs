@@ -1,3 +1,4 @@
+
 ===================================
 Create New Image From Ubuntu Cloud
 ===================================
@@ -26,6 +27,3 @@ virt-install --virt-type kvm --name bionic --ram 1024 \
 References
 #######
 https://docs.openstack.org/heat/queens/template_guide/hot_guide.html
-
-TESDT
-
