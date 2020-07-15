@@ -5,7 +5,9 @@ Create New Image From Ubuntu Cloud
 Documentations coming soon
 
 MT
+
 source/howto/CreateNewImageFromUbuntuCloud.rst
+
 .. code-block:: bash
 
 wget -o /var/lib/libvirt/boot/bionic-mini.iso \
@@ -23,7 +25,6 @@ virt-install --virt-type kvm --name bionic --ram 1024 \
 	--network network=default \
 	--graphics vnc,listen=0.0.0.0 --noautoconsole \
 	--os-type=linux --os-variant=ubuntu18.04
-
 
 ######
 References
