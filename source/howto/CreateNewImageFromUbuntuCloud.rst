@@ -1,6 +1,6 @@
-===================================
+=============
 Create New Image From Ubuntu Cloud
-===================================
+=============
 
 Documentations coming soon
 
