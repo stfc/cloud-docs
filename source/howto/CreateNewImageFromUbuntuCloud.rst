@@ -1,5 +1,5 @@
 =============================
-CreateNewImageFromUbuntuCloud
+Create New Image From Ubuntu Cloud
 =============================
 
 
