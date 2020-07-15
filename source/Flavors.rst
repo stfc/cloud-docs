@@ -23,14 +23,14 @@ These flavors are great for computation and are optimised to either be within a 
 #######
 l*.*
 #######
-These are flavors which utilize local SSD storage on the hypervisors with all of the storage being allocated to the root disk.
+These are flavors which utilize local SSD storage on the hypervisors with all of the storage being allocated to the root disk. These instances currently cannot be live migrated so in the event of hardware errors the machine will likely be lost or down for an extended period
 
 Otherwise the flavors behave as c*.* flavors
 
 #######
 le*.*
 #######
-These are flavors which utilize local SSD storage on the hypervisors with 100GB being allocated to the root disk and the rest to an ephemeral disk. These instances currently cannot be live migrated.
+These are flavors which utilize local SSD storage on the hypervisors with 100GB being allocated to the root disk and the rest to an ephemeral disk. These instances currently cannot be live migrated so in the event of hardware errors the machine will likely be lost or down for an extended period.
 
 Otherwise the flavors behave as c*.* flavors
 
