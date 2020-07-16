@@ -2,9 +2,7 @@
 Create a Heat stack
 ==============
 
-Documentations coming soon
-
-Work In Progress
+This document is in progress.
 
 ######
 Heat
