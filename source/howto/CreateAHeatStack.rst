@@ -1,6 +1,6 @@
-==============
+===================
 Create a Heat stack
-==============
+===================
 
 This document is in progress.
 
@@ -17,17 +17,17 @@ This command returns the list of stacks in the user's project. If no stacks have
 
 To create a stack, we first need to write a template which will be used to launch the stack.
 
-######
+##########
 Templates
-######
+##########
 Templates are used to define the resources which should be created as part of a stack and the relationships between resources.
 With the integration of other OpenStack components, Heat Templates allow the create of most OpenStack resource types.
 This includes infrastructure resources such as instances, databases, security groups, users, etc.
 The Heat Orchestration Template (HOT) is native to OpenStack for creating stacks. These templates are written in YAML.
 
-######
+#############################
 Heat Orchestration Templates
-######
+#############################
 The structure of a Heat Orchestration Template is given as follows:
 
 .. code-block:: yaml
@@ -51,7 +51,7 @@ The structure of a Heat Orchestration Template is given as follows:
   conditions: #declares any conditions on the stack
 
 heat_template_version
-######
+#####################
 
 This tells heat which format and features will be supported when creating the stack.
 For example:
@@ -63,7 +63,7 @@ Indicates that the Heat Template contains features which have been added an/or r
 A list of template versions can be found here: https://docs.openstack.org/heat/rocky/template_guide/hot_spec.html#hot-spec-intrinsic-functions
 
 parameter_groups
-######
+################
 
 Parameter groups allows users to specify how the input parameters should be grouped in the order that the parameters are provided in. This section is not strictly compulsory for launching stacks, however it is useful for more complex templates where there are several input parameters to be used.
 
@@ -80,7 +80,7 @@ The syntax for parameter_groups is:
       - <parameter-3> #name of third parameter
 
 Parameters
-######
+##########
 
 The parameters section specifies the input parameters that have to be provided when the template is initalised. The syntax for parameters is of the form:
 
@@ -98,7 +98,7 @@ The parameters section specifies the input parameters that have to be provided w
       tags: <list of parameter categories> #Optional input. list of strings to specify the catagory of the parameter.
 
 Resources
-######
+#########
 
 This is a compulsory section and must contain at least one resource. This could be an instance, floating IP, Network, key pair, etc.
 
@@ -134,7 +134,7 @@ Below is an example of a resource being a single instance.
 
 
 Outputs
-######
+#######
 
 Outputs define the parameters that should be available to the user after a stack has been created. This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
 .. code-block:: yaml
@@ -145,7 +145,7 @@ Outputs define the parameters that should be available to the user after a stack
       condition: <condition name or expression or boolean>
 
 Conditions
-######
+##########
 
 The condition section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack. The conditions can be associated with resources, the properties of the resources and the output.
 
@@ -156,9 +156,10 @@ The syntax for conditions in the heat template is given by:
     <condition_name_2>: {expression_2}
 
 
-######
+#################
 Example Template
-######
+#################
+
 The following template is for a stack containing a single instance.
 
 .. code-block:: yaml
@@ -208,15 +209,41 @@ The following template is for a stack containing a single instance.
         security_groups:
           - { get_param: security_group_id }
 
+Using a template similar to this one, we can launch a stack.
+
+###############
+Create a Stack
+###############
+
+Stacks can be launched using the openstack CLI. The syntax for creating a stack is:
+
+.. code-block:: bash
+  openstack stack create [-h] [-f {json,shell,table,value,yaml}]
+                              [-c COLUMN] [—noindent] [—prefix PREFIX]
+                              [—max-width <integer>] [—fit-width]
+                              [—print-empty] [-e <environment>]
+                              [-s <files-container>] [—timeout <timeout>]
+                              [—pre-create <resource>] [—enable-rollback]
+                              [—parameter <key=value>]
+                              [—parameter-file <key=file>] [—wait]
+                              [—poll SECONDS] [—tags <tag1,tag2…>]
+                              [—dry-run] -t <template>
+                              <stack-name>
+
+For example, to create a stack using the template *example-template.yaml*:
+
+.. code-block:: bash
+
+  openstack stack create -t example-template.yaml
 
 
 
 
 
 
-######
+###########
 References
-#######
+###########
 https://docs.openstack.org/heat/queens/template_guide/hot_guide.html
 
 https://www.cisco.com/c/dam/en/us/products/collateral/cloud-systems-management/metacloud/newbie-tutorial-heat.pdf
