@@ -55,6 +55,7 @@ heat_template_version
 
 This tells heat which format and features will be supported when creating the stack.
 For example:
+
 .. code-block:: yaml
 
   heat_template_version: 2018-03-02
