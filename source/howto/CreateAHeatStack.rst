@@ -160,7 +160,7 @@ The syntax for conditions in the heat template is given by:
 Example Template
 #################
 
-The following template is for a stack containing a single instance.
+The following template (example-template.yaml) is for a stack containing a single instance.
 
 .. code-block:: yaml
   heat_template_version: 2018-03-02 #OpenStack Queens Version
@@ -236,9 +236,29 @@ For example, to create a stack using the template *example-template.yaml*:
 
   openstack stack create -t example-template.yaml
 
+This should return something similar to the following:
 
+.. code-block:: bash
 
++---------------------+--------------------------------------------------+
+| Field               | Value                                            |
++---------------------+--------------------------------------------------+
+| id                  | deda567a-4240-466d-9ac6-4bed4b848666             |
+| stack_name          | example-stack                                    |
+| description         | A template to test launching a stack with one VM |
+| creation_time       | 2020-07-20T08:22:14Z                             |
+| updated_time        | None                                             |
+| stack_status        | CREATE_IN_PROGRESS                               |
+| stack_status_reason | Stack CREATE started                             |
++---------------------+--------------------------------------------------+
 
+Then the status of the stack can be checked using the command:
+
+.. code-block:: bash
+
+openstack stack show deda567a-4240-466d-9ac6-4bed4b848666
+
+You should get the details of the stack similar to the following:
 
 
 ###########
