@@ -137,7 +137,9 @@ Outputs
 #######
 
 Outputs define the parameters that should be available to the user after a stack has been created. This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
+
 .. code-block:: yaml
+
   outputs:
     <parameter name>:
       description: <description>
@@ -150,7 +152,9 @@ Conditions
 The condition section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack. The conditions can be associated with resources, the properties of the resources and the output.
 
 The syntax for conditions in the heat template is given by:
+
 .. code-block:: yaml
+
   conditions:
     <condition_name_1>: {expression_1}
     <condition_name_2>: {expression_2}
