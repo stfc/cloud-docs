@@ -240,25 +240,38 @@ This should return something similar to the following:
 
 .. code-block:: bash
 
-+---------------------+--------------------------------------------------+
-| Field               | Value                                            |
-+---------------------+--------------------------------------------------+
-| id                  | deda567a-4240-466d-9ac6-4bed4b848666             |
-| stack_name          | example-stack                                    |
-| description         | A template to test launching a stack with one VM |
-| creation_time       | 2020-07-20T08:22:14Z                             |
-| updated_time        | None                                             |
-| stack_status        | CREATE_IN_PROGRESS                               |
-| stack_status_reason | Stack CREATE started                             |
-+---------------------+--------------------------------------------------+
+  +---------------------+--------------------------------------------------+
+  | Field               | Value                                            |
+  +---------------------+--------------------------------------------------+
+  | id                  | deda567a-4240-466d-9ac6-4bed4b848666             |
+  | stack_name          | example-stack                                    |
+  | description         | A template to test launching a stack with one VM |
+  | creation_time       | 2020-07-20T08:22:14Z                             |
+  | updated_time        | None                                             |
+  | stack_status        | CREATE_IN_PROGRESS                               |
+  | stack_status_reason | Stack CREATE started                             |
+  +---------------------+--------------------------------------------------+
 
 Then the status of the stack can be checked using the command:
 
 .. code-block:: bash
 
-openstack stack show deda567a-4240-466d-9ac6-4bed4b848666
+  openstack stack show <stack-id>
 
 You should get the details of the stack similar to the following:
+
+
+###############
+Delete a Stack
+###############
+
+To delete a stack, use the command:
+
+.. code-block:: bash
+
+  openstack stack delete <stack-id>
+
+**Note:** This command will delete the stack *and* the resources, such as instances, which have been created for the stack.
 
 
 ###########
