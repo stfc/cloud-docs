@@ -168,6 +168,7 @@ Example Template
 The following template (example-template.yaml) is for a stack containing a single instance.
 
 .. code-block:: yaml
+
   heat_template_version: 2018-03-02 #OpenStack Queens Version
 
   description: An example template which launches instances.
