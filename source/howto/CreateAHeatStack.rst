@@ -173,35 +173,35 @@ The following template (example-template.yaml) is for a stack containing a singl
 
   description: An example template which launches instances.
 
-  parameter_groups:
+  parameter_groups: # Optional - helps to group parameters together
     - label: Instance parameters #human-readable label defining the associated group of parameters
       description: The parameters which are required to launch an instance. #description of parameter group
-      parameters: #Parameters are given same order as lauching an instance using openstack server create command
-        - KeyName #name of keypair to SSH into instance
+      parameters: #Parameters are given same order as launching an instance using openstack server create command
+        - key_name #name of keypair to SSH into instance
         - image_id #name can be used as well, but it's better practice to use ID
         - flavor_id #name or ID, though it is better practice to use ID
-        - security_group_id #security group for the instance (use ID)
+        - security_group_id #security group for the instance (use the security group ID)
         #network will be defined inside resources
 
   parameters: #declares the parameters
-    KeyName:
+    key_name:
       type: string
       default: <key-name>
-      description: KeyPair to use to be able to SSH into instance
+      description: Key pair to use to be able to SSH into instance
     image_id:
       type: string
       label: <image-name>
       default: <image-id> #Image ID
-      description: The image for the instance will be the Ubuntu-Bionic-Gui
+      description: The image for the instance will be IMAGE-NAME
     flavor_id:
       type: string
       label: <flavor-name>
       default: <flavor-id> #Flavor ID
-      description: The flavor for the instance will be c3.small
+      description: The flavor for the instance will be FLAVOR-NAME
     security_group_id:
       type: string
       default: <security-group-id> #ID of the security group
-      description: Security group: default
+      description: SECURITY-GROUP-NAME #this could be a default security group for example
 
   resources: #declares the template resources
     test_instance: #name of the instance
@@ -209,7 +209,7 @@ The following template (example-template.yaml) is for a stack containing a singl
       properties:
         image: { get_param: image_id } #retrieves the image ID from image_id parameter
         flavor: { get_param: flavor_id } #retrieves the flavor ID from flavor_id parameter
-        key_name: { get_param: KeyName } #retrieves the key pair from KeyName parameter
+        key_name: { get_param: key_name } #retrieves the key pair from key_name parameter
         networks:
           - network: Internal #define the internal network as Internal
         security_groups:
@@ -277,7 +277,9 @@ To delete a stack, use the command:
 
   openstack stack delete <stack-id>
 
-**Note:** This command will delete the stack *and* the resources, such as instances, which have been created for the stack.
+**Note:** Any resources such as instances which have been created specifically for the stack will also be deleted.
+
+
 
 
 ###########
