@@ -35,6 +35,7 @@ Or set them yourself in a script:-
 
 Take note of the “PROJECT-NAME” and “TENANT-NAME” – they are the project that you wish to create the new VMs in.  The USER_DOMAIN_NAME and USERNAME are the user and the domain that user is in, that you are using to create the VMs. PASSWORD is your login to openstack – in clear text.
 It is common to put all of the above in a shell file (just as above, but with a file extension of .sh) and then “source” the environment variables so that they are part of your command shell So, if I put the above list of commands in a file “martin_openstack.sh” then I need to run “source ./martin_openstack.sh” after I have logged into a openstack server.
+
 #########
 Finding images and flavors available
 #########
@@ -45,6 +46,7 @@ To see the images available, run:-
 
   openstack flavor list
 
+You should expect an output of a table that looks something like the below:
 
 .. csv-table:: flavor
   :header: "ID", "Name","RAM","Disk","Ephemeral","VCPUs","Is Public"
@@ -89,6 +91,8 @@ To see the choice of images available, run the command:-
 
   openstack image list
 
+  You should expect an output of a table that looks something like the below:
+
 .. csv-table:: images
   :header: "ID","Name","Status"
 
@@ -116,6 +120,7 @@ To see the list of networks available, run the command:-
   openstack network list
 
 …this returns two networks named “External” and “Internal”. Since we can’t add VMs directly to External network, we will be using the “Internal” network.
+
 #########
 Putting it all together to create a new Instance
 #########
