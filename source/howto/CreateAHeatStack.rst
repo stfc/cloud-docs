@@ -2,11 +2,8 @@
 Create a Heat stack
 ===================
 
-This document is in progress.
+Heat is an orchestration component of OpenStack which allows templates to be used to define resources and to specify the relationships between resources in a stack.
 
-######
-Heat
-######
 To check Heat is available we can run the command:
 
 .. code-block:: bash
@@ -20,20 +17,22 @@ To create a stack, we first need to write a template which will be used to launc
 ##########
 Templates
 ##########
+
 Templates are used to define the resources which should be created as part of a stack and the relationships between resources.
 With the integration of other OpenStack components, Heat Templates allow the create of most OpenStack resource types.
 This includes infrastructure resources such as instances, databases, security groups, users, etc.
 The Heat Orchestration Template (HOT) is native to OpenStack for creating stacks. These templates are written in YAML.
 
-#############################
+
 Heat Orchestration Templates
-#############################
+############################
+
 The structure of a Heat Orchestration Template is given as follows:
 
 .. code-block:: yaml
 
-  heat_template_version: 2018-03-02 #OpenStack Version we want to use.
-                                  #Here it is the Queens version
+  heat_template_version: 2018-08-31 #OpenStack Version we want to use.
+                                    #Here, we want to use template for the Rocky release onwards
 
   description: #description of the template. What does the template do?
 
@@ -54,26 +53,38 @@ heat_template_version
 #####################
 
 This tells heat which format and features will be supported when creating the stack.
+
 For example:
 
 .. code-block:: yaml
 
   heat_template_version: 2018-03-02
 
-Indicates that the Heat Template contains features which have been added an/or removed up to the Queens release of OpenStack.
+Indicates that the Heat Template contains features which have been added and/or removed up to the Queens release of OpenStack.
+
+The template version:
+
+.. code-block:: yaml
+
+  heat_template_version: 2018-08-31
+
+Indicates that the Heat Template contains features which have been added and/or removed up to the Rocky release of OpenStack.
+For templates being used in the Train release of OpenStack, this template version is used.
+
 A list of template versions can be found here: https://docs.openstack.org/heat/rocky/template_guide/hot_spec.html#hot-spec-intrinsic-functions
 
 parameter_groups
 ################
 
-Parameter groups allows users to specify how the input parameters should be grouped in the order that the parameters are provided in. This section is not strictly compulsory for launching stacks, however it is useful for more complex templates where there are several input parameters to be used.
+Parameter groups indicate how the input parameters are grouped. The order of the parameters are given in lists.
+This section is not strictly compulsory for launching stacks, however it is useful for more complex templates where there are several input parameters to be used.
 
 The syntax for parameter_groups is:
 
 .. code-block:: yaml
 
   parameter_groups:
-    label: #human-readable label defining the associated group of parameters
+  - label: # label defining the group of parameters
     description: #description of parameter group
     parameters:
       - <parameter-1> #name of first parameter
@@ -95,7 +106,7 @@ The parameters section specifies the input parameters that have to be provided w
       default: <default value for parameter> #optional - this is used if the user does not specify a value.
       hidden: <true | false> #Default option is false. This determines whether the parameter is hidden from the user if the user requests information about the stack.
       constraints: <parameter constraints> #Optional Input. List of constrains to apply to the parameter. The stack will fail if the parameter values doe not comply to the constrains.
-      immutable: <true | false> #Default is false. This determines whether a parameter is updateable.
+      immutable: <true | false> #Default is false. This determines whether a parameter is updateable after the stack is running.
       tags: <list of parameter categories> #Optional input. list of strings to specify the catagory of the parameter.
 
 Resources
@@ -103,11 +114,13 @@ Resources
 
 This is a compulsory section and must contain at least one resource. This could be an instance, floating IP, Network, key pair, etc.
 
+A list of the different OpenStack resources which can be used in a Heat template can be found here: https://docs.openstack.org/heat/latest/template_guide/openstack.html
+
 .. code-block:: yaml
 
   resources:
     <resource ID>: #must be unique within the resources section of the template.
-      type: <resource type> #e.g OS::Nova::Server (instance), OS::Nova::Port
+      type: <resource type> #e.g OS::Nova::Server, OS::Nova::Port, OS::Neutron::FloatingIPAssociation, etc.
       properties: #list of resource-specific properties that can be provided in place or via a function.
         <property name>: <property value>
         metadata: #optional input
@@ -137,7 +150,8 @@ Below is an example of a resource being a single instance.
 Outputs
 #######
 
-Outputs define the parameters that should be available to the user after a stack has been created. This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
+Outputs define the parameters that should be available to the user after a stack has been created.
+ This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
 
 .. code-block:: yaml
 
@@ -150,7 +164,8 @@ Outputs define the parameters that should be available to the user after a stack
 Conditions
 ##########
 
-The condition section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack. The conditions can be associated with resources, the properties of the resources and the output.
+The conditions section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack.
+ The conditions can be associated with resources, the properties of the resources and the output.
 
 The syntax for conditions in the heat template is given by:
 
@@ -169,7 +184,7 @@ The following template (example-template.yaml) is for a stack containing a singl
 
 .. code-block:: yaml
 
-  heat_template_version: 2018-03-02 #OpenStack Queens Version
+  heat_template_version: 2018-08-31 #OpenStack Rocky Version
 
   description: An example template which launches instances.
 
@@ -190,12 +205,10 @@ The following template (example-template.yaml) is for a stack containing a singl
       description: Key pair to use to be able to SSH into instance
     image_id:
       type: string
-      label: <image-name>
       default: <image-id> #Image ID
       description: The image for the instance will be IMAGE-NAME
     flavor_id:
       type: string
-      label: <flavor-name>
       default: <flavor-id> #Flavor ID
       description: The flavor for the instance will be FLAVOR-NAME
     security_group_id:
@@ -221,7 +234,7 @@ Using a template similar to this one, we can launch a stack.
 Create a Stack
 ###############
 
-Stacks can be launched using the openstack CLI. The syntax for creating a stack is:
+Stacks can be launched using the OpenStack CLI. The syntax for creating a stack is:
 
 .. code-block:: bash
   openstack stack create [-h] [-f {json,shell,table,value,yaml}]
@@ -240,7 +253,7 @@ For example, to create a stack using the template *example-template.yaml*:
 
 .. code-block:: bash
 
-  openstack stack create -t example-template.yaml
+  openstack stack create -t example-template.yaml example-stack
 
 This should return something similar to the following:
 
@@ -251,7 +264,7 @@ This should return something similar to the following:
   +---------------------+--------------------------------------------------+
   | id                  | deda567a-4240-466d-9ac6-4bed4b848666             |
   | stack_name          | example-stack                                    |
-  | description         | A template to test launching a stack with one VM |
+  | description         | An example template which launches instances.    |
   | creation_time       | 2020-07-20T08:22:14Z                             |
   | updated_time        | None                                             |
   | stack_status        | CREATE_IN_PROGRESS                               |
@@ -263,8 +276,6 @@ Then the status of the stack can be checked using the command:
 .. code-block:: bash
 
   openstack stack show <stack-id>
-
-You should get the details of the stack similar to the following:
 
 
 ###############
@@ -281,10 +292,9 @@ To delete a stack, use the command:
 
 
 
-
 ###########
 References
 ###########
-https://docs.openstack.org/heat/queens/template_guide/hot_guide.html
-
+https://docs.openstack.org/heat/train/template_guide/hot_guide.html
+https://docs.openstack.org/heat/train/template_guide/hot_spec.html#hot-spec
 https://www.cisco.com/c/dam/en/us/products/collateral/cloud-systems-management/metacloud/newbie-tutorial-heat.pdf
