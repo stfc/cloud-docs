@@ -294,6 +294,9 @@ To delete a stack, use the command:
 ###########
 References
 ###########
+
 https://docs.openstack.org/heat/train/template_guide/hot_guide.html
+
 https://docs.openstack.org/heat/train/template_guide/hot_spec.html#hot-spec
+
 https://www.cisco.com/c/dam/en/us/products/collateral/cloud-systems-management/metacloud/newbie-tutorial-heat.pdf
