@@ -34,7 +34,7 @@ The structure of a Heat Orchestration Template is given as follows:
   heat_template_version: 2018-08-31 #OpenStack Version we want to use.
                                     #Here, we want to use template for the Rocky release onwards
 
-  description: #description of the template. What does the template do?
+  description: #description of the template
 
   parameter_groups: #declares the parameter group and order.
     #This is not a compulsory section, however it is useful for grouping
@@ -43,7 +43,7 @@ The structure of a Heat Orchestration Template is given as follows:
   parameters: #declares the parameters for resources
 
   resources: #declares the template resources
-  # e.g. instances, floating IPs, etc.
+  # e.g. alarms, floating IPs, instances etc.
 
   outputs: #declares the output of the stack
 
@@ -101,13 +101,13 @@ The parameters section specifies the input parameters that have to be provided w
   parameters:
     <param name>:
       type: <string | number | json | comma_delimited_list | boolean>
-      label: <human-readable name of the parameter> #optional input
-      description: <description of the parameter> #optional input
+      label: <human-readable name of the parameter> #optional
+      description: <description of the parameter> #optional
       default: <default value for parameter> #optional - this is used if the user does not specify a value.
-      hidden: <true | false> #Default option is false. This determines whether the parameter is hidden from the user if the user requests information about the stack.
-      constraints: <parameter constraints> #Optional Input. List of constrains to apply to the parameter. The stack will fail if the parameter values doe not comply to the constrains.
-      immutable: <true | false> #Default is false. This determines whether a parameter is updateable after the stack is running.
-      tags: <list of parameter categories> #Optional input. list of strings to specify the catagory of the parameter.
+      hidden: <true | false> #default option is false - this determines whether the parameter is hidden from the user if the user requests information about the stack.
+      constraints: <parameter constraints> #optional - list of constraints to apply to the parameter. The stack will fail if the parameter values doe not comply to the constrains.
+      immutable: <true | false> #default is false - this determines whether a parameter is updateable after the stack is running.
+      tags: <list of parameter categories> #optional input - list of strings to specify the category of the parameter.
 
 Resources
 #########
@@ -123,15 +123,15 @@ A list of the different OpenStack resources which can be used in a Heat template
       type: <resource type> #e.g OS::Nova::Server, OS::Nova::Port, OS::Neutron::FloatingIPAssociation, etc.
       properties: #list of resource-specific properties that can be provided in place or via a function.
         <property name>: <property value>
-        metadata: #optional input
+        metadata: #optional
         <resource specific metadata>
-        depends_on: <resource ID or list of ID> #optional input
-        update_policy: <update policy> #optional input
-        deletion_policy: <deletion policy> #optional input. Default policy is to delete the physical resource when deleting a resource from the stack.
-        external_id: <external resource ID> # cannot depend on other resources.
-        condition: <condition name or expression or boolean> #optional input. Decides whether the resource should be created.
+        depends_on: <resource ID or list of ID> #optional
+        update_policy: <update policy> #optional - this is given in the form of a nested dictionary.
+        deletion_policy: <deletion policy> #optional - allowed deletion policies are Delete, Retain, and Snapshot
+        external_id: <external resource ID> #optional - can define a resource which is external to the stack
+        condition: <condition name or expression or boolean> #optional input - decides whether the resource should be created based on a given condition
 
-Below is an example of a resource being a single instance.
+Below is an example of the resource section for an instance.
 
 .. code-block:: yaml
 
@@ -140,7 +140,7 @@ Below is an example of a resource being a single instance.
     properties:
       image: image_id #retrieves the image ID from image_id parameter
       flavor: flavor_id #retrieves the flavor ID from flavor_id parameter
-      key_name: key_name #retrieves the key pair from KeyName parameter
+      key_name: key_name #retrieves the key pair from key_name parameter
       networks:
         - network: network_name #define the internal network as Internal
       security_groups:
@@ -164,8 +164,7 @@ Outputs define the parameters that should be available to the user after a stack
 Conditions
 ##########
 
-The conditions section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack.
- The conditions can be associated with resources, the properties of the resources and the output.
+The conditions section in the heat template defines at least one condition that is evaluated based on the input parameter values when a user creates or updates a stack. The conditions can be associated with resources, the properties of the resources and the output.
 
 The syntax for conditions in the heat template is given by:
 
