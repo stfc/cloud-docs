@@ -151,7 +151,7 @@ Outputs
 #######
 
 Outputs define the parameters that should be available to the user after a stack has been created.
- This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
+This would be, for example, parameters such as the IP addresses of deployed instances, or the URL of web applications deployed as a stack. Each output is defined as a separate block within the outputs section:
 
 .. code-block:: yaml
 
