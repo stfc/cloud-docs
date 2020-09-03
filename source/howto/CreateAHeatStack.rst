@@ -71,7 +71,7 @@ The template version:
 Indicates that the Heat Template contains features which have been added and/or removed up to the Rocky release of OpenStack.
 For templates being used in the Train release of OpenStack, this template version is used.
 
-A list of template versions can be found here: https://docs.openstack.org/heat/rocky/template_guide/hot_spec.html#hot-spec-intrinsic-functions
+A list of template versions can be found here: https://docs.openstack.org/heat/train/template_guide/hot_spec.html#heat-template-version
 
 parameter_groups
 ################
