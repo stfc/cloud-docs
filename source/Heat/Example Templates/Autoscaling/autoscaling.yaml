@@ -1,0 +1,89 @@
+heat_template_version: rocky
+
+description: "An autoscaling stack"
+
+parameters:
+  image:
+    type: string
+    description: IMAGE NAME
+    default: <IMAGE-ID>
+  key_name:
+    type: string
+    description: SSH key to connect to the servers
+    default: <KEYPAIR>
+  flavor:
+    type: string
+    description: FLAVOR NAME
+    default: <FLAVOR-ID>
+  network:
+    type: string
+    default: <NETWORK-NAME>
+
+
+resources:
+
+  autoscale-test:
+    type: OS::Heat::AutoScalingGroup
+    properties:
+      min_size: 1
+      max_size: 3
+      resource:
+        type: lb-server.yaml
+        properties:
+          flavor: {get_param: flavor}
+          image: {get_param: image}
+          key_name: {get_param: key_name}
+          network: {get_param: network}
+          metadata: {"metering.server_group": {get_param: "OS::stack_id"}}
+
+  scaleup_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: {get_resource: autoscale-test}
+      cooldown: 60
+      scaling_adjustment: 1
+
+  scaledown_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: {get_resource: autoscale-test}
+      cooldown: 60
+      scaling_adjustment: -1
+
+  memory_alarm_high:
+    type: OS::Aodh::GnocchiAggregationByResourcesAlarm
+    properties:
+      description: Scale up if memory > 1000 MB
+      metric: memory.usage
+      aggregation_method: mean
+      granularity: 300
+      evaluation_periods: 1
+      threshold: 1000
+      resource_type: instance
+      comparison_operator: gt
+      query:
+        list_join:
+          - ''
+          - - {'=': {server_group: {get_param: "OS::stack_id"}}}
+      alarm_actions:
+        - get_attr: [scaleup_policy, signal_url]
+
+  memory_alarm_low:
+    type: OS::Aodh::GnocchiAggregationByResourcesAlarm
+    properties:
+      description: Scale down if memory < 200MB
+      metric: memory.usage
+      aggregation_method: mean
+      granularity: 300
+      evaluation_periods: 1
+      threshold: 200
+      resource_type: instance
+      comparison_operator: lt
+      query:
+        list_join:
+          - ''
+          - - {'=': {server_group : {get_param: "OS::stack_id"}}}
+      alarm_actions:
+        - get_attr: [scaledown_policy, signal_url]

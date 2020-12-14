@@ -1,0 +1,44 @@
+heat_template_version: 2018-08-31
+
+description: An example template which launches multiple instances.
+#expect the instances to be called instance_0, instance_1, instance_2
+# instance_3, instance_4
+
+parameters: #declares the parameters
+  KeyName:
+    type: string
+    default: <keypair>
+    description: KeyPair to use to be able to SSH into instance
+  image_id:
+    type: string
+    label: Ubuntu-Bionic-Gui
+    default:
+    description: Ubuntu-Bionic-Gui
+  flavor_id:
+    type: string
+    label: <flavor-name>
+    default: <favor-id>
+    description: <flavor-name>
+  security_group_id:
+    type: string
+    default: <default-security-group-id>
+    description: Default security group
+
+resources:
+  my_index_group:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: 5
+      resource_def:
+        type: OS::Nova::Server
+        properties:
+          #create unique name for each server
+          #uses index in the group
+          name: instance_%index%
+          image: { get_param: image_id }
+          flavor: { get_param: flavor_id }
+          key_name: {get_param: KeyName }
+          networks:
+            - network: Internal #define the network to use as internal
+          security_groups:
+            - { get_param: security_group_id }

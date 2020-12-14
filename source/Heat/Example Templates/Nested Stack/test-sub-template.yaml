@@ -1,0 +1,36 @@
+heat_template_version: 2018-03-02
+
+description: Sub-template containing resource # This is a sub-template defining the parameters and resource
+            #  for an instance. This template will be nested inside the main
+            #  heat template.
+
+parameters: #declares the parameters
+ key_name:
+   type: string
+   description: KeyPair to use to be able to SSH into instance
+ image_id:
+   type: string
+   label: <IMAGE-NAME>
+   default: <IMAGE-ID>
+   description: The image for the instance
+ flavor_id:
+   type: string
+   label: <FLAVOR-NAME>
+   default: <FLAVOR-ID>
+   description: Flavor for the instance
+ security_group_id:
+   type: string
+   default: <DEFAULT-SECURITY-ID>
+   description: The security group to use is the default security group.
+
+resources: #declares the template resources
+  test_instance: #name of the instance
+    type: OS::Nova::Server
+    properties:
+      image: { get_param: image_id }
+      flavor: { get_param: flavor_id }
+      key_name: { get_param: key_name }
+      networks:
+        - network: Internal #define the internal network as Internal
+      security_groups:
+        - { get_param: security_group_id }

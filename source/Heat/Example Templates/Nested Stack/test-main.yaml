@@ -1,0 +1,15 @@
+heat_template_version: 2018-08-31 #OpenStack Rocky
+
+description: Main Template for launching a nested stack.
+# This is the main template for launching a stack.
+#The plan for this template is to have it launch one instance
+#by calling the resource from another template.
+
+#This template will be fairly simple. It is just going to call a second
+#template which contains the parameters for launching one instance.
+
+resources:
+  my_instance_test:
+    type: test-sub-template.yaml # references sub-template
+    properties:
+      key_name: <KEYPAIR>
