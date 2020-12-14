@@ -4,10 +4,10 @@ Create LEMP Stack
 
 LEMP Stack consists of:
 
-  - Linux
-  - Nginx
-  - MySQL
-  - PHP
+- Linux
+- Nginx
+- MySQL
+- PHP
 
 
 Bash Script
@@ -73,7 +73,7 @@ This script also shows how to automate mysql_secure_installation as well.
   FLUSH PRIVILEGES;
   SELECT user,authentication_string,plugin,host FROM mysql.user;
 
-EOF
+  EOF
 
   #add-apt-repository universe #already available for ubuntu bionic
   #install PHP and PHP packages
@@ -82,8 +82,7 @@ EOF
   echo "All components for LEMP stack have been installed!"
 
 
-> This script sets up the root password as a temporary password. If you set up a temporary password, this **must** be changed once the root user has signed into mySQL.
- Please see the documentation **Installing and setting up MySQL database in a Stack** for information about how to change the root password.
+This script sets up the root password as a temporary password. If you set up a temporary password, this **must** be changed once the root user has signed into mySQL. Alternatively, the Heat resource ``OS::Heat::RandomString`` can be used in the Heat Template to generate a password that can be used when setting up MySQL with this bash script.
 
 
 
