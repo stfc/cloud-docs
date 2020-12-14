@@ -15,8 +15,8 @@ correct response should be.
 Typically, Expcect is run in a separate script with the first line of the script as:
 
 .. code-block:: bash
-
-  #!/usr/local/bin/expect -<options>
+ 
+ #!/usr/local/bin/expect -<options>
 
 
 However, it is possible to run an expect script within a regular bash script.
@@ -24,11 +24,12 @@ However, it is possible to run an expect script within a regular bash script.
 An expect script inside a normal bash script would be written as follows:
 
 .. code-block:: bash
+
   $FOO=(expect -c "
 
-  expect \"<interactive prompt>\"
+    expect \"<interactive prompt>\"
 
-  send \"<response>\r\"
+    send \"<response>\r\"
 
   ")
   echo "$FOO"
