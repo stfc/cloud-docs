@@ -1,7 +1,7 @@
 Monitoring Virtual Machines: Gnocchi and OpenStack Aodh
-=======================================================
+#########################################################
 
-> This document is a brief introduction to Aodh and Gnocchi.
+This document is a brief introduction to Aodh and Gnocchi.
 
 We can monitor virtual machines by using alarms which fire when a threshold for a given measurement (e.g memory usage) has been met, when a VM has unexpectedly powered off, or when a VM has entered an error state.
 
@@ -26,21 +26,22 @@ Aodh
 Aodh is the telemetry alarming service which triggers alarm when the collected data or metrics have met or broken defined rules.
 
 Alarms are governed by defined rules and have three states that they can enter:
-  - **ok** - the rule has been evaluated as *false*
-  - **alarm** - the rule has been evaluated as *true*
-  - **insufficient_data** - there is not enough data available to meaningfully determine the alarm state.
+- **ok** - the rule has been evaluated as *false*
+- **alarm** - the rule has been evaluated as *true*
+- **insufficient_data** - there is not enough data available to meaningfully determine the alarm state.
 
 There are three types of alarms which can be created using Aodh:
-  - **Threshold Alarms:** these alarms move to an alarm state when a given threshold has been met or exceeded. An example of a threshold alarm would be a memory usage alarm, which uses the memory usage metric of the specific VM to determine the alarm's state. These alarms will move back to an **ok** state when the threshold is no longer being exceeded.
 
-  - **Event Alarms:** these alarms move to an **alarm** state when a given event has occurred to a resource e.g a VM has unexpectedly powered off. These alarms only move to the **alarm** state once and will need their status updated manually to 'reset' the alarm.
+- **Threshold Alarms:** these alarms move to an alarm state when a given threshold has been met or exceeded. An example of a threshold alarm would be a memory usage alarm, which uses the memory usage metric of the specific VM to determine the alarm's state. These alarms will move back to an **ok** state when the threshold is no longer being exceeded.
 
-    > **Note:** Event alarms will always start in an **insufficient_data** state once created and will only change state when the event has occurred.
+- **Event Alarms:** these alarms move to an **alarm** state when a given event has occurred to a resource e.g a VM has unexpectedly powered off. These alarms only move to the **alarm** state once and will need their status updated manually to 'reset' the alarm.
+
+    **Note:** Event alarms will always start in an **insufficient_data** state once created and will only change state when the event has occurred.
 
 
-  - **Composite Alarms:** these alarms use a combination of rules to determine the state of an alarm. These rules are combined with logical operators.
+- **Composite Alarms:** these alarms use a combination of rules to determine the state of an alarm. These rules are combined with logical operators.
 
-Please see the **_Create Aodh Alarms_** documentation for more information on how to create Aodh Alarms in the command line.
+Please see the **Create Aodh Alarms** documentation for more information on how to create Aodh Alarms in the command line.
 
 Gnocchi
 -------
@@ -65,19 +66,19 @@ Metrics
 A metric is a measurable resource property. This property could be memory usage, the amount of CPU time used, the number of vCPUs etc.
 
 Metrics consist of:
-  - **Name:** a unique name for the metric
-  - **Unit:** e.g MB, ns, B/s
-  - **Resource ID:** the resource where the measurement is from
-  - **Unique User ID (UIID):** a unique identifier for the metric
-  - **Archive Policy:** The policy for aggregating and storing the measurement for the metric.
+- **Name:** a unique name for the metric
+- **Unit:** e.g MB, ns, B/s
+- **Resource ID:** the resource where the measurement is from
+- **Unique User ID (UIID):** a unique identifier for the metric
+- **Archive Policy:** The policy for aggregating and storing the measurement for the metric.
 
-> In OpenStack, Ceilometer automatically populates Gnocchi with metrics and resources.
+    In OpenStack, Ceilometer automatically populates Gnocchi with metrics and resources.
 
 The list of measurements from Ceilometer that Gnocchi can aggregate and store data from can be found here:
 
 https://docs.openstack.org/ceilometer/train/admin/telemetry-measurements.html
 
-> **Note:** Since the Stein Release of OpenStack, the CPU utilization meter has been deprecated and the meter cpu_util cannot be used. However, gnocchi does provide a way to get the CPU utilization of a resource manually.
+    **Note:** Since the Stein Release of OpenStack, the CPU utilization meter has been deprecated and the meter cpu_util cannot be used. However, gnocchi does provide a way to get the CPU utilization of a resource manually.
 
 For example, metrics which are collected from VMs are:
 
@@ -87,18 +88,31 @@ For example, metrics which are collected from VMs are:
   | Metric                     | Unit              |
   +============================+===================+
   | network.incoming.bytes     | B                 |
+  +----------------------------+-------------------+
   | network.incoming.packets   | packet            |
+  +----------------------------+-------------------+
   | network.outgoing.bytes     | B                 |
+  +----------------------------+-------------------+
   | network.outgoing.packets   | packet            |
+  +----------------------------+-------------------+
   | disk.device.read.bytes     | B                 |
+  +----------------------------+-------------------+
   | disk.device.read.requests  | request           |
+  +----------------------------+-------------------+
   | disk.device.write.bytes    | B                 |
+  +----------------------------+-------------------+
   | disk.device.write.requests | request           |
+  +----------------------------+-------------------+
   | cpu                        | ns                |
+  +----------------------------+-------------------+
   | disk.ephemeral.size        | GB                |
+  +----------------------------+-------------------+
   | disk.root.size             | GB                |
+  +----------------------------+-------------------+
   | memory.usage               | MB                |
+  +----------------------------+-------------------+
   | memory                     | MB                |
+  +----------------------------+-------------------+
   | vcpus                      | vcpu              |
   +----------------------------+-------------------+
 
@@ -239,7 +253,7 @@ In Gnocchi, **granularity** refers to the time interval between each aggregated 
 - Stores **one day**  of data in **one minute** intervals. (1440 data points)
 - Stores **one year** of data in **one hour** intervals. (8760 data points)
 
-> **Note:** When creating threshold alarms which monitors metrics, it is important to check which *archive policy* they are using to collect the data. This is because each archive policy will have a different value for granularity. If a threshold alarm time interval is shorter than the granularity for that specific metric, the alarm will remain in an **insufficient_data** state.
+    **Note:** When creating threshold alarms which monitors metrics, it is important to check which *archive policy* they are using to collect the data. This is because each archive policy will have a different value for granularity. If a threshold alarm time interval is shorter than the granularity for that specific metric, the alarm will remain in an **insufficient_data** state.
 
 Metric Commands
 ^^^^^^^^^^^^^^^
