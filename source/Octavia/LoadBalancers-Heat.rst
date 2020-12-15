@@ -89,6 +89,8 @@ Octavia Resources in Heat
 
 The table below lists the attributes for each resource:
 
+.. code-block:: bash
+
 | Resource                   	| Attributes
 |----------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
 | OS::Octavia::LoadBalancer  	| **flavor_id:** The flavor ID of the LoadBalancer<br><br>**pools:** the pools this LoadBalancer is associated with<br><br>**show:** detailed information about the resource<br><br>**vip_address:** the VIP addresses of the LoadBalancer<br><br>**vip_port_id:** the VIP port of the LoadBalancer<br><br>**vip_subnet_id:** the VIP subnet of LoadBalancer 	|
