@@ -10,7 +10,7 @@ In OpenStack, Aodh provides the ability to create, update and assign alarms to v
 To use alarms to monitor specific metrics from a virtual machine, Aodh uses metrics provided by Gnocchi.
 
 Command Line Clients
-^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 The command line clients for Aodh and Gnocchi can be installed using pip:
 
@@ -122,13 +122,13 @@ CPU Utilization
 
 Although the *cpu_util* meter has been deprecated since the OpenStack Stein release, we can use gnocchi to calculate the CPU utilization of a VM manually.
 
-We can use the command `gnoochi agggregates <options>` to do this.
+We can use the command `gnocchi agggregates <options>` to do this.
 
 To calculate the CPU utilization of a VM, we can use the following command:
 
 .. code-block:: bash
 
-  gnocchi aggregates '(* (/ (aggregate rate:mean (metric cpu mean)) 60000000000) 100)' id=INSTANCE_ID
+  gnocchi aggregates '(* (/ (aggregate rate:mean (metric cpu mean)) 300000000000) 100)' id=INSTANCE_ID
 
 
 This will return a table similar to the following:
