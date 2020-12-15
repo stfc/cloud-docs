@@ -356,7 +356,7 @@ using the gnocchi command:
 
 .. code-block:: bash
 
- gnocchi aggregates '(* (/ (aggregate rate:mean (metric cpu mean)) 60000000000) 100)' id=INSTANCE_ID
+ gnocchi aggregates '(* (/ (aggregate rate:mean (metric cpu mean)) 300000000000) 100)' id=INSTANCE_ID
 
 
 Event Alarm
