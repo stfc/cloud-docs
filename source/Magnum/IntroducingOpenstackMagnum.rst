@@ -110,7 +110,7 @@ To view details of a cluster:
   | fixed_subnet         | None                                                                                                                                                          |
   | floating_ip_enabled  | False                                                                                                                                                         |
   | faults               |                                                                                                                                                               |
-  | keypair              | mykeypair                                                                                                                                                |
+  | keypair              | mykeypair                                                                                                                                                     |
   | api_address          | https://10.0.0.212:6443                                                                                                                                       |
   | master_addresses     | ['10.0.0.212']                                                                                                                                                |
   | master_lb_enabled    |                                                                                                                                                               |
@@ -198,6 +198,7 @@ To delete a cluster or cluster template:
   openstack coe cluster template delete <cluster-template-id>
 
   # To delete a cluster
+  openstack coe cluster delete <cluster-id>
 
 
 Creating Clusters
