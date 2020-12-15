@@ -29,7 +29,7 @@ LBaaS pools may consist of the following:
 
 **Pool:** A group of servers which are identified by their floating IP addresses. The size of the pool can be increased or decreased in response to traffic to the instances detected by the load balancer.
 
-These can be created through the command line, or as part of a Heat Stack such as a LAMP stack.
+These can be created through the web UI, command line, or as part of a Heat Stack such as a LAMP stack.
 
 
 Octavia CLI
@@ -339,6 +339,7 @@ The following load balancer algorithms are supported:
   - **SOURCE_IP and SOURCE_IP_PORT:** Source IP is hashed and divided by the total weight of the active VMs to determine which VM will receive the request.
 
     **NOTE:** Pools can only be associated with one listener.
+    **NOTE:** The recommended and preferred algorithm is SOURCE_IP
 
 Pools are created using ``openstack loadbalancer pool create``:
 
@@ -547,7 +548,7 @@ To check the load balancer status we can use the following command:
 Health Monitor
 ~~~~~~~~~~~~~~~
 
-It is possible to set up a listener without a health monitor but if a back-end pool member goes down, however OpenStack recommends to always configure production load balancers with a health monitor. Health monitors in are attached to load balancer pools and monitors the health of each pool member. Should a pool member fail a health check, the health monitor should remove that member temporarily from the pool. If that pool member begins to respond to health checks, the health monitor returns the member to the pool.
+It is possible to set up a listener without a health monitor, however OpenStack recommends to always configure production load balancers with a health monitor. Health monitors in are attached to load balancer pools and monitors the health of each pool member. Should a pool member fail a health check, the health monitor should remove that member temporarily from the pool. If that pool member begins to respond to health checks, the health monitor returns the member to the pool.
 
 
 **Health Monitor Options**
