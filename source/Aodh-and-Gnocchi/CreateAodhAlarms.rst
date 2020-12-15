@@ -27,21 +27,27 @@ Types of alarms
 
 There are three different kinds of alarms:
 
-  - Threshold: Alarms are triggered when a threshold have been met.
-    - Valid Threshold Alarms:
-      - gnocchi_resources_threshold
-      - gnocchi_aggregation_by_metrics_threshold
-      - gnocchi_aggregation_by_resources_threshold
+- Threshold: Alarms are triggered when a threshold have been met.
 
-  - Composite Alarms: Alarms which have been defined with multiple triggering conditions.
+  - Valid Threshold Alarms:
+  
+    - gnocchi_resources_threshold
+    
+    - gnocchi_aggregation_by_metrics_threshold
+    
+    - gnocchi_aggregation_by_resources_threshold
 
-  - Event Alarms: Alarms when an event has occurred, such as an instance being powered down or in error state.
+
+- Composite Alarms: Alarms which have been defined with multiple triggering conditions.
+
+
+- Event Alarms: Alarms when an event has occurred, such as an instance being powered down or in error state.
 
 Alarms can have three different states:
 
-  - **ok:** The alarm rule has been defined as False
-  - **alarm:** The alarm rule has been defined as True
-  - **insufficient data:** There are not enough data points in order to determine the state of the alarm.
+- **ok:** The alarm rule has been defined as False
+- **alarm:** The alarm rule has been defined as True
+- **insufficient data:** There are not enough data points in order to determine the state of the alarm.
 
 
 
@@ -145,7 +151,10 @@ Create Alarm Options
 **--enabled:** Determine whether the alarm is evaluated. True if alarm evaluation is enabled.
 
 
-**_Actions when alarm changes state:_**
+
+**Actions when alarm changes state:**
+
+
 
 **--alarm-action:** [Webhook URL] URL to invoke when alarm transitions to alarm state.
 
@@ -160,7 +169,8 @@ These actions may be used multiple times.
 **--repeat-actions:** [Default to False] Determines whether actions should be repeatedly notified why the alarm remains in target state.
 
 
-**_Alarm Rules_**
+**Alarm Rules**
+
 
 **--query:**
   - Threshold or Event Type:  key[op]data_type::value; list. data_type is optional, but if supplied must be string, integer, float, or boolean
@@ -173,12 +183,14 @@ These actions may be used multiple times.
 **--threshold:** Threshold to evaluate against.
 
 
-**_Event Alarm_**
+**Event Alarm**
+
 
 **--event-type:** Event type to evaluate against.
 
 
-**_Threshold Alarm_**
+**Threshold Alarm**
+
 
 **-m, --meter-name:** Meter to evaluate against.
 
@@ -187,26 +199,31 @@ These actions may be used multiple times.
 **--statistic:** Statistic to evaluate - max, min, avg, sum, count.
 
 
-**_Common gnocchi alarm rules_**
+**Common gnocchi alarm rules**
+
 
 **--aggregation-method:** The aggregation_method to compare to the threshold.
 
 **--metric, --metrics:** The metric id or name depending of the alarm type
 
 
-**_Gnocchi resource threshold alarm_**:
+**Gnocchi resource threshold alarm**:
+
 
 **--resource-type:** The type of resource.
 
 **--resource-id:** The id of a resource.
 
 
-**_Composite Alarm:_**
+**Composite Alarm:**
+
 
 **--composite-rule:** Composite threshold rule with JSON format, the form can be a nested dict which combine threshold/gnocchi rules by "and", "or". For example, the form is like: {"or":[RULE1, RULE2, {"and": [RULE3, RULE4]}]}, The RULEx can be basic threshold rules but must include a "type" field, like this: {"threshold": 0.8,"meter_name":"cpu_util","type":"threshold"}
 
 
-**_Loadbalancer member health alarm_**
+**Loadbalancer member health alarm**
+
+
 
 **--stack-id:** Name or ID of the root / top level Heat stack containing the loadbalancer pool and members. An update will be triggered on the root Stack if an unhealthy member is detected in the loadbalancer pool.
 
@@ -247,7 +264,7 @@ After the alarm is created, you should get the alarm details similar to this one
 
 
 
-###################################
+
 Alarms: Threshold, Event, Composite
 ###################################
 
@@ -265,30 +282,43 @@ The metrics for instances are:
 | Metric                     | Unit              |
 +============================+===================+
 | network.incoming.bytes     | B                 |
++----------------------------+-------------------+
 | network.incoming.packets   | packet            |
++----------------------------+-------------------+
 | network.outgoing.bytes     | B                 |
++----------------------------+-------------------+
 | network.outgoing.packets   | packet            |
++----------------------------+-------------------+
 | disk.device.read.bytes     | B                 |
++----------------------------+-------------------+
 | disk.device.read.requests  | request           |
++----------------------------+-------------------+
 | disk.device.write.bytes    | B                 |
++----------------------------+-------------------+
 | disk.device.write.requests | request           |
++----------------------------+-------------------+
 | cpu                        | ns                |
++----------------------------+-------------------+
 | disk.ephemeral.size        | GB                |
++----------------------------+-------------------+
 | disk.root.size             | GB                |
++----------------------------+-------------------+
 | memory.usage               | MB                |
++----------------------------+-------------------+
 | memory                     | MB                |
++----------------------------+-------------------+
 | vcpus                      | vcpu              |
-+------------------=---------+-------------------+
++----------------------------+-------------------+
 
 These metrics can be used when defining a gnocchi threshold alarm.
 
-> **Note:** The alarm granularity must match the granularities of the metric configured in Gnocchi,
- otherwise the alarm will only return an 'insufficient data' state.
+    **Note:** The alarm granularity must match the granularities of the metric configured in Gnocchi, otherwise the alarm will only return an 'insufficient data' state.
+
 
 **Granularity:** This refers to the time interval (in seconds) in which data is collected.
 
 
-This example show how a threshold alarm can be created for an instance.
+The following example shows how a threshold alarm can be created for an instance.
 This alarm is triggered when the memory usage exceeds 10%. However,
 as the memory usage meter only measures the number of MBs of memory being used.
 
@@ -319,6 +349,7 @@ If the memory usage is below 102MB, the alarm state remains in the ok state.
 the CPU utilization of instances.
 
 **Q:** What about the cpu meter? Can the data from that meter be used and converted into % for CPU utilization?
+
 **A:** Although the CPU is monitored it is measured in ns and the *openstack create alarm* command does not allow
 operations to be performed on the meter in the --meter option. However, CPU utilization can be calculated manually
 using the gnocchi command:
