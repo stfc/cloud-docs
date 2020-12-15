@@ -23,47 +23,47 @@ This provides the following Openstack commands:
 
 .. code-block:: bash
 
-openstack [metric-command]
+  openstack [metric-command]
 
-  metric aggregates
-  metric archive-policy create
-  metric archive-policy delete
-  metric archive-policy list
-  metric archive-policy show
-  metric archive-policy update
-  metric archive-policy-rule create
-  metric archive-policy-rule delete
-  metric archive-policy-rule list
-  metric archive-policy-rule show
-  metric benchmark measures add
-  metric benchmark measures show
-  metric benchmark metric create
-  metric benchmark metric show
-  metric capabilities list
-  metric create
-  metric delete
-  metric list
-  metric measures add
-  metric measures aggregation
-  metric measures batch-metrics
-  metric measures batch-resources-metrics
-  metric measures show
-  metric resource batch delete
-  metric resource create
-  metric resource delete
-  metric resource history
-  metric resource list
-  metric resource search
-  metric resource show
-  metric resource update
-  metric resource-type create
-  metric resource-type delete
-  metric resource-type list
-  metric resource-type show
-  metric resource-type update
-  metric server version
-  metric show
-  metric status
+    metric aggregates
+    metric archive-policy create
+    metric archive-policy delete
+    metric archive-policy list
+    metric archive-policy show
+    metric archive-policy update
+    metric archive-policy-rule create
+    metric archive-policy-rule delete
+    metric archive-policy-rule list
+    metric archive-policy-rule show
+    metric benchmark measures add
+    metric benchmark measures show
+    metric benchmark metric create
+    metric benchmark metric show
+    metric capabilities list
+    metric create
+    metric delete
+    metric list
+    metric measures add
+    metric measures aggregation
+    metric measures batch-metrics
+    metric measures batch-resources-metrics
+    metric measures show
+    metric resource batch delete
+    metric resource create
+    metric resource delete
+    metric resource history
+    metric resource list
+    metric resource search
+    metric resource show
+    metric resource update
+    metric resource-type create
+    metric resource-type delete
+    metric resource-type list
+    metric resource-type show
+    metric resource-type update
+    metric server version
+    metric show
+    metric status
 
 
 
