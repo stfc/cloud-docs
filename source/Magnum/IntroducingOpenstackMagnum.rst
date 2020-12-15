@@ -781,6 +781,10 @@ The size of a cluster can be changed by using the following command:
 References:
 -----------
 
+https://docs.openstack.org/magnum/train/user/
+
+https://docs.openstack.org/heat/train/template_guide/openstack.html
+
 https://www.openstack.org/videos/summits/austin-2016/intro-to-openstack-magnum-with-kubernetes
 
 https://object-storage-ca-ymq-1.vexxhost.net/swift/v1/6e4619c416ff4bd19e1c087f27a43eea/www-assets-prod/presentation-media/openstack-magnum-hands-on.pdf
