@@ -26,8 +26,11 @@ Aodh
 Aodh is the telemetry alarming service which triggers alarm when the collected data or metrics have met or broken defined rules.
 
 Alarms are governed by defined rules and have three states that they can enter:
+
 - **ok** - the rule has been evaluated as *false*
+
 - **alarm** - the rule has been evaluated as *true*
+
 - **insufficient_data** - there is not enough data available to meaningfully determine the alarm state.
 
 There are three types of alarms which can be created using Aodh:
@@ -66,10 +69,15 @@ Metrics
 A metric is a measurable resource property. This property could be memory usage, the amount of CPU time used, the number of vCPUs etc.
 
 Metrics consist of:
+
 - **Name:** a unique name for the metric
+
 - **Unit:** e.g MB, ns, B/s
+
 - **Resource ID:** the resource where the measurement is from
+
 - **Unique User ID (UIID):** a unique identifier for the metric
+
 - **Archive Policy:** The policy for aggregating and storing the measurement for the metric.
 
     In OpenStack, Ceilometer automatically populates Gnocchi with metrics and resources.
@@ -80,7 +88,7 @@ https://docs.openstack.org/ceilometer/train/admin/telemetry-measurements.html
 
     **Note:** Since the Stein Release of OpenStack, the CPU utilization meter has been deprecated and the meter cpu_util cannot be used. However, gnocchi does provide a way to get the CPU utilization of a resource manually.
 
-For example, metrics which are collected from VMs are:
+For example, metrics which are collected include:
 
 .. code-block:: bash
 
@@ -390,7 +398,7 @@ To view the measurements of a metric, we can use the command:
 
 To view the list of resource types:
 
-..code-block:: bash
+.. code-block:: bash
 
   openstack metric resource-type list
 
