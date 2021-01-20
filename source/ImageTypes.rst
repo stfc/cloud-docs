@@ -1,6 +1,6 @@
-========================
+============
 Image Types
-========================
+============
 
 We currently provide several curated images for use with the STFC Cloud.
 
@@ -21,18 +21,18 @@ The Images we provide are:
 - Ubuntu-18-Gui
 - Ubuntu-18-NoGui
 
-#######
+###############
 Image Variants
-#######
+###############
 We provide 3 different variants of images:
 
 - Gui - Includes a preinstalled desktop environment
 - NoGui - A minimal install
 - AQ - A minimal install bootstrapped into the Aquilon configuration management system (Only available to Aquilon users within STFC)
 
-##############
+############################
 Additional Operating systems
-##############
+############################
 We currently only offer the above operating systems as there is an overhead to providing the curated images although we are currently working on the provision of CentOS images.
 
 We do allow users to upload their own images although it is then the users' responsibility to ensure any VMs created with these comply with our :ref:`tos`. Any non compliant VMs will be deleted.

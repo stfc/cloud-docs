@@ -26,9 +26,9 @@ How do I get access to the cloud?
 Contact the Cloud support team on cloud-support@gridpp.rl.ac.uk for a user logon account and a default project. Once you have these, you
 can connect using http://openstack.stfc.ac.uk (for advanced users),or https://cloud.stfc.ac.uk for a more basic user interface.
 
-##########################################################
+##############################################################
 Which Web browsers are supported for the web user interfaces ?
-##########################################################
+##############################################################
 Recommended to use the latest Firefox or Google Chrome browser (date: 2018-09-05: Firefox version 61.0.2, Chrome version 68.0.3440.106)
 
 #####################################

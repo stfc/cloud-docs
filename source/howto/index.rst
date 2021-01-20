@@ -5,23 +5,24 @@ How-To Articles
    :maxdepth: 2
    :caption: Contents:
 
-   GettingStarted
    AddingSSHKeyToOpenStackWebInterface
-   CreateVMFromTheWebInterface
-   CreateVMFromCommandLine
-   AssociateAFloatingIP
-   CreateVolumeFromWebInterface
-   CreateVolumeFromCommandLine
-   SnapshotVM
-   ResizeVM
-   RebuildVM
-   UseCloudInit
-   CreateAHeatStack
-   PuttyAndFileZillaWithVMs
    AddingUserAccountsToVMs
-   HowToGrowTheDiskOfAVolumeVM
-   ExportADirectoryOverNFS
+   AssociateAFloatingIP
    ComplyWithSTFCCloudTerms
-   ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
    ConfigureAnXServerInWindowsSubsystemForLinux
+   ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
+   CreateAHeatStack
+   CreateVMFromCommandLine
+   CreateVMFromTheWebInterface
+   CreateVolumeFromCommandLine
+   CreateVolumeFromWebInterface
+   ExportADirectoryOverNFS
+   GettingStarted
+   HowToGrowTheDiskOfAVolumeVM
+   PreventAutomaticUpdates
+   PuttyAndFileZillaWithVMs
+   RebuildVM
+   ResizeVM
+   SnapshotVM
    UpdateScientificLinuxAndCentosVMs
+   UseCloudInit

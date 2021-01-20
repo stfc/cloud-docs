@@ -1,16 +1,17 @@
-======
+============================================================================================================
 How to share a directory on a Linux host on a private network with another Linux host on the same Network
-======
+============================================================================================================
 
-######
+########
 Scenario
-######
+########
+
 You have created a linux Scientific Linux 7 host on a Private (i.e 192.168.x.y ) network, which has a volume attached to it, and the volume has been “partitioned” and “formatted” with a linux file system and “mounted” on /data. This document describes how you can share that volume with other linux hosts on the same private network using Linux’s NFS server service.
 Important Security Note: For security reasons, this tech note is not appropriate for setting up a NFS server via a Float IP address (i.e 130.246.x.y address) or on the “internal network” (the host has a 172.16.x.y IP address). This is due to security reasons: The file share could easily be exposed to outside of your project without care for the Security Groups applied.)
 
-######
+############
 Procedure
-######
+############
 Setting up the NFS server
 1.	Set the correct permissions for the file-share. Un-mount the volume on /data using the command “umount /data”. Run the command “sudo chown nobody:nobody /data”
 Then run the command “chmod 777 /data” This changes the ownership and the permissions of the fileshare to that any user on the remote system will be able to read and write data to it.
@@ -79,6 +80,7 @@ Run the following command to export the filesystem in /default:-
 
   sudo exportfs
   sudo exportfs –a
+
 The system should show all the filesystems being “exported” by the NFS server in the /etc/exports file:-
 
 .. image:: /assets/howtos/ExportADirectoryOverNFS/image4.png
@@ -115,9 +117,10 @@ Add this new security group to your NFS server host, and any NFS client hosts. Y
     :align: center
     :alt:
 
-######
+##############################
 Setting up the NFS Clients
-######
+##############################
+
 Ensure that you have added the security group to the NFS client host.
 Make sure the directory for where you wish to mount the remote file-system exists: In this case /data. You can create is with the command:-
 
@@ -176,9 +179,10 @@ user    0m0.001s
 sys     0m0.664s
 …so 1Gbyte was saved in 6.77 seconds – 159Mbytes per second.
 
-######
+############
 References
-######
+############
+
 https://vitux.com/install-nfs-server-and-client-on-ubuntu/
 https://www.tecmint.com/add-disk-larger-than-2tb-to-an-existing-linux/
 NFS security: http://tldp.org/HOWTO/NFS-HOWTO/security.html
