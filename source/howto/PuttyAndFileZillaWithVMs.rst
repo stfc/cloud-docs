@@ -1,6 +1,6 @@
-===================
+==================================================================================================================
 How to use Putty and Filezilla to connect to an Openstack Virtual machine using putty and pageant
-===================
+==================================================================================================================
 
 Most users often want to use a command line prompt, and be able to transfer files to and from their desktop machine to the virtual Linux host they are using. Tools like Putty and Filezilla are commonly used for this purpose.
 
@@ -11,6 +11,7 @@ The default settings should be fine (ssh-2 RSA) and 2048 length. Longer lengths 
 .. image:: /assets/howtos/PuttyAndFileZillaWithVMs/image1.png
     :align: center
     :alt:
+
 Save the public key - you need to copy this key and paste it into the https://new-cloud.stfc.ac.uk . Login as usual to this Web interface, then click on your login id in the Top Right Hand Side corner:-
 
 .. image:: /assets/howtos/PuttyAndFileZillaWithVMs/image2.png

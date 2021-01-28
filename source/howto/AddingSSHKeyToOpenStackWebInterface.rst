@@ -1,6 +1,6 @@
-===============================================
+====================================================
 Adding Your SSH Key into the OpenStack Web Interface
-===============================================
+====================================================
 
 #########
 Overview
@@ -22,6 +22,7 @@ have a STFC FEDID account, make sure that you set the “Domain” to be “STFC
 .. image:: /assets/howtos/AddingSSHKeysInWebInterface/image1.png
     :align: center
     :alt: Open KeyPairs
+
 AddingSSHKeysInWebInterface
 
 Once logged in, click on the Left Hand Side “Compute” option, and then “Key Pairs”. You should see

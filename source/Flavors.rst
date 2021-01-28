@@ -6,16 +6,16 @@ The STFC Cloud provides a number of flavors to users but these fall into 3 categ
 
 Note: our flavors are created in so that they will efficiently pack onto the hardware we have - due to this we cannot create additional flavors as that may lead to scheduling difficulties and under utilisation.
 
-#######
+################################
 m*.* (e.g. m1.small or m3.large)
-#######
+################################
 These are over committed flavors meaning that any VCPU core assigned to your VM may be shared with up to 3 other VMs.
 
 This means that these VMs can be great for light workloads such as interactive testing or hosting web services but are not generally suitable for hosting services or doing intensive work.
 
-#######
+################################
 c*.* (e.g. c1.small or c3.large)
-#######
+################################
 These are flavors with dedicated CPU cores meaning that a VCPU core assigned to your VM is dedicated to you.
 
 These flavors are great for computation and are optimised to either be within a single NUMA node providing great performance or balanced equally across the NUMA nodes in the hypervisor.

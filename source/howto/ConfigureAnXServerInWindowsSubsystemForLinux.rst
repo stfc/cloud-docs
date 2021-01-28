@@ -1,6 +1,6 @@
-==============
+========================================================
 Configuring an X Server in Windows Subsystem for Linux
-==============
+========================================================
 
 First select a Windows based X server such as Xming or VcXsrv
 
@@ -40,3 +40,4 @@ You should then be able to ssh into a remote host with the following command pro
 .. code-block:: bash
 
     ssh -X <user>@<your.remote.host>
+
