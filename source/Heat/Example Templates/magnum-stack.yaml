@@ -1,0 +1,44 @@
+heat_template_version: 2018-08-31
+
+description: A stack creating a cluster and template
+parameters:
+  keypair:
+    type: string
+    default: <keypair>
+
+  image:
+    type: string
+    default: Fedora-Atomic-FINAL
+    description: Fedora-Atomic-FINAL
+
+resources:
+  stack_cluster_template:
+    type: OS::Magnum::ClusterTemplate
+    properties:
+      coe: kubernetes
+      dns_nameserver: 8.8.8.8
+      docker_storage_driver: devicemapper
+      docker_volume_size: 10
+      external_network: External
+      flavor: c1.medium
+      floating_ip_enabled: false
+      image: {get_param: image}
+      labels: {auto_healing_controller: draino, auto_healing_enabled: 'true', heat_container_agent_tag: train-stable-3, ingress_controller: traefik, kube_tag: v1.14.3}
+      master_flavor: c1.medium
+      name: k8s-template
+      network_driver: flannel
+      registry_enabled: false
+      server_type: vm
+      volume_driver: cinder
+      master_lb_enabled: false
+      registry_enabled: false
+
+  test_cluster:
+    type: OS::Magnum::Cluster
+    properties:
+      cluster_template: {get_resource: stack_cluster_template}
+      create_timeout: 30
+      keypair: {get_param: keypair}
+      name: k8s-cluster
+      node_count: 2
+      master_count: 1
