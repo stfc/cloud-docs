@@ -11,7 +11,7 @@ By continuing to log in you agree to abide by the following conditions of use of
 
 1. You MUST comply with Organisational Information Security Policy particularly regarding the Roles and Responsibilities of System Administrators together with familiarising yourself with the supporting policy framework available at https://stfc.ukri.org/about-us/how-we-are-governed/policies-standards/ict-acceptable-use-policy/ and https://community.jisc.ac.uk/library/acceptable-use-policy (or for STFC Staff at https://staff.stfc.ac.uk/core/security/information/Pages/default.aspx)
 2. You MUST NOT, except by WRITTEN authorization from the Cloud Service Managers, disable or otherwise modify or degrade the configuration of installed system monitoring and management tools including but not limited to that of rsyslog, pakiti, ssh, yum and auto-updating
-3. You UNDERSTAND that, whilst best effort is made to provide a stable platform, VMs may be subject to interruption and/or data loss at any time without notice (this is a development platform and should not be used for production services)
+3. You UNDEtextAND that, whilst best effort is made to provide a stable platform, VMs may be subject to interruption and/or data loss at any time without notice (this is a development platform and should not be used for production services)
 4. With respect to any SOFTWARE that you install you MUST ensure that all applicable license and terms and conditions of use are met
 5. You MUST NOT use the service in any way related to providing any commercial service or running a private business
 6. You MUST report any suspected or actual security incident or other misuse of the VM immediately to cloud-support@gridpp.rl.ac.uk.

@@ -117,6 +117,7 @@ Create a Kubernetes Cluster
 We can create a Kubernetes cluster using one of the cluster templates that are available. To create a cluster, we use the command:
 
 .. code-block:: bash
+
   openstack coe cluster create  --cluster-template <cluster-template> --discovery-url <discovery-url> --master-count <master-count> --node-count <node-count>
                                 --timeout <timeout> --merge-labels
                                 #The following options can be used to overwrite the same options in the cluster template

@@ -212,7 +212,7 @@ Listener
 
 Listeners are set up and attached to load balancers to 'listen' for incoming traffic trying to connect to a pool through the load balancer. Listeners can be created using:
 
-.. code-block:: txt
+.. code-block:: text
 
   openstack loadbalancer listener create [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent] [--prefix PREFIX]
                                                 [--max-width <integer>] [--fit-width] [--print-empty] [--name <name>]
@@ -343,7 +343,7 @@ The following load balancer algorithms are supported:
 
 Pools are created using ``openstack loadbalancer pool create``:
 
-.. code-block:: txt
+.. code-block:: text
 
   openstack loadbalancer pool create [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent] [--prefix PREFIX]
                                             [--max-width <integer>] [--fit-width] [--print-empty] [--name <name>]
@@ -391,7 +391,7 @@ Pools are created using ``openstack loadbalancer pool create``:
 
 Then members can be defined for the pool using `openstack loadbalancer member create`:
 
-.. code-block:: txt
+.. code-block:: text
 
   openstack loadbalancer member create [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent] [--prefix PREFIX]
                                               [--max-width <integer>] [--fit-width] [--print-empty] [--name <name>]
@@ -573,7 +573,7 @@ HTTP health monitors also have the following options:
 
 To create health monitors and attach them to load balancing pools, we can use the command:
 
-.. code-block:: txt
+.. code-block:: text
 
   openstack loadbalancer healthmonitor create [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent]
                                                      [--prefix PREFIX] [--max-width <integer>] [--fit-width] [--print-empty]
@@ -625,46 +625,45 @@ The load balancer, listener, health monitor, pool and pool member have a provisi
 Provisioning Status Codes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+------------------------------------------+---------------------------------+
-| Code                                     | Reason                          |
-+==========================================+=================================+
-| **ACTIVE**                               | Entity Provisioned successfully |
-+------------------------------------------+---------------------------------+
-|**DELETED**                               | Entity successfully deleted     |
-+------------------------------------------+---------------------------------+
-| **ERROR** Please refer to error messages | Provisioning failed             |
-+------------------------------------------+---------------------------------+
-| **PENDING_CREATE**                       | Entity is being created         |
-+------------------------------------------+---------------------------------+
-| **PENDING_UPDATE**                       | Entity is being updated         |
-+------------------------------------------+---------------------------------+
-| **PENDING_DELETE**                       | Entity is being deleted         |
-+------------------------------------------+---------------------------------+
+.. list-table::
+  :header-rows: 1
+
+  * - Code
+    - Reason
+  * - **ACTIVE**
+    - Entity Provisioned successfully
+  * - **DELETED**
+    - Entity successfully deleted
+  * - **ERROR** Please refer to error messages
+    - Provisioning failed
+  * - **PENDING_CREATE**
+    - Entity is being created
+  * - **PENDING_UPDATE**
+    - Entity is being updated
+  * - **PENDING_DELETE**
+    - Entity is being deleted
 
 
 Operation Status Codes
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. list-table::
+  :header-rows: 1
 
-+-----------------------+----------------------------------------------+
-| Status                | Reason                                       |
-+=======================+==============================================+
-| **ONLINE**            | Entity is operating normally. All Pool        |
-|                       | members are healthy                          |
-+-----------------------+----------------------------------------------+
-| **DRAINING**          | Member is not accepting new connections      |
-+-----------------------+----------------------------------------------+
-| **OFFLINE**           | Entity is administratively disabled          |
-+-----------------------+----------------------------------------------+
-| **DEGRADED**          | One or more components are in ERROR          |
-+-----------------------+----------------------------------------------+
-| **ERROR** Please      | Entity has failed. Member is failing health   |
-| refer to error        | monitoring check. All pool members are in     |
-| messages              | ERROR                                        |
-+-----------------------+----------------------------------------------+
-| **NO_MONITOR**        | No health monitor is configured. Current     |
-|                       | status in known                              |
-+-----------------------+----------------------------------------------+
+  * - Status
+    - Reason
+  * - **ONLINE**
+    - Entity is operating normally. All Pool members are healthy
+  * - **DRAINING**
+    - Member is not accepting new connections
+  * - **OFFLINE**
+    - Entity is administratively disabled
+  * - **DEGRADED**
+    - One or more components are in ERROR
+  * - **ERROR** Please refer to error messages
+    - Entity has failed. Member is failing health  monitoring check. All pool members are in ERROR
+  * - **NO_MONITOR**
+    - No health monitor is configured. Current status in known
 
 
 

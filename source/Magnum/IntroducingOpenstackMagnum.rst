@@ -66,7 +66,7 @@ Other commands available from ``python-magumclient`` include:
   coe cluster resize # resize cluster
   coe cluster show # view details of cluster
   coe cluster template create # create a cluster template
-  coe cluster template delete # delete a cluster template - can only be deleted if there are no clusters using the template 
+  coe cluster template delete # delete a cluster template - can only be deleted if there are no clusters using the template
   coe cluster template list # list templates
   coe cluster template show # view details of cluster template
   coe cluster template update # update a cluster template
@@ -244,15 +244,17 @@ To create a cluster template, we can use the following command:
 
 **Images which OpenStack Magnum supports:**
 
-+---------------+-------------------------+
-| COE         	| os_distro             	|
-+===============+=========================+
-| Kubernetes  	| fedora-atomic, coreos 	|
-+---------------+-------------------------+
-| Swarm       	| fedora-atomic         	|
-+---------------+-------------------------+
-| Mesos       	| ubuntu                	|
-+---------------+-------------------------+
+.. list-table::
+   :header-rows: 1
+
+   * - COE
+     - os_distro
+   * - Kubernetes
+     - fedora-atomic, coreos
+   * - Swarm
+     - fedora-atomic
+   * - Mesos
+     - ubuntu
 
 ``<keypair>``: SSH keypair to configure in servers for ssh access. The login name is specific to the cluster driver.
   - fedora-atomic: ``ssh -i <private-key> fedora@<ip-address>``
@@ -266,17 +268,23 @@ To create a cluster template, we can use the following command:
 
 ``network-driver <network-driver>`` Name of a network driver for providing networks for the containers - this is different and separate from the Neutron network for the cluster. Drivers that Magnum supports:
 
-+------------+-----------------+-----------+
-| COE        | Network Driver  | Default   |
-+============+=================+===========+
-| Kubernetes | flannel, calico | flannel   |
-+------------+-----------------+-----------+
-| Swarm      | docker, flannel | flannel   |
-+------------+-----------------+-----------+
-| Mesos      | docker          | docker    |
-+------------+-----------------+-----------+
+.. list-table::
+   :header-rows: 1
 
-    **Note:** For Kubernetes clusters, we are using the ``flannel`` network driver.
+   * - COE
+     - Network Driver
+     - Default
+   * - Kubernetes
+     - flannel, calico
+     - flannel
+   * - Swarm
+     - docker, flannel
+     - flannel
+   * - Mesos
+     - docker
+     - docker
+
+**Note:** For Kubernetes clusters, we are using the ``flannel`` network driver.
 
 ``dns-nameserver <dns-nameserver>``: The DNS nameserver for the servers and containers in the cluster
 to use. The default is 8.8.8.8.
@@ -502,6 +510,7 @@ Example Template
 For example, we could have the template ``example.yaml`` which outlines the template for a Kubernetes cluster and instructs heat to create a cluster using this template:
 
 .. code-block:: yaml
+
   heat_template_version: 2018-08-31 #Train release
 
   description: This is an example template to create a Kubernetes cluster.
@@ -612,7 +621,7 @@ This example will go through how to upgrade an existing cluster to use Kubernete
 
 The cluster we will update has the following features:
 
-.. code-block:: txt
+.. code-block:: text
 
   +----------------------+------------------------------------------------------------------------------------------------------------+
   | Field                | Value                                                                                                      |

@@ -17,7 +17,7 @@ Machine IDs
 On nodes in a Kubernetes cluster, the system UUID matches the ID of the VM hosting that node. However, the Cluster Autoscaler uses the machine ID to refer to the node when the cluster needs to be scaled down and a node removed.
 Kubernetes reads the ID for the VMs from the file ``/etc/machine-id`` on each VM in the cluster. However, these IDs may not match the IDs of the VMs. If the machine ID and system UUID (VM ID) on a node do not match, then the following errors may be present in the CA pod's log:
 
-.. code-block:: txt
+.. code-block:: text
 
   E1215 12:59:58.084833       1 scale_down.go:932] Problem with empty node deletion: failed to delete cluster-node-5: manager error deleting nodes: could not find stack indices for nodes to be deleted: 1 nodes could not be resolved to stack indices
   E1215 12:59:58.084958       1 static_autoscaler.go:430] Failed to scale down: failed to delete at least one empty node: failed to delete cluster-node-5: manager error deleting nodes: could not find stack indices for nodes to be deleted: 1 nodes could not be resolved to stack indices
@@ -37,7 +37,7 @@ After a few minutes Kubernetes will have updated the IDs for the nodes on those 
 
 For example:
 
-.. code-block::
+.. code-block:: bash
 
   $ kubectl describe node cluster-node-3
   Name:               cluster-node-3

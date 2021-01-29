@@ -69,7 +69,7 @@ Recreating Instance
 
 JupyterHub requires Python 3 so I used Python 3.6 throughout for this proof of concept.
 
-Inside :bash:`/home/USERNAME/jupyterhub/test-hub`, there's a :bash:`requirements.txt` file which is the output of a :bash:`pip freeze` done on the virtual environment used for this proof of concept. If you don't have access to this, I installed: :bash:`jupyterhub`, :bash:`jupyterhub-ldapauthenticator` and :bash:`libcloudspawner` using Pip.
+Inside :bash:`/home/USERNAME/jupyterhub/test-hub`, there's a :bash:`requirements.text` file which is the output of a :bash:`pip freeze` done on the virtual environment used for this proof of concept. If you don't have access to this, I installed: :bash:`jupyterhub`, :bash:`jupyterhub-ldapauthenticator` and :bash:`libcloudspawner` using Pip.
 
 To launch notebook servers on OpenStack, JupyterHub must be installed on the VM. The easiest way to do this is by creating a VM using an image that has it pre-installed. You will need to create an image which has JupyterHub (including Python 3.6) installed, along with any software required by your community and a 'user folder' - this is the intended base folder for notebook servers (this option is set in the jupyterhub config file). As of writing, this folder is :bash:`/home/USERNAME/jupyterhub-user-folder`.
 

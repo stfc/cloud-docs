@@ -173,7 +173,7 @@ Next is to add the JupyterHub Helm chart to your chart repository and install it
 
 When installation is complete it should return a message similar to the following:
 
-.. code-block:: txt
+.. code-block:: text
 
   NAME: jhub
   LAST DEPLOYED: Tue Oct 13 11:01:15 2020
