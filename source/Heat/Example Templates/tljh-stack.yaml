@@ -84,7 +84,7 @@ resources:
             #curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin-test:testpassword #adds admin user and sets a password 'testpassword'
             #Install python packages from a text file in a github repository
             #This uses an example text file that installs the python packages: datascience, matplotlib, pandas, scipy, gradememaybe
-            curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin --user-requirements-text-url https://raw.githubusercontent.com/data-8/materials-sp18/master/requirements.text
+            curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin --user-requirements-text-url https://raw.githubusercontent.com/data-8/materials-sp18/master/requirements.txt
 
             conda update -n base -c defaults conda
 
