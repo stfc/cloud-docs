@@ -30,11 +30,11 @@ There are three different kinds of alarms:
 - Threshold: Alarms are triggered when a threshold have been met.
 
   - Valid Threshold Alarms:
-  
+
     - gnocchi_resources_threshold
-    
+
     - gnocchi_aggregation_by_metrics_threshold
-    
+
     - gnocchi_aggregation_by_resources_threshold
 
 
@@ -164,7 +164,7 @@ Create Alarm Options
 
 These actions may be used multiple times.
 
-**--time-constraint:**  Only evaluate the alarm if it is within the time constraint. Start point(s) specified with a cron expression, and duration in seconds. Can be specified multiple times for multiple constraints. Format:  :bash:`name=<CONSTRAINT_NAME>;start=<CRON>;duration=<SECONDS>;[description=<DESCRIPTION>;[timezone=<IANA Timezone>]]`
+**--time-constraint:**  Only evaluate the alarm if it is within the time constraint. Start point(s) specified with a cron expression, and duration in seconds. Can be specified multiple times for multiple constraints. Format:  :bash: `name=<CONSTRAINT_NAME>;start=<CRON>;duration=<SECONDS>;[description=<DESCRIPTION>;[timezone=<IANA Timezone>]]`
 
 **--repeat-actions:** [Default to False] Determines whether actions should be repeatedly notified why the alarm remains in target state.
 
@@ -174,7 +174,7 @@ These actions may be used multiple times.
 
 **--query:**
   - Threshold or Event Type:  key[op]data_type::value; list. data_type is optional, but if supplied must be string, integer, float, or boolean
-  - gnocchi_aggregation_by_resources_threshold: need to specify a complex query json string, like: :bash:`{"and": [{"=": {"ended_at": null}}, ...]}`
+  - gnocchi_aggregation_by_resources_threshold: need to specify a complex query json string, like: :bash: `{"and": [{"=": {"ended_at": null}}, ...]}`
 
 **--comparison-operator:** Operator to compare with - lt, le, eq, ne, ge, gt.
 

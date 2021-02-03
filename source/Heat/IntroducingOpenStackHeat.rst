@@ -172,7 +172,7 @@ Templates which use:
 
 Indicate that the template is a HOT template and has features added and/or removed up to the Queens Release. The list of supported functions in a Rocky Heat Template is:
 
-.. code-block:: txt
+.. code-block:: text
 
   digest    # allows for performing digest operations on a given value
   filter      # removes values from list
@@ -202,7 +202,7 @@ For more details about these intrinsic functions, please see the following docum
 
 The list of supported condition functions is:
 
-.. code-block:: txt
+.. code-block:: text
 
   equals      # compares whether two values are equal
   get_param   # references input parameter of a template

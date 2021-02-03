@@ -82,9 +82,9 @@ resources:
             echo "Install The Littlest JupyterHub"
             #this is suitable for providing jupyter notebooks for 1-100 users on a single server
             #curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin-test:testpassword #adds admin user and sets a password 'testpassword'
-            #Install python packages from a txt file in a github repository
+            #Install python packages from a text file in a github repository
             #This uses an example text file that installs the python packages: datascience, matplotlib, pandas, scipy, gradememaybe
-            curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin --user-requirements-txt-url https://raw.githubusercontent.com/data-8/materials-sp18/master/requirements.txt
+            curl -L https://tljh.jupyter.org/bootstrap.py | sudo -E python3 - --admin admin --user-requirements-text-url https://raw.githubusercontent.com/data-8/materials-sp18/master/requirements.txt
 
             conda update -n base -c defaults conda
 

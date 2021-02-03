@@ -153,9 +153,10 @@ However, it is better to first import the table into a pandas data frame:
 .. code-block:: python
 
   print(df)
-```
 
-        index  ('sepal length (cm)',)  ('sepal width (cm)',)  \
+.. code-block:: bash
+
+    index  ('sepal length (cm)',)  ('sepal width (cm)',)  \
     0    None                     5.1                    3.5
     1    None                     4.9                    3.0
     2    None                     4.7                    3.2
@@ -168,7 +169,7 @@ However, it is better to first import the table into a pandas data frame:
     148  None                     6.2                    3.4
     149  None                     5.9                    3.0
 
-         ('petal length (cm)',)  ('petal width (cm)',)
+    ('petal length (cm)',)  ('petal width (cm)',)
     0                       1.4                    0.2
     1                       1.4                    0.2
     2                       1.3                    0.2
@@ -182,6 +183,7 @@ However, it is better to first import the table into a pandas data frame:
     149                     5.1                    1.8
 
     [150 rows x 5 columns]
+
 
 
 References

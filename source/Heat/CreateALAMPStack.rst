@@ -88,6 +88,7 @@ Using OS::Nova::Server
 The bash script can be placed alternatively in the user_data property of the OS::Nova::Server resource.
 
 .. code-block:: yaml
+
   heat_template_version: <template-version>
 
   parameters:
@@ -117,6 +118,7 @@ When a Bash Script becomes too long or complex, the get_file function can be use
 retrieve and execute the bash script:
 
 .. code-block:: yaml
+
   heat_template_version: <template-version>
 
   parameters:
@@ -144,6 +146,7 @@ The function str_replace can be used in order to set variable values in the bash
 Example from Openstack: https://docs.openstack.org/heat/rocky/template_guide/software_deployment.html
 
 .. code-block:: yaml
+
   heat_template_version: <template-version>
 
   parameters:
@@ -177,7 +180,7 @@ To automate mysql_secure_installation steps, please see the page **Installing an
 
 
 References:
-##########
+###########
 
 https://docs.openstack.org/heat/rocky/template_guide/software_deployment.html
 

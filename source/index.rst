@@ -20,6 +20,10 @@ Welcome to stfc-cloud-docs's documentation!
    CommonCommands
    contact
    contributetodocs
+   Magnum/index
+   Octavia/index
+   Heat/index
+   Aodh-and-Gnocchi/index
 
 
 Indices and tables

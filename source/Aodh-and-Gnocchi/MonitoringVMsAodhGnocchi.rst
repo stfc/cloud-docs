@@ -195,7 +195,7 @@ To view the list of archive policies, we can use the command:
 
 This will return a table listing each archive policy and how the policies are defined. The definitions given to each policy determines how raw datapoints for metrics from OpenStack Ceilometer are collected and aggregated.
 
-.. code-bock:: bash
+.. code-block:: bash
 
   +----------------------+-------------+-----------------------------------------------------------------------+---------------------------------+
   | name                 | back_window | definition                                                            | aggregation_methods             |
@@ -292,7 +292,7 @@ We can list the metrics in our project using the command:
 
   # Note: This will return a list of every metric for every resource in the project
 
-  
+
 To view more information about the metric, we can use:
 
 .. code-block:: bash
