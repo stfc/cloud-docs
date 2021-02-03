@@ -9,9 +9,14 @@ Note: our flavors are created in so that they will efficiently pack onto the har
 ################################
 m*.* (e.g. m1.small or m3.large)
 ################################
-These are over committed flavors meaning that any VCPU core assigned to your VM may be shared with up to 3 other VMs.
+.. deprecated:: 26/08/2020
 
-This means that these VMs can be great for light workloads such as interactive testing or hosting web services but are not generally suitable for hosting services or doing intensive work.
+    These are over committed flavors meaning that any VCPU core assigned to your VM may be shared with up to 3 other VMs.
+
+    This means that these VMs can be great for light workloads such as interactive testing or hosting web services but are not generally suitable for hosting services or doing intensive work.
+    
+    Please use c* flavors instead
+
 
 ################################
 c*.* (e.g. c1.small or c3.large)
