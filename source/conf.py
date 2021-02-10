@@ -18,9 +18,9 @@
 
 
 # -- Project information -----------------------------------------------------
-
+import datetime
 project = 'stfc-cloud-docs'
-copyright = '2018, CloudTeam'
+copyright = f'{str(datetime.date.today().year)}, CloudTeam'
 author = 'CloudTeam'
 
 # The short X.Y version
