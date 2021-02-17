@@ -74,7 +74,7 @@ For further peace of mind the logs can be checked. Docker will not produce any l
 
     Jan 1 12:00:00 My-Instance-Name dockerd[900]: time="2021-01-01T12:00:00.000000000Z" level=info msg="Attempting next endpoint for pull after error: ...
 
-For more support see :ref:`docker_broken_mirror`.
+For more support see :ref:`docker_mirror_troubleshooting`.
 
 .. _manual_mirror_config:
 
@@ -133,6 +133,8 @@ To verify the service has resumed successfully:
 .. code:: console
     
     systemctl status docker  # or dockerd
+
+.. _docker_mirror_troubleshooting:
 
 Troubleshooting Mirror Connection
 =================================
