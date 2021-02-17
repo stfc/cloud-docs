@@ -15,7 +15,7 @@ Docker will automatically fall back to using Docker Hub directly if the mirror i
 New Instances
 =============
 
-By default all new STFC Cloud instances will use the mirror by default. To confirm the mirror is being used see
+By default all new STFC Cloud instances will use the mirror by default. To confirm the mirror is being used see :ref:`check_docker_hub_mirror`
 
 Existing Instances
 ==================
@@ -109,7 +109,7 @@ Containerd
 
 As of Kubernetes 1.20, a future release (TBA) will use Containerd by default. The STFC Core OS image already contains the mirror information on users behalf at `/etc/containers/registries.conf`
 
-Further documentation on manually on setting up containerd will be included when upstream Kubernetes uses containerd by default, as further internal testing is completed.
+Further documentation on manually on setting up containerd will be included when upstream Kubernetes uses containerd by default and further internal testing is completed.
 
 .. _restart_docker_service:
 

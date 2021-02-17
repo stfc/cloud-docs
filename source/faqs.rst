@@ -179,9 +179,9 @@ The following ingress is enabled on IPv4 by default:
 
 To add additional firewall ports see :ref:`firewall_exceptions`.
 
-======================================
+######################################
 How do I avoid Docker Hub Rate limits?
-======================================
+######################################
 
 STFC Cloud has their own docker hub mirror which is available to machines on the internal network. In-depth information can be found at: :ref:`docker_mirror_guide`.
 
