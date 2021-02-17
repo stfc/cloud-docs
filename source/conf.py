@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 import datetime
 project = 'stfc-cloud-docs'
-copyright = f'{str(datetime.date.today().year)}, CloudTeam'
+copyright = "{0} CloudTeam".format(str(datetime.date.today().year))
 author = 'CloudTeam'
 
 # The short X.Y version
