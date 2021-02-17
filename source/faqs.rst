@@ -179,6 +179,18 @@ The following ingress is enabled on IPv4 by default:
 
 To add additional firewall ports see :ref:`firewall_exceptions`.
 
+======================================
+How do I avoid Docker Hub Rate limits?
+======================================
+
+STFC Cloud has their own docker hub mirror which is available to machines on the internal network. In-depth information can be found at: :ref:`docker_mirror_guide`.
+
+This is free, does not apply rate limits and faster than Docker Hub, as it pulls over the local network. In the event the mirror is unavailable the instance will automatically pull from Docker Hub Directly.
+
+New instances will use the mirror by default. Existing instances will also receive this change over time, but require restarting the docker service or instance to apply the update (see :ref:`restart_docker_service`).
+
+If you want to manually verify that an instance is using the Docker Hub mirror see :ref:`check_docker_hub_mirror`.
+
 ###########################################################################################
 I have a Database listening on its default port, but I can't connect to it remotely - Why?
 ###########################################################################################
