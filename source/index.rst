@@ -6,20 +6,37 @@
 Welcome to stfc-cloud-docs's documentation!
 ===========================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+.. comment Depth == 1 to get people to navigate to sub-page so we don't overfill contents bar
 
-   howto/index
+.. toctree::
+   :maxdepth: 1  
+   :caption: Getting Started:
+
    tutorials/index
-   faultfixes/index
+   howto/index
    policies/index
+   CommonCommands
+   contact
+
+.. toctree::
+   :maxdepth: 1  
+   :caption: Support:
+
+   faultfixes/index
+   faqs
+
+.. toctree::
+   :maxdepth: 1  
+   :caption: Reference:
+
    ImageTypes
    Flavors
    Reference/index
-   faqs
-   CommonCommands
-   contact
+
+.. toctree::
+   :maxdepth: 1  
+   :caption: Advanced Material:
+
    contributetodocs
    Magnum/index
    Octavia/index
