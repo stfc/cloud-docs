@@ -19,9 +19,9 @@
 
 # -- Project information -----------------------------------------------------
 import datetime
-project = 'stfc-cloud-docs'
-copyright = "{0} CloudTeam".format(str(datetime.date.today().year))
-author = 'CloudTeam'
+project = 'STFC Cloud Docs'
+copyright = "{0}, STFC CloudTeam".format(str(datetime.date.today().year))
+author = 'STFC CloudTeam'
 
 # The short X.Y version
 version = ''
@@ -88,7 +88,10 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    # Don't show subcategories in LHS navigation bar, too noisy
+    'navigation_depth': 1
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
