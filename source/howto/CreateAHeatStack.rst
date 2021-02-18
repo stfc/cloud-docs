@@ -239,15 +239,15 @@ Stacks can be launched using the OpenStack CLI. The syntax for creating a stack 
 
   openstack stack create [-h] [-f {json,shell,table,value,yaml}]
                               [-c COLUMN] [—noindent] [—prefix PREFIX]
-                              [—max-width \<integer\>] [—fit-width]
-                              [—print-empty] [-e \<environment\>]
-                              [-s <files-container>] [—timeout \<timeout\>]
+                              [—max-width <integer>] [—fit-width]
+                              [—print-empty] [-e <environment>]
+                              [-s <files-container>] [—timeout <timeout>]
                               [—pre-create <resource>] [—enable-rollback]
                               [—parameter <key=value>]
                               [—parameter-file <key=file>] [—wait]
-                              [—poll SECONDS] [—tags \<tag1,tag2…\>]
-                              [—dry-run] -t \<template\>
-                              \<stack-name\>
+                              [—poll SECONDS] [—tags <tag1,tag2…>]
+                              [—dry-run] -t <template>
+                              <stack-name>
 
 For example, to create a stack using the template *example-template.yaml*:
 
