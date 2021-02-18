@@ -15,7 +15,6 @@ Welcome to stfc-cloud-docs's documentation!
    CommonCommands
    howto/index
    policies/index
-   tutorials/index
 
 .. toctree::
    :maxdepth: 1  

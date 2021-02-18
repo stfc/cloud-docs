@@ -8,7 +8,7 @@ How-To Articles
    AddingSSHKeyToOpenStackWebInterface
    AddingUserAccountsToVMs
    AssociateAFloatingIP
-   ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
+   ConfigureSSHAgentForwardingInWSL
    ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
