@@ -37,10 +37,10 @@ Welcome to stfc-cloud-docs's documentation!
    :caption: Advanced Material:
 
    Aodh-and-Gnocchi/index
+   ImproveTheDocs
    Heat/index
    Magnum/index
    Octavia/index
-   contributetodocs
 
 
 Indices and tables
