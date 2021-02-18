@@ -2,7 +2,7 @@ How-To Articles
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    AddingSSHKeyToOpenStackWebInterface
@@ -18,6 +18,7 @@ How-To Articles
    CreateVolumeFromWebInterface
    ExportADirectoryOverNFS
    GettingStarted
+   JupyterHubDocumentation
    HowToGrowTheDiskOfAVolumeVM
    PreventAutomaticUpdates
    PuttyAndFileZillaWithVMs
@@ -26,3 +27,4 @@ How-To Articles
    SnapshotVM
    UpdateScientificLinuxAndCentosVMs
    UseCloudInit
+   WebServerInDockerContainer
