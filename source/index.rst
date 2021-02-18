@@ -16,6 +16,7 @@ Welcome to stfc-cloud-docs's documentation!
    policies/index
    ImageTypes
    Flavors
+   Reference/index
    faqs
    CommonCommands
    contact

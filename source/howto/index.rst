@@ -16,7 +16,6 @@ How-To Articles
    CreateVMFromTheWebInterface
    CreateVolumeFromCommandLine
    CreateVolumeFromWebInterface
-   DockerHubMirror
    ExportADirectoryOverNFS
    GettingStarted
    HowToGrowTheDiskOfAVolumeVM
