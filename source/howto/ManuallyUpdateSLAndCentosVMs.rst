@@ -1,5 +1,5 @@
 ======================================================================
-Forcibly update Scientific Linux and Centos Virtual Machines
+Manually update Scientific Linux and Centos Virtual Machines
 ======================================================================
 
 When using our provided Scientific Linux or Centos images you may occasionally find that you get an error that a repository cannot be found when installing a package.

@@ -1,5 +1,5 @@
 ======================================================================================================
-How to create a clone machine (with bigger disk) of an Openstack VM which has a bootable Volume
+Grow the disk of an Openstack VM by cloning the machine
 ======================================================================================================
 
 ##########

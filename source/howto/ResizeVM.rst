@@ -1,5 +1,5 @@
-==============
-Resizing a VM
-==============
+============
+Resize a VM
+============
 
-Documentations coming soon
+Documentation coming soon

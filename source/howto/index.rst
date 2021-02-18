@@ -8,23 +8,20 @@ How-To Articles
    AddingSSHKeyToOpenStackWebInterface
    AddingUserAccountsToVMs
    AssociateAFloatingIP
-   ComplyWithSTFCCloudTerms
-   ConfigureAnXServerInWindowsSubsystemForLinux
    ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
+   ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
    CreateVMFromTheWebInterface
    CreateVolumeFromCommandLine
    CreateVolumeFromWebInterface
-   ExportADirectoryOverNFS
-   GettingStarted
-   JupyterHubDocumentation
-   HowToGrowTheDiskOfAVolumeVM
+   GrowTheDiskOfAVolumeVM
+   ManuallyUpdateSLAndCentosVMs
    PreventAutomaticUpdates
-   PuttyAndFileZillaWithVMs
    RebuildVM
    ResizeVM
+   RunWebServerInDockerContainer
+   ShareDirectoryBetweenLinuxHostsWithNFS
    SnapshotVM
-   UpdateScientificLinuxAndCentosVMs
-   UseCloudInit
-   WebServerInDockerContainer
+   UsingCloudInitForStfcTerms
+   UsingPuttyAndFileZillaWithVMs

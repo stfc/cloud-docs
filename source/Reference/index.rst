@@ -6,4 +6,5 @@ Reference Documents
     :caption: Contents:
 
     DockerHubMirror
+    JupyterHubDocumentation
     Harbor

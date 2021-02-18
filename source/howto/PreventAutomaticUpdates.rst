@@ -1,6 +1,6 @@
-=============
-NoQuattor
-=============
+============================
+Prevent Automatic Updates
+============================
 
 It is possible to prevent our curated images from automatically updating. This must only be done with the express written consent of the Cloud team. This can be obtained by emailing cloud-support@gridpp.rl.ac.uk
 

@@ -1,5 +1,5 @@
 ============================================================================================================
-How to share a directory on a Linux host on a private network with another Linux host on the same Network
+Share a directory between Linux hosts on the same Network using NFS
 ============================================================================================================
 
 ########
