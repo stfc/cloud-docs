@@ -12,36 +12,36 @@ Welcome to stfc-cloud-docs's documentation!
    :maxdepth: 1  
    :caption: Getting Started:
 
-   tutorials/index
+   CommonCommands
    howto/index
    policies/index
-   CommonCommands
-   contact
+   tutorials/index
 
 .. toctree::
    :maxdepth: 1  
    :caption: Support:
 
-   faultfixes/index
+   contact
    faqs
+   faultfixes/index
 
 .. toctree::
    :maxdepth: 1  
    :caption: Reference:
 
-   ImageTypes
    Flavors
+   ImageTypes
    Reference/index
 
 .. toctree::
    :maxdepth: 1  
    :caption: Advanced Material:
 
-   contributetodocs
+   Aodh-and-Gnocchi/index
+   Heat/index
    Magnum/index
    Octavia/index
-   Heat/index
-   Aodh-and-Gnocchi/index
+   contributetodocs
 
 
 Indices and tables
