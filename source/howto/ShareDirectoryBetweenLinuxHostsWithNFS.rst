@@ -1,6 +1,6 @@
-============================================================================================================
-How to share a directory on a Linux host on a private network with another Linux host on the same Network
-============================================================================================================
+=====================================================================
+Share a directory between Linux hosts on the same Network using NFS
+=====================================================================
 
 ########
 Scenario
@@ -9,87 +9,110 @@ Scenario
 You have created a linux Scientific Linux 7 host on a Private (i.e 192.168.x.y ) network, which has a volume attached to it, and the volume has been “partitioned” and “formatted” with a linux file system and “mounted” on /data. This document describes how you can share that volume with other linux hosts on the same private network using Linux’s NFS server service.
 Important Security Note: For security reasons, this tech note is not appropriate for setting up a NFS server via a Float IP address (i.e 130.246.x.y address) or on the “internal network” (the host has a 172.16.x.y IP address). This is due to security reasons: The file share could easily be exposed to outside of your project without care for the Security Groups applied.)
 
-############
-Procedure
-############
+#########################
 Setting up the NFS server
-1.	Set the correct permissions for the file-share. Un-mount the volume on /data using the command “umount /data”. Run the command “sudo chown nobody:nobody /data”
-Then run the command “chmod 777 /data” This changes the ownership and the permissions of the fileshare to that any user on the remote system will be able to read and write data to it.
+#########################
 
-.. image:: /assets/howtos/ExportADirectoryOverNFS/image1.png
-    :align: center
-    :alt:
+On the NFS Server:
+
+#. Set the correct permissions for the file-share. 
+#. Un-mount the volume on /data using the command “umount /data”. 
+#. Run the command “sudo chown nobody:nobody /data”
+#. Run the command “chmod 777 /data” This changes the ownership and the permissions of the fileshare to that any user on the remote system will be able to read and write data to it.
+
+    .. image:: /assets/howtos/ExportADirectoryOverNFS/image1.png
+        :align: center
+        :alt:
+
+#. Now re-mount the volume using the command:-
+
+    .. code-block:: bash
+
+      mount /dev/vdb1 /data
+
+#. Check it is mounted using the command:-
+
+    .. code-block:: bash
+
+      df –h
+
+#. Check the output, the line /dev/vdb1 is what we are looking for. If you have not already, make sure the following line is in the /etc/fstab file so that the volume mounts on host boot (otherwise you may be sharing out an empty directory !):-
+
+    .. image:: /assets/howtos/ExportADirectoryOverNFS/image2.png
+        :align: center
+        :alt:
+
+    Specifically this line
+
+    .. image:: /assets/howtos/ExportADirectoryOverNFS/image3.png
+        :align: center
+        :alt:
+
+
+#. Now create the configuration file that tells the NFS server which area of the filesystem to share out, and what the restrictions and parameters are.
+
+    .. code-block:: bash
+
+      sudo echo “/data 192.168.248.0/24(rw,sync,no_subtree_check)” >> /etc/exports
+
+    Where:
+
+    - /data is the area to share out, 
+    - 192.168.248.0/24 is the subnet range of IP addresses that are allowed to connect to the file share. 
+    - The parameters in brackets : rw means read and write, sync means that the data has to be written to disk before applying it, 
+    - no_subtree_check prevents checking of directory trees.
+
+#. You need to check that the NFS-server.service is enabled and running:
+
+    .. code-block:: bash
     
-Now re-mount the volume using the command:-
+      sudo systemctl list-unit-files --type=service
 
-.. code-block:: bash
+    System should respond with something like:-
 
-  mount /dev/vdb1 /data
+    .. code-block:: bash
 
-….and then check it is mounted using the command:-
+      nfs-blkmap.service                     disabled
+      nfs-config.service                     static
+      nfs-idmap.service                      static
+      nfs-idmapd.service                     static
+      nfs-lock.service                       static
+      nfs-mountd.service                     static
+      nfs-rquotad.service                    disabled
+      nfs-secure.service                     static
+      nfs-server.service                     disabled
+      nfs-utils.service                      static
+      nfs.service                            disabled
+      nfslock.service                        static
 
-.. code-block:: bash
+#. In this case, we need to enable the nfs-server.service, and make sure it starts up when the system reboots. Run the command:
 
-  df –h
+    .. code-block:: bash
 
-..should return something like:-
+      systemctl enable nfs-server.service
 
-.. image:: /assets/howtos/ExportADirectoryOverNFS/image2.png
-    :align: center
-    :alt:
+#. Run the following command to export the filesystem in /default:-
 
-The line /dev/vdb1 is what we are looking for. If you have not already, make sure the following line is in the /etc/fstab file so that the volume mounts on host boot (otherwise you may be sharing out an empty directory !):-
+    .. code-block:: bash
 
-.. image:: /assets/howtos/ExportADirectoryOverNFS/image3.png
-    :align: center
-    :alt:
+      sudo exportfs
+      sudo exportfs –a
 
+#. The system should show all the filesystems being “exported” by the NFS server in the /etc/exports file:-
 
-2.	Now create the configuration file that tells the NFS server which area of the filesystem to share out, and what the restrictions and parameters are.
-
-.. code-block:: bash
-
-  sudo echo “/data 192.168.248.0/24(rw,sync,no_subtree_check)” >> /etc/exports
-
-..where /data is the area to share out, an d192.168.248.0/24 is the subnet range of IP addresses that are allowed to connect to the file share. The parameters in brackets : rw means read and write, sync means that the data has to be written to disk before applying it, no_subtree_check prevents checking of directory trees.
-
-3.	You need to check that the NFS-server.service is enabled and running: run the command:- sudo systemctl list-unit-files --type=service
-System should respond with something like:-
-nfs-blkmap.service                     disabled
-nfs-config.service                     static
-nfs-idmap.service                      static
-nfs-idmapd.service                     static
-nfs-lock.service                       static
-nfs-mountd.service                     static
-nfs-rquotad.service                    disabled
-nfs-secure.service                     static
-nfs-server.service                     disabled
-nfs-utils.service                      static
-nfs.service                            disabled
-nfslock.service                        static
-
-In this case, we need to enable the nfs-server.service, and make sure it starts up when the system reboots. Run the command:
-
-.. code-block:: bash
-
-  systemctl enable nfs-server.service
-
-Run the following command to export the filesystem in /default:-
-
-.. code-block:: bash
-
-  sudo exportfs
-  sudo exportfs –a
-
-The system should show all the filesystems being “exported” by the NFS server in the /etc/exports file:-
-
-.. image:: /assets/howtos/ExportADirectoryOverNFS/image4.png
-    :align: center
-    :alt:
+    .. image:: /assets/howtos/ExportADirectoryOverNFS/image4.png
+        :align: center
+        :alt:
 
 At this stage – the server side is now setup.
+
+
 Setting up the Security Group in Openstack
+------------------------------------------
+
 As the NFS server and NFS clients are on a “private” 192.168 network (in this example, they are on a 192.168.248.0/24 network), a security group should be applied that lets the NFS clients talk to the NFS server.
+
+
 In this example, we are going to have a fairly open Security group so that other hosts within this specific Private Openstack project can see each other for all services. You can setup more details security groups for NFS – see the references for “NFS and security”.
 In the Horizon Openview Web Gui, navigate on the Left Hand Side menus to Network-> Security Groups
 

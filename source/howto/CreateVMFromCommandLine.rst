@@ -1,6 +1,6 @@
-===================================================================
-How to Create a Virtual Machine from command line in STFC Openstack
-===================================================================
+=============================================================
+Create a Virtual Machine from command line in STFC Openstack
+=============================================================
 
 It’s common to want to create VMs from command line. To do this, you need to be on a host that has the openstack command line interface installed.
 

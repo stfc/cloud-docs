@@ -2,28 +2,26 @@ How-To Articles
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    AddingSSHKeyToOpenStackWebInterface
    AddingUserAccountsToVMs
    AssociateAFloatingIP
-   ComplyWithSTFCCloudTerms
-   ConfigureAnXServerInWindowsSubsystemForLinux
-   ConfigureSSHAgentForwardingInWindowsSubsystemForLinux
+   ConfigureSSHAgentForwardingInWSL
+   ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
    CreateVMFromTheWebInterface
    CreateVolumeFromCommandLine
    CreateVolumeFromWebInterface
-   DockerHubMirror
-   ExportADirectoryOverNFS
-   GettingStarted
-   HowToGrowTheDiskOfAVolumeVM
+   GrowTheDiskOfAVolumeVM
+   ManuallyUpdateSLAndCentosVMs
    PreventAutomaticUpdates
-   PuttyAndFileZillaWithVMs
    RebuildVM
    ResizeVM
+   RunWebServerInDockerContainer
+   ShareDirectoryBetweenLinuxHostsWithNFS
    SnapshotVM
-   UpdateScientificLinuxAndCentosVMs
-   UseCloudInit
+   UsingCloudInitForStfcTerms
+   UsingPuttyAndFileZillaWithVMs

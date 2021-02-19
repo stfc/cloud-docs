@@ -1,5 +1,5 @@
 ==============================================================================================
-How to create a Virtual Machine on Openstack using the Openstack.stfc.ac.uk Web interface
+Create a Virtual Machine on Openstack using the Openstack Web interface
 ==============================================================================================
 
 #########
