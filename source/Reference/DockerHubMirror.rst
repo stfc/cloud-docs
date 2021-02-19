@@ -30,19 +30,32 @@ Checking that the mirror is being used
 Checking configuration exists
 ------------------------------
 
-Users can quickly check if they are using the mirror by running:
+Users can quickly check if they have the mirror configuration present by running:
 
 .. code :: console
 
     cat /etc/docker/daemon.json
 
-An output similar to this indicates we are using the mirror:
+An output similar to this indicates that the configuration is present:
 
-.. code:: json
+.. code :: json
 
     {
         "registry-mirrors": ["https://dockerhub.stfc.ac.uk"]
     }
+
+To check whether the docker daemon is using this config you can run the following:
+
+.. code :: console
+
+    docker info
+
+An output which includes the following near the bottom will indicate that the mirror is being used:
+
+.. code :: console
+
+  Registry Mirrors:
+    https://dockerhub.stfc.ac.uk/
 
 .. _docker_mirror_logs:
 
@@ -51,13 +64,13 @@ Monitoring Logs
 
 For further peace of mind the logs can be checked. Docker will not produce any logs when pulling from the mirror successfully but will log an error if it fails to use direct connections:
 
-- If this an existing instance which has not been restarted recently see :ref:`restart_docker_service`. 
+- If this an existing instance which has not been restarted recently see :ref:`restart_docker_service`.
 - In a terminal follow the Docker logs:
 
 .. code:: console
 
     # Where -u means unit and -f means follow
-    journalctl -u docker -f 
+    journalctl -u docker -f
 
 - Select an image which has not been pulled on the System before, for example Ubuntu or Debian latest.
 - In a separate terminal run a docker pull of your image:
@@ -125,13 +138,13 @@ The Docker Daemon can be restarted to apply the changes. Any running containers 
 Depending on the operating system the service is either called `docker` or `dockerd`, with the former being more common. To restart simply run:
 
 .. code :: console
-    
+
     systemctl restart docker  # or dockerd
 
 To verify the service has resumed successfully:
 
 .. code:: console
-    
+
     systemctl status docker  # or dockerd
 
 .. _docker_mirror_troubleshooting:
