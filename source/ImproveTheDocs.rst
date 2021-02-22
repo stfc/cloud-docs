@@ -15,7 +15,7 @@ Any pull requests to improve or change the documentation, however minor, is welc
 Setting Up a local development environment
 ------------------------------------------
 
-The following assumes you are using Windows Subsystem for Linux with Ubuntu 20.04 LTS with GitHub Desktop to manage interaction with GitHub.
+The following assumes you are using Ubuntu 18.04 or 20.04 LTS through Windows Subsystem for Linux or natively with GitHub Desktop to manage interaction with GitHub.
 
 Create a fork on GitHub and clone it into GitHub desktop.
 
@@ -41,3 +41,5 @@ Make any changes you wish to and then build again and test.
 A good resource for editing rst is here: https://github.com/ralsina/rst-cheatsheet/blob/master/rst-cheatsheet.rst
 
 Once you are happy with your changes, commit the changes and publish and then create a pull request for us to review.
+
+If you're struggling feel free to open a PR with your changes so far and we'll be glad to provide assistance

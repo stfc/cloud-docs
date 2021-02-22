@@ -104,15 +104,15 @@ Machines will not be able to pull from a private repository without first :ref:`
 Vulnerability scanner
 ---------------------
 
-By default we configure all projects to automatically can images pushed to harbor for vulnerabilities and we also conduct weekly scans against all images.
+By default we configure all projects to automatically scan images pushed to harbor for vulnerabilities and we also conduct weekly scans against all images.
 
 You can view the results by clicking into the project. Then into the repository and then you will see a summary of the vulnerabilities against each artifacts
 
-You can hover over the Vulnerabilities field to view a summary or click into the artifact to view further private_repo_details
+You can hover over the Vulnerabilities field to view a summary or click into the artifact to view further details
 
 We recommend that you resolve all Critical and High rated vulnerabilities as soon as possible.
 
-You (if you are an administrator of the project) can configure the project to disallow pulling of images based on the vulnerabilities against the image.
+Project Administrators can configure the project to disallow pulling of images based on the vulnerabilities against the image.
 
 .. _login_harbor:
 
