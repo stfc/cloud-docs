@@ -82,13 +82,13 @@ Private Projects
 
     A private project/repository does not mean users should include secrets into their Docker images. Please keep secrets separate to images by passing them through .env files or environment flags. A good rule-of-thumb is asking, "if this image ever leaked could a system become compromised from the details within".
 
-Users can request a private repository; the names, images and associated members of these projects are hidden from non-members.  
+Users can request a private repository; the names, images and associated members of these projects are hidden from non-members.
 
 For most use-cases a public project is preferred:
 
 - Images are immutable; a SHA reference cannot be changed.
 - Anonymous pulls removes the requirements on securely distributing and storing access tokens.
-- Users can start software with a single docker command, lowering the barrier of entry for deployment. 
+- Users can start software with a single docker command, lowering the barrier of entry for deployment.
 
 Some examples where a private projects should be considered are:
 
@@ -98,6 +98,21 @@ Some examples where a private projects should be considered are:
 - Where scientific data is included but subject to access restrictions
 
 Machines will not be able to pull from a private repository without first :ref:`logging in <login_harbor>`.
+
+.. _vuln_scan:
+
+Vulnerability scanner
+---------------------
+
+By default we configure all projects to automatically can images pushed to harbor for vulnerabilities and we also conduct weekly scans against all images.
+
+You can view the results by clicking into the project. Then into the repository and then you will see a summary of the vulnerabilities against each artifacts
+
+You can hover over the Vulnerabilities field to view a summary or click into the artifact to view further private_repo_details
+
+We recommend that you resolve all Critical and High rated vulnerabilities as soon as possible.
+
+You (if you are an administrator of the project) can configure the project to disallow pulling of images based on the vulnerabilities against the image.
 
 .. _login_harbor:
 
@@ -114,7 +129,7 @@ Logging in grants you the ability to pull and push to projects where you have ap
 - Take note of your profile name in the top-right
 - Click on the profile name and click **User Profile**
 - Copy the CLI secret can be copied using the copy action
-- On the target machine run 
+- On the target machine run
 
 .. code:: console
 
