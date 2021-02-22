@@ -38,4 +38,6 @@ Assuming that this succeeds, you can then open ./build/html/index.html in your w
 
 Make any changes you wish to and then build again and test.
 
+A good resource for editing rst is here: https://github.com/ralsina/rst-cheatsheet/blob/master/rst-cheatsheet.rst
+
 Once you are happy with your changes, commit the changes and publish and then create a pull request for us to review.
