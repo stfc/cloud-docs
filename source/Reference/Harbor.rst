@@ -8,9 +8,9 @@ Background
 
 The STFC Cloud team runs a Harbor private registry at https://harbor.stfc.ac.uk
 
-This service allows users to upload docker images, and manage their lifecycles internally. This has a number of advantages over using a public repository:
+This service allows users to upload container images, and manage their lifecycles internally. This has a number of advantages over using a public repository:
 
-- Login uses IRIS, so existing credentials can be used rather than creating new accounts and teams on external providers.
+- Login uses IRIS IAM, so existing credentials can be used rather than creating new accounts and teams on external providers.
 - Images aren't subjected to free / paid account restrictions on other platforms.
 - Built in vulnerability scanner indicates any CVEs applicable to the image on upload and a periodic basis.
 - Projects can be made public, or privately available to a specific group of users.
