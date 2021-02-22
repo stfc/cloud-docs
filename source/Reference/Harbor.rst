@@ -23,9 +23,11 @@ Getting Started
 Signing Up
 ----------
 
-Anybody with an IRIS account is able to sign up. An IRIS account can be applied for using facility credentials `here. <https://iris-iam.stfc.ac.uk/login>`_
+Anybody with an IRIS account is able to sign up. An IRIS account can be applied for using facility credentials `here. <https://iris-iam.stfc.ac.uk/login>`_ 
 
 To associate your IRIS account simply go to `Harbor <https://harbor.stfc.ac.uk>`_ and click **Login Via OIDC Provider**. If it's your first sign in, you will be asked to confirm basic details being shared with Harbor. Harbor will then confirm the account details (which cannot be modified).
+
+Help for registering with IRIS IAM can be found `here. <https://iris-iam.stfc.ac.uk/help/>`
 
 .. _harbor_sign_in:
 
