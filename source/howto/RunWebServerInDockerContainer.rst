@@ -18,7 +18,7 @@ Start and enable dockerd
 
   sudo systemctl enable docker && sudo systemctl start docker
 
-Check that you are using our dockerhub mirror as described here: :ref:'check_docker_hub_mirror'.
+Check that you are using our dockerhub mirror as described here: :ref:`check_docker_hub_mirror`.
 
 Pull the docker image for the nginx webserver
 
