@@ -1,3 +1,5 @@
+.. _docker_nginx:
+
 ==================================================================
 Running an NGinX webserver inside a Docker container
 ==================================================================
@@ -30,7 +32,7 @@ Run the nginx docker container:
 
 .. code-block:: bash
 
-  sudo docker run --name nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
+  sudo docker run -it --rm -d -p 80:80 --name nginx nginx
 
 Check that the container is running
 
@@ -41,3 +43,5 @@ Check that the container is running
 You should see the nginx container running
 
 You should now be able to browse to your webserver at the http://<instance-ip>
+
+If this doesnt work check the security group for your instance
