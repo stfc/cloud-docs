@@ -7,6 +7,7 @@ How-To Articles
 
    AddingSSHKeyToOpenStackWebInterface
    AddingUserAccountsToVMs
+   AddUsersOpenStackVMInstance
    AssociateAFloatingIP
    ConfigureSSHAgentForwardingInWSL
    ConfigureXServerInWSL
