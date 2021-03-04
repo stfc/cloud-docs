@@ -5,11 +5,7 @@ Create additional user(s) on OpenStack VM/Instance
 Introduction
 ############
 
-<<<<<<< HEAD
 This guide explains how to create users in Linux using the command line and the *useradd* command and  grant administrator privileges using *sudo*.
-=======
-This guide explains how to create users in Linux using the command line and the _useradd_ command and  grant administrator privileges using _sudo_.
->>>>>>> how_to_add_user_doc
 
 The `sudo` command provides a mechanism for granting administrator privileges — ordinarily only available to the root user — to normal users. 
 
@@ -18,13 +14,8 @@ This guide will show you how to create a new user with `sudo` access on Linux, w
 Prerequisites
 #############
 
-<<<<<<< HEAD
 * Valid Login and SSH or Console Access to VM
 * Have sudo privileges
-=======
-* Valid Login and SSH or Consiole Access to VM
-* Have sudo previllages
->>>>>>> how_to_add_user_doc
 * VPN (if outside the network)
 
 Adding Users
@@ -61,11 +52,7 @@ Adding Users
 
       [root@preprod-horizon1 ~]#
 
-<<<<<<< HEAD
 #. Adding a New User to the System using the script (addusers.sh) below. Edit the script and save it.
-=======
-#. Adding a New User to the System using the script (addusers.sh) below. Edit teh scipt and save it.
->>>>>>> how_to_add_user_doc
 
     .. code-block:: shell
 
@@ -156,12 +143,6 @@ Check sudo privilege
 Conclusion
 ==========
 
-<<<<<<< HEAD
 You have now successfully created user(s) on COG OpenStack VM/Instance.
 
 If your having problems :ref:`contact_email`
-=======
-You have now sucessfully created user(s) on COG OpenStack VM/Instance.
-
-If your having problems :ref:`contact_email`
->>>>>>> how_to_add_user_doc
