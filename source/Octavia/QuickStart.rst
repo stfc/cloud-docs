@@ -25,6 +25,8 @@ On the "Load Balancer Details" screen enter a name for the load balancer and sel
 
 .. image:: /assets/howtos/CreateALoadBalancer/3-create-load-balancer-details.png
 
+.. _create_octavia_listener
+
 On the "Listener Details" screen select Protocol TCP and set Port 200. Enter the name as ssh. The other defaults are fine. Click "Next"
 
 .. image:: /assets/howtos/CreateALoadBalancer/4-listener-details.png
@@ -68,9 +70,9 @@ Viewing details
 
 If you click on the Name of the load balancer you can view details of the listerners and pools
 
-Unfortunately a number of the "Operating Status" fields always report "Offline" even when the
+Unfortunately a number of the "Operating Status" fields always report "Offline" even when they are online
 
-You can add another Listener to this load balancer by hitting "Create Listener" and following similar steps to the above
+You can add another Listener to this load balancer by hitting "Create Listener" and following similar steps to the above :ref: `create_octavia_listener`
 
 Try using these steps to load balance access to the nginx webserver created in the other tutorial.
 
