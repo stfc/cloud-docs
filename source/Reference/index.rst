@@ -7,5 +7,5 @@ Reference Documents
 
     DockerHubMirror
     JupyterHubDocumentation
-    Harbor
-    PythonSDK
+    JupyterHubService
+    Harbor    PythonSDK
