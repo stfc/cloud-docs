@@ -25,7 +25,7 @@ On the "Load Balancer Details" screen enter a name for the load balancer and sel
 
 .. image:: /assets/howtos/CreateALoadBalancer/3-create-load-balancer-details.png
 
-.. _create_octavia_listener
+.. _create_octavia_listener:
 
 On the "Listener Details" screen select Protocol TCP and set Port 200. Enter the name as ssh. The other defaults are fine. Click "Next"
 
