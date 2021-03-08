@@ -42,6 +42,11 @@ Welcome to stfc-cloud-docs's documentation!
    Magnum/index
    Octavia/index
 
+.. toctree::
+   :maxdepth: 1  
+   :caption: Legacy Documentation:
+
+   Legacy/index
 
 Indices and tables
 ==================

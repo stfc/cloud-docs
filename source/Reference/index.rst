@@ -6,6 +6,5 @@ Reference Documents
     :caption: Contents:
 
     DockerHubMirror
-    JupyterHubDocumentation
     JupyterHubService
     Harbor    PythonSDK
