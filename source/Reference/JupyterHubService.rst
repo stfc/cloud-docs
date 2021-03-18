@@ -46,9 +46,9 @@ Storage
 
 .. warning::
     
-    This is not currently backed up and may be reset during testing. Please keep a copy of any important data locally.
+    This is not currently backed up and can be lost on service updates/upgrades or unplanned cluster outage. Please keep a copy of any important data locally.
 
-All instances come with a 1GB data store, which is carried between all types. 
+All instances come with a 1GB data store, which is carried between all types. This should be viewed as a working scratch space rather than somewhere to store data long-term.
 
 Lifetime
 ========
@@ -198,3 +198,14 @@ If you continue to receive timeouts please contact us ( :ref:`contact_details`) 
 If you suspect there is a problem with your instance please contact us (:ref:`contact_details`).
 
 Unfortunately the cloud team is unable to provide support for Python problems. Please contact your notebook provider for additional support or consult the `Jupyterhub Documentation <https://jupyter-notebook.readthedocs.io/en/latest/>`_
+
+Running Own Service
+###################
+
+Some understanding of Openstack and Linux CLI usage is required to deploy an instance. User-facing configuration, such as worker flavor, profile sizes / descriptions and GPU support, is written in .yaml files so knowledge of Ansible is not required.
+
+The service is packaged and built specifically for `jupyter.stfc.ac.uk` out of the box. Variables to control these are split into two files; one for Openstack (number/size of instances...etc.) and one for Jupyterhub (domain name / auth method...etc.).
+
+This allows anybody with access to a Openstack environment with Magnum to run a similar service on any domain.
+
+For requirements, deployment instructions and available features/limitations see the `STFC Ansible Jupyter Repository <https://github.com/stfc/ansible-jupyter>`_.
