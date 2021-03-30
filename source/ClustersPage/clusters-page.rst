@@ -16,23 +16,28 @@ The Clusters page is designed to be very similar to the pre-existing Machines pa
 See comparison below:
 
 Clusters page *(new)*
-    .. image:: clusters-page.png
-      :alt: Screenshot of the entire Clusters page
+*********************
+
+.. image:: clusters-page.png
+    :alt: Screenshot of the entire Clusters page
 
 Machines page *(pre-existing)*
-    .. image:: machines-page.png
-      :alt: Screenshot of the entire Machines page
+*******************************
+
+.. image:: machines-page.png
+    :alt: Screenshot of the entire Machines page
+
 
 Code design
-************
+###########
+
+In extending the existing code, I have tried to balance conforming to the existing style and making the code simple and concise.
+
     **Important:**  This extension was developed in Python3.9
 
     `Tweaks <https://github.com/stfc/cloud/commit/e9adb9d2004347227e7649514ff41f83d5197d64>`_ were made to get the existing code to run in this version.
 
     *Before deploying* this extension: Not only will these tweaks need to be reverted, but additional tweaks may be required to make the new code compatible with the production python environment.
-
-
-In extending the existing code, I have tried to balance conforming to the existing style and making the code simple and concise.
 
 As an overview of it's structure:
 
@@ -44,7 +49,7 @@ As an overview of it's structure:
 
 Features
 ########
-The Cluster page works in much the same way as the Machines page. It's key features are outlined below:
+The Cluster page works in much the same way as the Machines page. It's key features (`Display`_, `Create`_, `Delete`_, and `Download Config`_) are outlined below:
 
 Display
 ********
@@ -57,21 +62,13 @@ The selected project can be changed using the *'Current Project'* dropdown menu 
 
 This table is set to *automatically update* itself every 1 minute.
 
-Editing the cluster table's headings
-    The current headings, at time of writing, are mirrored from OpenStack Horizon’s *Container Infra: Clusters page*.
+To change the headings, see `Editing the cluster table's headings`_.
 
-    These can be easily changed by *simply adding/removing columns* to the `clusterTable`_.
+The cluster data for this table is provided by the method:
 
-    Each column's ``data`` attribute must match a cluster attribute.
+.. code-block:: Python3
 
-    *To see possible cluster attributes*: If you have logged in to the cloud site, and have at least one cluster within your selected project, you can navigate to ``/api/cluster`` to see the raw data for your cluster(s).
-
-Backend
-    The cluster data for this table is provided by the method:
-
-    .. code-block:: Python3
-
-      magnumclient.client.clusters.list()
+    magnumclient.client.clusters.list()
 
 Create
 *******
@@ -82,34 +79,13 @@ The ‘New Cluster’ button opens a cluster creation modal.
 
 Selecting the *'Template Default'* flavour in the master/node dropdown uses the master/node flavour specified by the selected cluster template.
 
-Editing the cluster creation fields
-    The fields taken by the modal can be edited in a couple steps:
+To change the user input fields, see `Editing the cluster creation fields`_.
 
-    1. Edit HTML within ``create-modal.html``
-        If *removing* a field, simply delete it's HTML block.
+The list of cluster templates is provided by the method:
 
-        If *adding* a field, create a HTML block using the desired input type (e.g. ``<select>``, ``<input>``).
-        This can largely be duplicated from the HTML blocks from existing fields.
+.. code-block:: Python3
 
-    2. Edit Javascript within ``create-cluster.js``
-        Within ``submitClusterForm()``, the ``formData`` dictionary will need to be edited.
-
-        If *removing* a field, simply delete it's entry.
-
-        If *adding* a field, create a new entry.
-        The *value* can be retrieved from the HTML using jQuery (which can be copied from the other fields).
-        The *key* for each entry must be one of the following:
-
-        ``name``, ``node_count``, ``discovery_url``, ``master_count``, ``baymodel_id``, ``bay_create_timeout``, ``cluster_template_id``, ``create_timeout``, ``keypair``, ``docker_volume_size``, ``labels``, ``master_flavor_id``, ``flavor_id``, ``fixed_network``, ``fixed_subnet``, ``floating_ip_enabled``, ``merge_labels``, ``master_lb_enabled``
-
-
-Backend
-    The list of cluster templates is provided by the method:
-
-    .. code-block:: Python3
-
-      magnumclient.client.cluster_templates.list()
-
+    magnumclient.client.cluster_templates.list()
 
 Delete
 *******
@@ -120,13 +96,11 @@ The delete button on each row of the cluster table opens a cluster deletion moda
 
 This modal just acts as a confirmation.
 
-Backend
-    The deletion request is passed to the method:
+The deletion request is passed to the method:
 
-    .. code-block:: Python3
+.. code-block:: Python3
 
-      magnumclient.client.clusters.delete(cluster_to_delete_uuid)
-
+    magnumclient.client.clusters.delete(cluster_to_delete_uuid)
 
 Download Config
 ****************
@@ -135,20 +109,53 @@ The config download button on each row of the cluster table opens a modal which 
 .. image:: cluster-config-modal.png
   :alt: Screenshot of the Cluster Config modal
 
-**Note:** this process can take up to ~1min
+Within the scope of this project, a method within the OpenStack SDK to retrieve a given cluster’s config file *could not be found*.
 
-Backend
-    Within the scope of this project, a method within the OpenStack SDK to retrieve a given cluster’s config file *could not be found*.
-    
-    As a workaround_, this functionality is implementing by using the ``subprocess`` python library to call the equivalent OpenStack CLI command:
+As a workaround_, this functionality is implementing by using the ``subprocess`` python library to call the equivalent OpenStack CLI command:
 
-    .. code-block:: bash
+.. code-block:: bash
 
-      openstack coe cluster config <cluster-uuid>
+    openstack coe cluster config <cluster-uuid>
 
-    The workaround_ code creates a temporary directory as the location to store the config file.
+The workaround_ code creates a temporary directory as the location to store the config file.
 
-    From here, the config file is served to the user to save or open, whereby the temporary directory is deleted.
+From here, the config file is served to the user to save or open, whereby the temporary directory is deleted.
+
+
+How Tos
+#######
+This section contains walk-throughs for editing the page.
+
+Editing the cluster table's headings
+************************************
+The current headings, at time of writing, are copied from OpenStack Horizon’s *Container Infra: Clusters page*.
+
+The headings can be easily changed by *simply adding/removing columns* to the `clusterTable`_.
+
+Each column's ``data`` attribute must match a cluster attribute.
+
+*To see possible cluster attributes*: If you have logged in to the cloud site, and have at least one cluster within your selected project, you can navigate to ``/api/cluster`` to see the raw data for your cluster(s).
+
+Editing the cluster creation fields
+***********************************
+The fields taken by the modal can be edited in a couple steps:
+
+1. Edit HTML within ``create-modal.html``
+    If *removing* a field, simply delete it's HTML block.
+
+    If *adding* a field, create a HTML block using the desired input type (e.g. ``<select>``, ``<input>``).
+    This can largely be duplicated from the HTML blocks from existing fields.
+
+2. Edit Javascript within ``create-cluster.js``
+    Within ``submitClusterForm()``, the ``formData`` dictionary will need to be edited.
+
+    If *removing* a field, simply delete it's entry.
+
+    If *adding* a field, create a new entry.
+    The *value* can be retrieved from the HTML using jQuery (which can be copied from the other fields).
+    The *key* for each entry must be one of the following:
+
+    ``name``, ``node_count``, ``discovery_url``, ``master_count``, ``baymodel_id``, ``bay_create_timeout``, ``cluster_template_id``, ``create_timeout``, ``keypair``, ``docker_volume_size``, ``labels``, ``master_flavor_id``, ``flavor_id``, ``fixed_network``, ``fixed_subnet``, ``floating_ip_enabled``, ``merge_labels``, ``master_lb_enabled``
 
 Other small changes
 ###################
@@ -170,10 +177,10 @@ Within the `branch`_ containing this extension I have made a few other small cha
 3. `Fix Rename modal <https://github.com/stfc/cloud/commit/c1ee299de3abeb4ebf6fd15d3c67f26838d1c5ba>`_
     I resolved issue `#121`_
 
-    This was simply *setting the modal to 'hide'* after clicking 'Rename'
+    This was simply *setting the modal to 'hide'* after clicking 'Rename'.
 
 4. `Renamed tabs <https://github.com/stfc/cloud/commit/bd31516dd6bcc04d4823e9a643f2b3cc6ef40743>`_ 
-    I renamed the tabs for the Machines and Clusters pages to *Project Instances* and *Project Clusters* respectively, following a discussion about the names in `#120`_
+    I renamed the tabs for the Machines and Clusters pages to *Project Instances* and *Project Clusters* respectively, following a discussion about the names in `#120`_.
 
 
 Opportunities for extension
