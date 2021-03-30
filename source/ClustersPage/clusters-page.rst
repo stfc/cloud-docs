@@ -10,9 +10,9 @@ Introduction
 ############
 
 The Clusters Page is an extension to the SCD Cloud Site.
-It allow users to `Display`_, `Create`_, `Delete`_, and `Download Config`_ of `Magnum`_ clusters associated with the given project.
+It allows users to `Display`_, `Create`_, `Delete`_, and `Download Config`_ of `Magnum`_ clusters associated with the selected project.
 
-The Clusters page is designed to be very similar to the pre-existing Machines page.
+The Clusters page is designed to be very similar to the (pre-existing) Machines page.
 See comparison below:
 
 Clusters page *(new)*
@@ -31,7 +31,7 @@ Machines page *(pre-existing)*
 Code design
 ###########
 
-In extending the existing code, I have tried to balance conforming to the existing style and making the code simple and concise.
+In extending the existing code, I have tried to balance conforming to the existing style with making the code simple and concise.
 
     **Important:**  This extension was developed in Python3.9
 
@@ -41,10 +41,10 @@ In extending the existing code, I have tried to balance conforming to the existi
 
 As an overview of it's structure:
 
-* The Clusters page employs a MVC (Model-View-Controller) design pattern.
+* The Clusters page follows a MVC (Model-View-Controller) design pattern (as established by the codebase previously).
 * A *HTML* page is served to the user using *CherryPy*.
 * *JavaScript* is used for interactivity, to submit *Ajax* requests to the *Python* backend API, and handle the data returned.
-* The API is mounted onto ``/api/``.
+* The API objects are mounted onto ``/api``. This `branch`_ adds ``/cluster``, ``/clustertemplate``, and ``/clusterconfig``
 
 
 Features
@@ -55,7 +55,7 @@ Display
 ********
 The page displays the Clusters associated with the selected project.
 
-The selected project can be changed using the *'Current Project'* dropdown menu at the top right.
+The selected project can be changed using the *'Current Project'* dropdown menu at the top right of the page.
 
 .. image:: clusters-table.png
   :alt: Screenshot of the Clusters table
