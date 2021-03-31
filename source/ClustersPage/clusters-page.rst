@@ -18,13 +18,13 @@ See comparison below:
 Clusters page *(new)*
 *********************
 
-.. image:: clusters-page.png
+.. image:: images/clusters-page.png
     :alt: Screenshot of the entire Clusters page
 
 Machines page *(pre-existing)*
 *******************************
 
-.. image:: machines-page.png
+.. image:: images/machines-page.png
     :alt: Screenshot of the entire Machines page
 
 
@@ -57,7 +57,7 @@ The page displays the Clusters associated with the selected project.
 
 The selected project can be changed using the *'Current Project'* dropdown menu at the top right of the page.
 
-.. image:: clusters-table.png
+.. image:: images/clusters-table.png
   :alt: Screenshot of the Clusters table
 
 This table is set to *automatically update* itself every 1 minute.
@@ -74,7 +74,7 @@ Create
 *******
 The ‘New Cluster’ button opens a cluster creation modal.
 
-.. image:: create-cluster-modal.png
+.. image:: images/create-cluster-modal.png
   :alt: Screenshot of the Create Cluster modal
 
 Selecting the *'Template Default'* flavour in the master/node dropdown uses the master/node flavour specified by the selected cluster template.
@@ -91,7 +91,7 @@ Delete
 *******
 The delete button on each row of the cluster table opens a cluster deletion modal.
 
-.. image:: delete-cluster-modal.png
+.. image:: images/delete-cluster-modal.png
   :alt: Screenshot of the Delete Cluster modal
 
 This modal just acts as a confirmation.
@@ -106,7 +106,7 @@ Download Config
 ****************
 The config download button on each row of the cluster table opens a modal which offers the user to download the config file for the given cluster.
 
-.. image:: cluster-config-modal.png
+.. image:: images/cluster-config-modal.png
   :alt: Screenshot of the Cluster Config modal
 
 Within the scope of this project, a method within the OpenStack SDK to retrieve a given cluster’s config file *could not be found*.
