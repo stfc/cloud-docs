@@ -46,7 +46,6 @@ As an overview of it's structure:
 * *JavaScript* is used for interactivity, to submit *Ajax* requests to the *Python* backend API, and handle the data returned.
 * The API objects are mounted onto ``/api``. This `branch`_ adds ``/cluster``, ``/clustertemplate``, and ``/clusterconfig``
 
-
 Features
 ########
 The Cluster page works in much the same way as the Machines page. It's key features (`Display`_, `Create`_, `Delete`_, and `Download Config`_) are outlined below:
@@ -111,15 +110,15 @@ The config download button on each row of the cluster table opens a modal which 
 
 Within the scope of this project, a method within the OpenStack SDK to retrieve a given cluster’s config file *could not be found*.
 
-As a workaround_, this functionality is implementing by using the ``subprocess`` python library to call the equivalent OpenStack CLI command:
+As a workaround_, this functionality is implemented using the ``subprocess`` python library to call the equivalent OpenStack CLI command:
 
 .. code-block:: bash
 
     openstack coe cluster config <cluster-uuid>
 
-The workaround_ code creates a temporary directory as the location to store the config file.
+Where this workaround code is called (within the ClusterConfig_ object), a temporary directory is created to store the config file.
 
-From here, the config file is served to the user to save or open, whereby the temporary directory is deleted.
+From here, the config file is served to the user to save or open, whereby the temporary directory is implicitly deleted.
 
 
 How Tos
@@ -138,21 +137,21 @@ Each column's ``data`` attribute must match a cluster attribute.
 
 Editing the cluster creation fields
 ***********************************
-The fields taken by the modal can be edited in a couple steps:
+The fields taken by the modal can be edited in a of couple steps:
 
-1. Edit HTML within ``create-modal.html``
+1. Edit ``create-modal.html``
     If *removing* a field, simply delete it's HTML block.
 
-    If *adding* a field, create a HTML block using the desired input type (e.g. ``<select>``, ``<input>``).
-    This can largely be duplicated from the HTML blocks from existing fields.
+    If *adding* a field, create a HTML block with the desired input type (e.g. ``<select>``, ``<input>``).
+    This code can largely be duplicated from the HTML blocks of existing fields.
 
-2. Edit Javascript within ``create-cluster.js``
+2. Edit ``create-cluster.js``
     Within ``submitClusterForm()``, the ``formData`` dictionary will need to be edited.
 
     If *removing* a field, simply delete it's entry.
 
     If *adding* a field, create a new entry.
-    The *value* can be retrieved from the HTML using jQuery (which can be copied from the other fields).
+    The *value* can be retrieved from the HTML using jQuery (the code for this can be copied from the existing fields).
     The *key* for each entry must be one of the following:
 
     ``name``, ``node_count``, ``discovery_url``, ``master_count``, ``baymodel_id``, ``bay_create_timeout``, ``cluster_template_id``, ``create_timeout``, ``keypair``, ``docker_volume_size``, ``labels``, ``master_flavor_id``, ``flavor_id``, ``fixed_network``, ``fixed_subnet``, ``floating_ip_enabled``, ``merge_labels``, ``master_lb_enabled``
@@ -191,16 +190,17 @@ Due to the limited scope of this project, there are a few features I have not im
     Currently the only error handling the Clusters page provides is displaying the text *"The backend didn't like that.. "* in red when a Create Cluster attempt results in a 400 or 500 error.
 
 2. Other cloud platforms
-    Whereas the Machines page is built to handle multiple cloud platforms (OpenStack and OpenNebula), the Clusters page currently *built only to handle OpenStack*.
+    Whereas the Machines page is built to handle multiple cloud platforms (OpenStack and OpenNebula), the Clusters page is currently *built only to handle OpenStack*.
 
 3. Inheritance
     In pursuit of cohesion between the Machines page and Clusters page, much of the former’s code has been copied into the latter. This has resulted in considerable duplication.
     
-    As such, there are *opportunities* to make the overall code *more concise* in refactoring this duplication into shared base files.
+    As such, there are *opportunities* to make the overall code *more concise* by refactoring this duplication into shared base files.
 
 .. _Magnum: https://docs.openstack.org/magnum/latest/user/
 .. _branch: https://github.com/stfc/cloud/tree/clusters-page
 .. _clusterTable: https://github.com/stfc/cloud/blob/clusters-page/assets/js/clusters/get-clusters.js
 .. _workaround: https://github.com/stfc/cloud/commit/daa425495063022854ea68d837247aa0307a9036
+.. _ClusterConfig: https://github.com/stfc/cloud/blob/clusters-page/controllers/api/openstack/cluster_config.py
 .. _`#121`: https://github.com/stfc/cloud/issues/121
 .. _`#120`: https://github.com/stfc/cloud/pull/120
