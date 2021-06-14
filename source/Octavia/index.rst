@@ -6,5 +6,5 @@ Octavia
    :caption: Contents:
 
    IntroducingOctavia
-   LoadBalancers-Heat
-   
+   QuickStart
+   LoadBalancers-Heat 

@@ -1,3 +1,5 @@
+.. _contact_details:
+
 ###############
 Contact Details
 ###############
