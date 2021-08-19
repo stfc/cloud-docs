@@ -30,7 +30,7 @@ These flavors are great for computation and are optimised to either be within a 
 #######
 l*.*
 #######
-These are flavors which utilize local SSD storage on the hypervisors with all of the storage being allocated to the root disk. These instances currently cannot be live migrated so in the event of hardware errors the machine will likely be lost or down for an extended period
+These are flavors which utilize local SSD storage on the hypervisors with all of the storage being allocated to the root disk. These instances currently cannot be live migrated so in the event of hardware errors the machine will likely be lost or down for an extended period.
 
 Otherwise the flavors behave as c*.* flavors
 
@@ -49,7 +49,7 @@ These have the same CPU configuration as c*.* flavors but have a GPU attached:
 
 - g-k620.* have a NVidia Quadro K620 card attached
 - g-p4000.* have one or more NVidia Quadro P4000 cards attached (the smallest has 1, the largest has 4)
-- g-rtx4000.* (COMING SOON est May 2021) have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
+- g-rtx4000.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
 - g-p100.* have one or more NVidia Tesla P100 cards attached (the smallest has 1, the largest has 2)
 - g-v100.* have one or more NVidia Tesla V100 32GB cards attached (small has 1,medium has 2 and large has 4)
-- g-a100-40gb.* (COMING SOON est May 2021) have one or more NVidia Tesla A100 40GB) cards attached (the smallest has 1, the largest has 4)
+- g-a100.* have one or more NVidia Tesla A100 40GB) cards attached (the smallest has 1, the largest has 4)
