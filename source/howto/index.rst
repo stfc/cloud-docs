@@ -25,3 +25,4 @@ How-To Articles
    SnapshotVM
    UsingCloudInitForStfcTerms
    UsingPuttyAndFileZillaWithVMs
+   Use-the-command-line-with-IAM-Credentials

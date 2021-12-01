@@ -6,19 +6,19 @@ To use IAM credentials on the command line you first need to generate an applica
 
 To do this log in to OpenStack. Expand Identity and click on Application Credentials as shown below
 
-.. image:: /assets/howtos/IAM-Command-Line/Application-credential-1
+.. image:: /assets/howtos/IAM-Command-Line/Application-credential-1.png
 
 Then Click on create application credentials
 
-.. image:: /assets/howtos/IAM-Command-Line/Application-credential-2
+.. image:: /assets/howtos/IAM-Command-Line/Application-credential-2.png
 
 Fill in the details here as required. We recommend setting the expiration date of the credential for no more than 1 month from the date you create the credential (if you have need of longer credentials contact the cloud team). Then hit Create Application Credential.
 
-.. image:: /assets/howtos/IAM-Command-Line/Application-credential-3
+.. image:: /assets/howtos/IAM-Command-Line/Application-credential-3.png
 
 After a little thinking time you should see the following screen (secret redacted in the screen shot). From here hit Download Openrc File.
 
-.. image:: /assets/howtos/IAM-Command-Line/Application-credential-4
+.. image:: /assets/howtos/IAM-Command-Line/Application-credential-4.png
 
 The file should look something like this:
 
