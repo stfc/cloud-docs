@@ -29,3 +29,4 @@ How-To Articles
    Use-the-command-line-with-IAM-Credentials
    UsingOpenStackCommand-lineInterface
    InstanceSnapshot
+   Volume

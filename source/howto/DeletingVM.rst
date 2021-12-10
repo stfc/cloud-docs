@@ -23,6 +23,8 @@ Web Interface
 Command-line
 -------------
 
+See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
 1. Find the instance ID with ``openstack server list``
 
 .. code-block:: bash

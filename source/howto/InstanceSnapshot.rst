@@ -1,5 +1,7 @@
+**********************
 Instance Snapshot
-==============================================================================================
+**********************
+
 A snapshot can be used as a **backup** or **template** for creating new instances.
 
 .. contents:: Table of Contents
@@ -7,9 +9,11 @@ A snapshot can be used as a **backup** or **template** for creating new instance
 .. _Creating-Snapshot:
 
 Creating Snapshots from Instance
---------------------------------
+=================================
+
 Web Interface
-^^^^^^^^^^^^^
+--------------
+
 1. Go to :guilabel:`Compute` → :guilabel:`Instance` in Web Interface (https://openstack.stfc.ac.uk/)
 2. Shut off your instance by clicking the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`SHUT OFF INSTANCE`
 
@@ -31,7 +35,8 @@ Web Interface
 
 
 Command-Line
-^^^^^^^^^^^^^
+--------------
+
 See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 1. Find the server ID (Instance) using the command below
@@ -101,7 +106,7 @@ See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
     +--------------------------------------+----------------------------------------------------------+-------------+
 
 Downloading snapshot
----------------------
+=================================
 1. Check the image ID of the snapshot
 
 .. code-block:: bash
@@ -125,10 +130,10 @@ Downloading snapshot
     $ openstack image save --file snapshot.raw 0258526c-f523-4645-8a9d-f6980ad87864
 
 Create new image from snapshot
-------------------------------
+=================================
 
 Import snapshot to project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 You must `Downloading snapshot`_ to local computer first.
 
@@ -143,7 +148,8 @@ You must `Downloading snapshot`_ to local computer first.
     $ openstack image create --container-format bare --disk-format qcow2 --file snapshot.raw test-snapshot
 
 Booting From Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------
+
 Create a VM and selecting the image as the boot source
 
 Example
