@@ -12,6 +12,7 @@ How-To Articles
    ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
+   DeletingVM
    CreateVMFromTheWebInterface
    CreateVolumeFromCommandLine
    CreateVolumeFromWebInterface

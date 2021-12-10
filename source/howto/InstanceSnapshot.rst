@@ -4,6 +4,8 @@ A snapshot can be used as a **backup** or **template** for creating new instance
 
 .. contents:: Table of Contents
 
+.. _Creating-Snapshot:
+
 Creating Snapshots from Instance
 --------------------------------
 Web Interface
