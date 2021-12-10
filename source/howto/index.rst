@@ -26,3 +26,5 @@ How-To Articles
    UsingCloudInitForStfcTerms
    UsingPuttyAndFileZillaWithVMs
    Use-the-command-line-with-IAM-Credentials
+   UsingOpenStackCommand-lineInterface
+   InstanceSnapshot
