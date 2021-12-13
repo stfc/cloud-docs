@@ -1,5 +1,6 @@
+==============================
 Deleting Virtual Machine
-========================
+==============================
 
 Deleting entities is the only way to **release resources** and **free up quotas**.
 
