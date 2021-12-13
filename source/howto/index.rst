@@ -12,9 +12,8 @@ How-To Articles
    ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
+   DeletingVM
    CreateVMFromTheWebInterface
-   CreateVolumeFromCommandLine
-   CreateVolumeFromWebInterface
    GrowTheDiskOfAVolumeVM
    ManuallyUpdateSLAndCentosVMs
    PreventAutomaticUpdates
@@ -26,3 +25,7 @@ How-To Articles
    UsingCloudInitForStfcTerms
    UsingPuttyAndFileZillaWithVMs
    Use-the-command-line-with-IAM-Credentials
+   UsingOpenStackCommand-lineInterface
+   SnapshotVM
+   Volume
+   SecGroup
