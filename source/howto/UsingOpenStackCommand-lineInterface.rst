@@ -38,7 +38,7 @@ Log-in with Openstack CLI
 
 Verify connection
 -------------------------
-6. Run and check if you can see the instances
+6. Run ``openstack server list`` and check if you can see the instances
 
 .. code-block:: bash
 

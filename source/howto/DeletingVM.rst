@@ -3,7 +3,9 @@ Deleting Virtual Machine
 
 Deleting entities is the only way to **release resources** and **free up quotas**.
 
-You should always refer to :ref:`Creating-Snapshot` as this process is **not reversible** and may result in **data loss**.
+.. warning::
+
+    You should always refer to :ref:`Creating-Snapshot` as this process is **not reversible** and may result in **data loss**.
 
 Web Interface
 -------------

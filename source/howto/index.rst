@@ -14,8 +14,6 @@ How-To Articles
    CreateVMFromCommandLine
    DeletingVM
    CreateVMFromTheWebInterface
-   CreateVolumeFromCommandLine
-   CreateVolumeFromWebInterface
    GrowTheDiskOfAVolumeVM
    ManuallyUpdateSLAndCentosVMs
    PreventAutomaticUpdates
@@ -28,5 +26,6 @@ How-To Articles
    UsingPuttyAndFileZillaWithVMs
    Use-the-command-line-with-IAM-Credentials
    UsingOpenStackCommand-lineInterface
-   InstanceSnapshot
+   SnapshotVM
    Volume
+   SecGroup

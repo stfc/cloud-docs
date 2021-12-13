@@ -42,7 +42,10 @@ Web Interface
 
 Command-Line
 -------------
-See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
+.. note::
+    
+    See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 Create simple volume
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -165,7 +168,9 @@ Web Interface
 Command-Line
 -----------------
 
-See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+.. note::
+    
+    See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 1. Get the ``Server ID`` (``Instances``) and ``Volume ID`` (``Volume``) using command
 
@@ -291,7 +296,9 @@ Web Interface
 Command-line
 -----------------------
 
-See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+.. note::
+    
+    See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 1. Run
 
@@ -331,7 +338,9 @@ Web Interface
 Command-Line
 --------------------
 
-See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+.. note::
+    
+    See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 1. Find the ID of the volume with ``openstack volume list``:
 
@@ -372,7 +381,8 @@ Example
 Deleting Volumes
 ==============================================
 
-You should always refer to `Create Volume Snapshot`_ as this process is **not reversible** and may result in **data loss**.
+.. warning::
+    You should always refer to `Create Volume Snapshot`_ as this process is **not reversible** and may result in **data loss**.
 
 Web Interface
 --------------------
@@ -388,7 +398,9 @@ Web Interface
 Command-Line
 --------------------
 
-See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+.. note::
+    
+    See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 1. Find the volume ID with ``openstack volume list``
 
