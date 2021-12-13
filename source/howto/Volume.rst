@@ -84,7 +84,7 @@ Example
 Create image from snapshot/image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Find the ID of your snapshot
+1. Find the ID of your snapshot
 
 .. code-block:: bash
 
@@ -95,7 +95,7 @@ Find the ID of your snapshot
     | 76d51455-a5cd-478d-a93f-6e49b4108575 | testing-v-snapshot                   | None        | available |    3 |
     +--------------------------------------+--------------------------------------+-------------+-----------+------+
 
-Run the following command in Terminal
+2. Run the following command in Terminal
 
 .. code-block:: bash
 
@@ -132,30 +132,30 @@ Example
 
 
 
-Attaching and Accessing Volumes to an instance
+Attaching Volumes to an instance
 ==============================================
 
 You can only attach a volume to one instance at a time.
 
-Attaching Volume
+Web Interface
 -----------------
 
-Web Interface
-^^^^^^^^^^^^^^
-1. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`MANAGE ATTACHMENTS`
+1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
+2. In the Web Interface, Go to :guilabel:`Compute` → :guilabel:`Instances`
+3. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`MANAGE ATTACHMENTS`
 
 .. image:: /assets/howtos/Volume/Attach-Step1.png
     :align: center
     :alt:
 
 
-2. Select the right instance and press :guilabel:`ATTACH VOLUME`
+4. Select the right instance and press :guilabel:`ATTACH VOLUME`
 
 .. image:: /assets/howtos/Volume/Attach-Step2.png
     :align: center
     :alt:
 
-3. Note the path in the :guilabel:`Attached To` column of the volume
+5. Note the path in the :guilabel:`Attached To` column of the volume
 
 .. image:: /assets/howtos/Volume/Attach-Step3.png
     :align: center
@@ -163,7 +163,10 @@ Web Interface
 
 
 Command-Line
-^^^^^^^^^^^^^^
+-----------------
+
+See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
 1. Get the ``Server ID`` (``Instances``) and ``Volume ID`` (``Volume``) using command
 
 .. code-block:: bash
@@ -202,7 +205,10 @@ Example
     +-----------+--------------------------------------+
 
 Accessing the volume
-----------------------
+=============================
+
+In order to access the volume you must also ``mount`` the volume in the VM.
+
 1. Log-in to the attached instance using ``SSH``
 2. Use ``lsblk`` to confirm the device path (usually type ``disk``). The value shown in OpenStack can be inaccurate.
 
@@ -259,3 +265,150 @@ Accessing the volume
     sudo mount /mnt/test-volume
 
 8. (Optional)You may also want to change the permission of the directory using ``chmod`` to enable read/write without ``sudo``
+
+Detaching Volume
+==============================================
+You can detach a volume using both command-line and web interface.
+
+Web Interface
+--------------------
+1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
+2. In the Web Interface, Go to :guilabel:`Compute` → :guilabel:`Instances`
+3. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`MANAGE ATTACHMENTS`
+
+.. image:: /assets/howtos/Volume/Dettach-Step2.png
+    :align: center
+    :alt:
+
+
+4. Click :guilabel:`DETACH VOLUME`
+
+.. image:: /assets/howtos/Volume/Dettach-Step2.png
+    :align: center
+    :alt:
+
+
+Command-line
+-----------------------
+
+See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
+1. Run
+
+.. code-block:: bash
+
+    openstack server remove volume <server-id> <volume-id>
+
+Example
+
+.. code-block:: bash
+
+    $ openstack server remove volume 6b2bedc4-9d8e-4bf3-be63-1dd49bc2e188 2d61791d-5f52-46e1-81ac-05221c308fe8
+
+
+
+Create Volume Snapshot
+==============================================
+
+Web Interface
+--------------------
+
+1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
+2. In the Web Interface, Go to :guilabel:`Volumes` → :guilabel:`Volumes`
+3. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`CREATE SNAPSHOT`
+
+.. image:: /assets/howtos/Volume/Snapshot-Step1.png
+    :align: center
+    :alt:
+
+
+4. Give it a name and click :guilabel:`DETACH VOLUME`
+
+.. image:: /assets/howtos/Volume/Snapshot-Step2.png
+    :align: center
+    :alt:
+
+Command-Line
+--------------------
+
+See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
+1. Find the ID of the volume with ``openstack volume list``:
+
+.. code-block:: bash
+
+    $ openstack volume list
+    +--------------------------------------+----------------+-----------+------+-----------------------------------+
+    | ID                                   | Name           | Status    | Size | Attached to                       |
+    +--------------------------------------+----------------+-----------+------+-----------------------------------+
+    | 03a5bb45-6c28-406d-8cd7-7fac5b63bdeb | cli-new-volume | available |    8 |                                   |
+    +--------------------------------------+----------------+-----------+------+-----------------------------------+
+
+2. Run
+
+.. code-block:: bash
+
+    openstack volume snapshot create --volume <volume-id> <name>
+
+Example
+
+.. code-block:: bash
+
+    $ openstack volume snapshot create --volume 8e20dbdd-16ee-40e9-84ed-971c12104b98 testing-v-snapshot
+    +-------------+--------------------------------------+
+    | Field       | Value                                |
+    +-------------+--------------------------------------+
+    | created_at  | 2021-12-02T14:34:48.718892           |
+    | description | None                                 |
+    | id          | 76d51455-a5cd-478d-a93f-6e49b4108575 |
+    | name        | testing-v-snapshot                   |
+    | properties  |                                      |
+    | size        | 3                                    |
+    | status      | creating                             |
+    | updated_at  | None                                 |
+    | volume_id   | 8e20dbdd-16ee-40e9-84ed-971c12104b98 |
+    +-------------+--------------------------------------+
+
+Deleting Volumes
+==============================================
+
+You should always refer to `Create Volume Snapshot`_ as this process is **not reversible** and may result in **data loss**.
+
+Web Interface
+--------------------
+
+1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
+2. In the Web Interface, Go to :guilabel:`Volumes` → :guilabel:`Volumes`
+3. Select the volume you wish to delete and click :guilabel:`DELETE VOLUME`
+
+
+4. Confirm by clicking :guilabel:`DELETE VOLUMES`
+
+
+Command-Line
+--------------------
+
+See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
+
+1. Find the volume ID with ``openstack volume list``
+
+.. code-block:: bash
+
+    $ openstack volume list
+    +--------------------------------------+-------------------+-----------+------+-----------------------------------+
+    | ID                                   | Name              | Status    | Size | Attached to                       |
+    +--------------------------------------+-------------------+-----------+------+-----------------------------------+
+    | d04f368d-7d60-4843-8f76-dbe61e73f9ee | delete-v-cli      | available |    1 |                                   |
+    +--------------------------------------+-------------------+-----------+------+-----------------------------------+
+
+2. Run
+
+.. code-block:: bash
+
+    openstack volume delete <volume-id>
+
+Example
+
+.. code-block:: bash
+
+    $ openstack volume delete d04f368d-7d60-4843-8f76-dbe61e73f9ee
