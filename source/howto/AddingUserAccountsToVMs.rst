@@ -1,6 +1,6 @@
-===============
-How to add a user account onto lots of cloud hosts within a project
-===============
+==============================================================
+Adding a user account to multiple cloud hosts within a project
+==============================================================
 
 #########
 Outline
@@ -21,5 +21,5 @@ Openstack server list –project “Rucio at RAL”
 This will return a list of hostnames and their IP addresses (and float IP addresses). You can make this just a list of IP addresses using something like:-
 openstack server list --project "Rucio at RAL" | awk -F\| '{ print $5 }' | grep 'Internal' | sed 's/^ Internal=//'
 ….which just returns a list of the 172.16.x.y network IP addresses – there is no point in returning the 192.168.x.y IP addresses as you cannot directly ssh to these anyway, but any float IP addresses, you could append as needed.
-Output this to a file “all_IP_addresses.txt”.
+Output this to a file “all_IP_addresses.text”.
 Check login to each host, identify host and check which hosts have users enabled on them

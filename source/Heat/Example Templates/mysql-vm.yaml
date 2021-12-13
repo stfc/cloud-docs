@@ -1,0 +1,88 @@
+heat_template_version: 2018-08-31 # rocky
+
+description: Example Template for setting up mySQL on a VM
+
+parameters:
+
+  key_name:
+    type: string
+    default: <my-keypair>
+    description: Key Pair to use in order to SSH into the instance.
+  image_id:
+    type: string
+    default: <image-id>
+    description: IMAGE NAME
+  flavor_id:
+    type: string
+    default: <flavor-id>
+    description: FLAVOR NAME
+  default_group:
+    type: string
+    default: <default-security-group-id>
+
+resources:
+
+  database_root_password:
+    #This generates a randomstring which will be used as the mySQL root password
+    type: OS::Heat::RandomString
+    properties:
+      length: 16
+
+  VM:
+    type: OS::Nova::Server
+    properties:
+      image: {get_param: image_id}
+      flavor: {get_param: flavor_id}
+      key_name: {get_param: key_name}
+      networks:
+        - network: Internal
+      security_groups:
+        - {get_param: default_group}
+      user_data_format: SOFTWARE_CONFIG
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash -v
+            apt-get update
+            apt-get install -y expect
+            apt-get install -y mysql-server
+            SECURE_MYSQL=$(expect -c "
+            set timeout 5
+            spawn mysql_secure_installation
+
+            expect \"Press y|Y for Yes, any other key for No:\"
+            send \"n\r\"
+
+            expect \"Please set the password for root here.\"
+            send \"temporarypw\r\"
+
+            expect \"Re-enter password:\"
+            send \"temporarypw\r\"
+
+            expect \"Remove anonymous users? (Press y|Y for Yes, any other key for No):\"
+            send \"y\r\"
+
+            expect \"Disallow root login remotely? (Press y|Y for Yes, any other key for No):\"
+            send \"y\r\"
+
+            expect \"Remove test database and access to it? (Press y|Y for Yes, any other key for No):\"
+            send \"y\r\"
+
+            expect \"Reload privilege tables now? (Press y|Y for Yes, any other key for No)\"
+            send \"y\r\"
+            expect eof
+            ")
+            echo "$SECURE_MYSQL"
+            mysql << EOF
+            SELECT user,authentication_string,plugin,host FROM mysql.user;
+            ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY "$db_rootpassword";
+            FLUSH PRIVILEGES;
+            SELECT user,authentication_string,plugin,host FROM mysql.user;
+            EOF
+          params:
+            $db_rootpassword: {get_attr: [database_root_password,value]}
+
+outputs:
+  db_root:
+    value: {get_attr: [database_root_password, value]}
+    description: MySQL database root password

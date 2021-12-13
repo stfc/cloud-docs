@@ -1,6 +1,6 @@
-===============================================
-How to create a Virtual Machine on Openstack using the Openstack.stfc.ac.uk Web interface
-===============================================
+==============================================================================================
+Create a Virtual Machine on Openstack using the Openstack Web interface
+==============================================================================================
 
 #########
 Scenario
@@ -74,9 +74,10 @@ You may see “Scheduling” and “Building” in the Task column as well. Once
 
 At this stage, you may not be able to SSH onto it quite yet, but you may be able to log into the console, or at least see how far it has got in the boot process.
 
-#########
+#############################################
 Common Things to do After Creating your VM
-#########
+#############################################
+
 -You may wish to SSH to it: This you can only do if it was created on the “Internal” network, otherwise, you will gave to assign a floating IP address to the VM so that you can SSH into it.
 -You may wish to login using the console: This will only work if you are using a STFC FEDID as your Openstack user account. If you are not, then you need to SSH onto the VM first, create a user account, password, home directory, and entry in the /etc/sudoers.d/cloud file for the new user – this will then allow that user to login to the console.
 -You may wish to update the host (yum update, or apt-get update; apt-get upgrade). You may find that you cannot run “yum” the first time you login: This is because all Scientific Linux 6 and Scientific Linux 7 Virtual machines are partially managed by the configuration management tool in order to keep them up to date and well prepared. It is suggested that after the first 10 minutes or so, you reboot the VM so that all the updates will take effect.

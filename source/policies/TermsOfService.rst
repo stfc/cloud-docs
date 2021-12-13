@@ -1,7 +1,8 @@
 .. _tos:
-==========
+
+====================
 Terms Of Service
-==========
+====================
 
 
 This is a service under continual development. If you are unsure about ANY of the following conditions of use or how they apply to you or your intended use of this service then, BEFORE continuing, please contact the Cloud Service Managers at cloud-support@gridpp.rl.ac.uk who will be pleased to help.

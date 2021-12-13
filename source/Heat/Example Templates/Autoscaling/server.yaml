@@ -1,0 +1,33 @@
+heat_template_version: rocky
+
+parameters:
+  image:
+    type: string
+    description: VM Image
+  key_name:
+    type: string
+    description: Keypair
+  flavor:
+    type: string
+    description: VM Flavor
+  metadata:
+    type: json
+  network:
+    type: string
+    description: Network
+  security_group:
+    type: string
+    default: <SECURITY-GROUP-ID>
+
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      flavor: {get_param: flavor}
+      image: {get_param: image}
+      key_name: {get_param: key_name}
+      metadata: {get_param: metadata}
+      networks: [{network: {get_param: network} }]
+      security_groups:
+        - {get_param: security_group}

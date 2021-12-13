@@ -1,0 +1,164 @@
+heat_template_version: 2018-08-31
+
+description: Creating a Ubuntu Bionic VM and installing minikube
+
+parameters:
+  #VM Parameters
+  key_name:
+    type: string
+    default: <keypair>
+    description: Key Pair to use in order to SSH into the instance.
+  image_id:
+    type: string
+    default: Ubuntu-Bionic-Gui
+    description: Ubuntu-Bionic-Gui
+  flavor_id:
+    type: string
+    default: <flavor-id>
+    description: <flavor-name>
+  #security groups
+  default_group:
+    type: string
+    default: <security-group-id>
+
+resources:
+
+  kubernetes_group: #creates security group required for kubernetes
+    type: OS::Neutron::SecurityGroup
+    properties:
+      rules:
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 80
+          port_range_max: 80
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 443
+          port_range_max: 443
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 2376
+          port_range_max: 2376
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 2736
+          port_range_max: 2380
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 6443
+          port_range_max: 6443
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 8472
+          port_range_max: 8472
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 9099
+          port_range_max: 9099
+          remote_ip_prefix: 0.0.0.0/0
+
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 10250
+          port_range_max: 10250
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 10254
+          port_range_max: 10254
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: tcp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 30000
+          port_range_max: 32767
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: udp
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 30000
+          port_range_max: 32767
+          remote_ip_prefix: 0.0.0.0/0
+
+        - protocol: UDP
+          direction: "ingress"
+          ethertype: "IPv4"
+          port_range_min: 8472
+          port_range_max: 8472
+          remote_ip_prefix: 0.0.0.0/0
+
+  VM:
+    type: OS::Nova::Server
+    properties:
+      image: {get_param: image_id}
+      flavor: {get_param: flavor_id}
+      key_name: {get_param: key_name}
+      networks:
+        - network: Internal
+      security_groups:
+        - {get_param: default_group}
+        - {get_resource: kubernetes_group}
+      user_data_format: SOFTWARE_CONFIG
+      user_data: |
+        #!/bin/bash -v
+        # This script is being run on an Ubuntu Bionic VM
+        # The script will installs docker, kubectl, minkube, and helm
+        # When running minikube on a VM, it is recommended to use --driver=none
+        # If running minikube on a physical machine, use --driver=docker
+        # It is not recommended to run minikube on a personal machine with root permissions
+        apt-get update
+        apt-mark hold libpam-krb5 libpam-modules libpam-modules-bin libpam-runtime libpam-systemd libpam0g
+        apt-get upgrade
+        apt-mark unhold libpam-krb5 libpam-modules libpam-modules-bin libpam-runtime libpam-systemd libpam0g
+        apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+        add-apt-repository \
+          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+          $(lsb_release -cs) \
+          stable"
+        apt-get update
+        apt-cache madison docker-ce
+        apt-get install -y docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09.9~3-0~ubuntu-bionic containerd.io
+        #install kubectl
+        curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+        kubectl version --client #verifies kubectl has been installed successfully and up-to-date
+        #Install conntrack - command line interface for netfileter connection tracking
+        apt-get install -y conntrack
+        curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+          && chmod +x minikube
+        sudo install minikube /usr/local/bin/ #install minikube in the /usr/local/bin directory
+        #Now minikubernetes is ready to use!
+        # Install Helm - a Kubernetes package manager
+        curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+        echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+        apt-get update
+        apt-get install -y helm #Helm is now installed
+        #print the Helm version
+        helm version
