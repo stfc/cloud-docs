@@ -1,5 +1,6 @@
+========================================
 Volumes in OpenStack 
-***********************
+========================================
 
 A volume is a **detachable block storage device**, similar to a USB hard drive. You can attach a volume to only **one** instance. Use the openstack client commands or the Web Interface to create and manage volumes.
 
@@ -8,12 +9,12 @@ You can also snapshot a volume to act as a backup or template for creating new v
 .. contents:: Table of Contents
 
 Create Volume
-========================================
+--------------------------
 You can create a new volume using either the Web Interface or the CLI. 
 You can also create volume from a snapshot. A snapshot is a mechanism where you to create a new image from a running services which serves as a templating and backup mechanism.
 
 Web Interface
--------------
+^^^^^^^^^^^^^^^^^^^^^^^
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Volumes` → :guilabel:`Volumes`
 
@@ -41,14 +42,14 @@ Web Interface
     :alt:
 
 Command-Line
--------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
     
     See :ref:`Use-OpenStack-CLI` on how to set-up the command line client.
 
 Create simple volume
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""
 1. Run the following command in Terminal
 
 .. code-block:: bash
@@ -85,7 +86,7 @@ Example
     +---------------------+------------------------------------------------------------------+
 
 Create image from snapshot/image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""""""
 
 1. Find the ID of your snapshot
 
@@ -136,12 +137,12 @@ Example
 
 
 Attaching Volumes to an instance
-==============================================
+-----------------------------------------
 
 You can only attach a volume to one instance at a time.
 
 Web Interface
------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Compute` → :guilabel:`Instances`
@@ -166,7 +167,7 @@ Web Interface
 
 
 Command-Line
------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
     
@@ -210,7 +211,7 @@ Example
     +-----------+--------------------------------------+
 
 Accessing the volume
-=============================
+---------------------------
 
 In order to access the volume you must also ``mount`` the volume in the VM.
 
@@ -272,11 +273,11 @@ In order to access the volume you must also ``mount`` the volume in the VM.
 8. (Optional)You may also want to change the permission of the directory using ``chmod`` to enable read/write without ``sudo``
 
 Detaching Volume
-==============================================
+------------------------
 You can detach a volume using both command-line and web interface.
 
 Web Interface
---------------------
+^^^^^^^^^^^^^^^^^^
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Compute` → :guilabel:`Instances`
 3. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`MANAGE ATTACHMENTS`
@@ -294,7 +295,7 @@ Web Interface
 
 
 Command-line
------------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
     
@@ -315,10 +316,10 @@ Example
 
 
 Create Volume Snapshot
-==============================================
+----------------------------
 
 Web Interface
---------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Volumes` → :guilabel:`Volumes`
@@ -336,7 +337,7 @@ Web Interface
     :alt:
 
 Command-Line
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 .. note::
     
@@ -379,13 +380,13 @@ Example
     +-------------+--------------------------------------+
 
 Deleting Volumes
-==============================================
+------------------------
 
 .. warning::
     You should always refer to `Create Volume Snapshot`_ as this process is **not reversible** and may result in **data loss**.
 
 Web Interface
---------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Volumes` → :guilabel:`Volumes`
@@ -396,7 +397,7 @@ Web Interface
 
 
 Command-Line
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 .. note::
     

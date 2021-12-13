@@ -1,6 +1,6 @@
-**********************
-Instance Snapshot
-**********************
+******************************************************************************
+Create Instance Snapshot and importing snapshot as image
+******************************************************************************
 
 A snapshot can be used as a **backup** or **template** for creating new instances.
 
