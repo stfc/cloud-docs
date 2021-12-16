@@ -212,7 +212,7 @@ What are the current machine "flavors"? Can I have  a machine that looks like a 
 For most people the pre-configured flavors should fit almost every workload.
 See :ref:`flavors` for the types available. 
 
-Please contact us if you need assistance creating your own local project flavours.
+Please contact us if you need assistance creating your own local project flavors.
 
 ###################################################
 Can you provide operating system "X" on Openstack?

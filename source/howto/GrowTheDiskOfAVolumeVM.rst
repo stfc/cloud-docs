@@ -7,7 +7,7 @@ Scenario
 ##########
 In the STFC cloud, if you created a new VM in instances, the default setting in the “Sources” was to create the VM with a new volume.
 If you run out of disk space on the VM, you can usually just “resize” it to a new Flavor, and you will have the same VM, but with more space.
-However, with Volumes, the system ignores the disk sizing aspect of the flavour. This document describes how to create a clone of the original VM and increase the disk size, so that space is available on the new VM.
+However, with Volumes, the system ignores the disk sizing aspect of the flavor. This document describes how to create a clone of the original VM and increase the disk size, so that space is available on the new VM.
 
 ###########
 Method
@@ -32,7 +32,7 @@ Click on the Compute, then Instances menu on the LHS, Click on the “Launch Ins
 Fill in the Details section as normal.
 Click on Source: Select “Volume” in the “Select Boot source” – the volume that was created in the previous step should be visible – select this volume:-
 
-Select a flavour on the LHS: Note that the disk size of the flavour has no effect on the volume.
+Select a flavor on the LHS: Note that the disk size of the flavor has no effect on the volume.
 Select Networks and choose the network you wish to have the VM start up on.
 At this point, all of the LHS options should not have any asterisk (*) characters next to them, which means all the mandatory data has been filled in. You can then click on the “Launch instance” option.
 The system should boot up and appear in the list of Instances, and when you log into it, it should show the full disk size of the new volume:-
@@ -40,6 +40,6 @@ The system should boot up and appear in the list of Instances, and when you log 
 Logging into the new host, you can see the disk space now available:-
 
 Things worthy of note when creating a VM from an existing volume
-The flavour of the new VM does not affect the disk size – only the volume parameters does this !
+The flavor of the new VM does not affect the disk size – only the volume parameters does this !
 Once the volume is attached to a VM, you cannot remove it: the only way to remove the VM host from the volume is if the instance is created, and when the VM was created, the setting for the volume to persist still exists. (See document “Useful command line notes” in the TWKI, which describes a “cinder force-delete <volume id>” workflow.
 When creating a new instance from a volume, the volume may still have previous users created in the system and their home directories and they may have their details still in the /etc/sudoers.d/cloud file. However, you will not find that your FEDID has been added to the /etc/sudoers.d/cloud file.
