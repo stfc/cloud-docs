@@ -39,7 +39,7 @@ It is common to put all of the above in a shell file (just as above, but with a 
 ####################################
 Finding images and flavors available
 ####################################
-Once on the command line of a server, you need to list the flavours available for the project to use as well as the images available.
+Once on the command line of a server, you need to list the flavors available for the project to use as well as the images available.
 To see the images available, run:-
 
 .. code-block:: bash
@@ -131,7 +131,7 @@ Here is an example command, putting together information from the previous comma
 
   openstack server create --flavor m1.tiny --image ScientificLinux-7-NoGui --nic net-id=Internal --security-group default --key-name xbe91637 test_2018-10-29_1511
 
-…where flavour and image are from the previous commands used, net_id is the name of the Network to be used (note you can use the actual Net_ID number instead if preferred – it can make things faster!). Security group is defining the specific security group, and key-name, chooses the ssh keypair to include when creating the host. “test_2018-10-29_1511” is the name of the host that is being created – known within openstack.
+…where flavor and image are from the previous commands used, net_id is the name of the Network to be used (note you can use the actual Net_ID number instead if preferred – it can make things faster!). Security group is defining the specific security group, and key-name, chooses the ssh keypair to include when creating the host. “test_2018-10-29_1511” is the name of the host that is being created – known within openstack.
 Some useful extras
 Adding --timing after the openstack command provides some statistics of how quickly various calls are being completed. You will see the usual host creation data, but at the end, you will also see the response times of each openstack API module.
 
