@@ -12,7 +12,11 @@ Then Click on create application credentials
 
 .. image:: /assets/howtos/IAM-Command-Line/Application-credential-2.png
 
-Fill in the details here as required. We recommend setting the expiration date of the credential for no more than 1 month from the date you create the credential (if you have need of longer credentials contact the cloud team). Then hit Create Application Credential.
+Fill in the details here as required. We recommend setting the expiration date of the credential for no more than 1 month from the date you create the credential (if you have need of longer credentials contact the cloud team). 
+
+If you need to make use of heat or create magnum clusters then tick the Unrestricted box. This allows the application credential to create a delegated user scope which is used by heat and magnum to perform actions on the user's behalf.
+
+Then hit Create Application Credential.
 
 .. image:: /assets/howtos/IAM-Command-Line/Application-credential-3.png
 
@@ -43,4 +47,3 @@ You should then be able to source the openrc file and run openstack commands as 
   source Downloads/app-cred-test-for-docs-openrc.sh
   openstack server list
 
-Please note that there are known issues with the current version of Openstack that we are running with interacting with and creating heat stacks and magnum clusters.
