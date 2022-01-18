@@ -10,7 +10,7 @@ To check Heat is available we can run the command:
 
   openstack stack list
 
-This command returns the list of stacks in the user's project. If no stacks have been created, this command returns an empty line.
+This command returns the list of stacks in the user's project. If no stacks have been created, this command returns an empty line. If Heat is not installed, see the more detailed pages on Heat: https://stfc-cloud-docs.readthedocs.io/en/latest/Heat/IntroducingOpenStackHeat.html#heat-commands
 
 To create a stack, we first need to write a template which will be used to launch the stack.
 
