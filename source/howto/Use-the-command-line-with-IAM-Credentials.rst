@@ -4,7 +4,9 @@ How to use IAM Credentials on the command line
 
 To use IAM credentials on the command line you first need to generate an application credential.
 
-To do this log in to OpenStack. Expand Identity and click on Application Credentials as shown below
+To be able to create application credentials an additional role needs to be added to your user in OpenStack. This is done automatically once you have had a VM running for at least 1 hour.
+
+To create an application credential, log in to OpenStack. Expand Identity and click on Application Credentials as shown below
 
 .. image:: /assets/howtos/IAM-Command-Line/Application-credential-1.png
 
