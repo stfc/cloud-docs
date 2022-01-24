@@ -1,4 +1,38 @@
 ==============================================================
+Adding multiple user accounts to a VM
+==============================================================
+
+#########
+Outline
+#########
+This script will add a list of fed IDs or openstack account names to the VM it is run on. 
+Make sure that all the accounts you are attempting to add exist within the Openstack project the VM is in.
+
+#########
+Method
+#########
+Here is the script. Save this as `addusers-ubuntu.sh` to the VM.
+```
+#!/bin/bash
+
+FEDIDS=$(cat $1)
+for fedID in $FEDIDS
+do
+        $(echo -e "\n\nn" | adduser $fedID -q --gecos ",,,,") &>/dev/null
+done
+```
+To run this script, first create a file called `fedIDs.txt` containing the fed IDs you want to add as user accounts. Seperate each ID with a new line.
+Then, run the script with sudo (you will need sudo privileges to add users) as follows, passing the file containing the fedIDs as an argument:
+```
+sudo bash addusers-ubuntu.sh fedIDs.txt
+```
+To check that the users have been added correctly, you can check the contents of the `/etc/passwd` file. You should see the new accounts at the bottom of this file, e.g.
+```
+$ tail -n 1 /etc/passwd
+<fedID>:x:1008:1006:,,,:/home/<fedID>:/bin/bash
+```
+
+==============================================================
 Adding a user account to multiple cloud hosts within a project
 ==============================================================
 
