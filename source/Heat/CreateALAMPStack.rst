@@ -32,10 +32,6 @@ OS::Heat::SoftwareConfig
 
 .. code-block:: yaml
 
-  <To add code here>
-
-.. code-block:: yaml
-
   heat_template_version: 2018-03-02
 
   parameters:
