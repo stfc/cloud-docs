@@ -2,7 +2,7 @@
 Create a Heat stack
 ===================
 
-Heat is an orchestration component of OpenStack which allows templates to be used to define resources and to specify the relationships between resources in a stack.
+Heat is an orchestration component of OpenStack which allows templates to be used to define resources and to specify the relationships between resources in a stack. This page explains the basics of how to create a heat stack. For more detailed docs and examples, see the **Heat Advanced Material** pages at https://stfc-cloud-docs.readthedocs.io/en/latest/Heat/index.html.
 
 To check Heat is available we can run the command:
 
@@ -290,7 +290,11 @@ To delete a stack, use the command:
 
 **Note:** Any resources such as instances which have been created specifically for the stack will also be deleted.
 
+################
+Further Reading
+################
 
+For more detailed information on Heat, and to see some example stacks, refer to the advance Heat docs at https://stfc-cloud-docs.readthedocs.io/en/latest/Heat/index.html
 
 ###########
 References
