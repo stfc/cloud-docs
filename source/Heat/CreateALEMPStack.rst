@@ -9,7 +9,14 @@ LEMP Stack consists of:
 - MySQL
 - PHP
 
+#########
+Templates
+#########
 
+Similar to installing a LAMP stack, you create a template that will execute a bash script to install LEMP on a server. The bash script below can be used in conjuction with the templates on the **Create a LAMP stack** docs at https://stfc-cloud-docs.readthedocs.io/en/latest/Heat/CreateALAMPStack.html.
+
+
+###########
 Bash Script
 ###########
 
