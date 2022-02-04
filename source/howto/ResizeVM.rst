@@ -19,7 +19,7 @@ Web Interface
 1. Log-in to the STFC cloud (https://openstack.stfc.ac.uk/)
 2. In the Web Interface, Go to :guilabel:`Compute` → :guilabel:`Instances`
 3. Shut down the Instance and create a snapshot to prevent data loss.
-4. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`RESIZE  INSTANCE`
+4. Click the drop-down menu on the right-hand side (in :guilabel:`Actions` column) and select :guilabel:`RESIZE INSTANCE`
 
 .. image:: /assets/howtos/ResizeVM/ResizeVM-1.png
     :align: center
