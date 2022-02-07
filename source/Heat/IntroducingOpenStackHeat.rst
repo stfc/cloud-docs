@@ -154,7 +154,7 @@ The structure of a HOT template is given as:
   conditions: #declares any conditions on the stack
 
 
-Please see the documentation **Create a Heat Stack** for an introduction to creating a stack using a HOT template.
+Please see the documentation **Create a Heat Stack** (https://stfc-cloud-docs.readthedocs.io/en/latest/howto/CreateAHeatStack.html) for an introduction to creating a stack using a HOT template.
 
 
 Rocky Heat Templates
