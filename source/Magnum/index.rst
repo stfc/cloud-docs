@@ -7,6 +7,7 @@ Magnum
 
    IntroducingOpenstackMagnum
    CreateAKubernetesCluster
+   SubmissionOfJobs
    JupyterHubOnKubernetes
    MagnumAutoScaling
    OpenStackMagnumUsers
