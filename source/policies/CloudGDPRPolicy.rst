@@ -1,6 +1,6 @@
-=================
+=========================
 STFC Cloud Privacy Policy
-=================
+=========================
 Updated: 17/01/2022 
 
 For  the  purposes  of  the  Data  Protection  Act  1998  and  the  General  Data  Protection  Regulation,  the 

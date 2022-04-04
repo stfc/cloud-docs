@@ -26,7 +26,6 @@ How-To Articles
    UsingPuttyAndFileZillaWithVMs
    Use-the-command-line-with-IAM-Credentials
    UsingOpenStackCommand-lineInterface
-   SnapshotVM
    Volume
    SecGroup
    TerraformAnsible
