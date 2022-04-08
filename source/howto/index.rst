@@ -12,8 +12,8 @@ How-To Articles
    ConfigureXServerInWSL
    CreateAHeatStack
    CreateVMFromCommandLine
-   DeletingVM
    CreateVMFromTheWebInterface
+   DeletingVM
    GrowTheDiskOfAVolumeVM
    ManuallyUpdateSLAndCentosVMs
    PreventAutomaticUpdates
