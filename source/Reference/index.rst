@@ -10,3 +10,4 @@ Reference Documents
     Harbor
     PythonSDK
     Network-bandwidth
+    VMLifecycle
