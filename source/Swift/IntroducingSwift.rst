@@ -186,7 +186,7 @@ For example:
 
 .. note::
 
-  Containers created using the CLI will not be publicly accessible. This can be changed via the GUI.
+  Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_update_metadata>`.
 
 
 .. _Upload-Objects-CLI:
@@ -283,6 +283,23 @@ The entire object can be downloaded via the manifest file as if it were any othe
 
   openstack object save CONTAINER_1 FILE_1.txt
 
+
+.. _swift_update_metadata:
+
+Updating Metadata
+-----------------
+
+Containers can be made publicly accessible to read through the Swift client using:
+
+.. code-block:: bash
+
+  swift post <container> --read-acl ".r:*,.rlistings"
+
+Similarly, containers can be made private using:
+
+.. code-block:: bash
+
+  swift post <container> --read-acl ""
 
 References
 ----------
