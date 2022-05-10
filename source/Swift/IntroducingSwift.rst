@@ -396,6 +396,56 @@ In this case, the Swift client must be used to save containers:
 By default, this will save all files to the current directory, and, as before, any directories that do not exist will be created.
 
 
+Deleting files
+--------------
+
+Multiple objects can be deleted using:
+
+.. code-block:: bash
+
+  openstack object delete CONTAINER_1 FILE_1.txt FILE_2.txt
+
+
+This will return nothing if successful.
+
+
+Deleting folders
+----------------
+
+If a folder is not a unique object, but exists through file names, it can be deleted by deleting all files within the folder. For example, if ``FILE_1.txt`` and ``FILE_2.txt`` are the only files in ``FOLDER_1``, the following will delete the folder:
+
+.. code-block:: bash
+
+  openstack object delete CONTAINER_1 FOLDER_1/FILE_1.txt FOLDER_1/FILE_2.txt
+
+
+If a folder is stored as a unique object, this can be deleted in the same way as a file:
+
+.. code-block:: bash
+
+  openstack object delete CONTAINER_1 FOLDER_1/
+
+
+However, this will not delete any files within the folder. To delete the folder, both the folder object and the folder contents must be deleted:
+
+.. code-block:: bash
+
+  openstack object delete CONTAINER_1 FOLDER_1/ FOLDER_1/FILE_1.txt FOLDER_1/FILE_2.txt
+
+
+Deleting containers
+-------------------
+
+A container can be deleted using:
+
+.. code-block:: bash
+
+  openstack container delete CONTAINER_1
+
+
+This will return nothing if successful. An error will be thrown if the container is not empty, unless the ``-r`` or ``--recursive`` options are used to delete all objects within the container at the same time.
+
+
 References
 ----------
 
