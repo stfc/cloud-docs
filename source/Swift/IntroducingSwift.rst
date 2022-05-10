@@ -12,6 +12,7 @@ Files and data are uploaded as **objects**, which are organised into **container
 
 Although you cannot nest directories in object storage, a hierarchical structure can be simulated within a container through the inclusion of delimiters ('/') in object names.
 
+
 Swift CLI
 ---------
 
@@ -20,6 +21,7 @@ In order to use all the commands provided from Swift, it is recommended that you
 .. code-block:: bash
 
   pip install python-swiftclient
+
 
 .. note::
 
@@ -63,7 +65,7 @@ This should return an empty line if there are no containers in your project, or 
 
 
 Commands
-~~~~~~~~
+--------
 
 We are now able to run commands for working with containers and objects. Below is a list of some of the commands that can be used:
 
@@ -95,6 +97,7 @@ We are now able to run commands for working with containers and objects. Below i
   object store account set --property <key>=<value> # Set an account's properties
   object store account show # Display an account's details
   object store account unset --property <key> # Unset an account's properties
+
 
 .. code-block:: bash
 
@@ -184,13 +187,13 @@ For example:
   | v1      | CONTAINER_1 | tx00000000000000384233c-006273aa93-21531bd94-default |
   +---------+-------------+------------------------------------------------------+
 
+
 .. note::
 
   Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_update_metadata>`.
 
 
 .. _Upload-Objects-CLI:
-
 
 Uploading Objects
 -----------------
@@ -244,6 +247,7 @@ Objects can be uploaded into containers using:
                           CLIFF_FIT_WIDTH=1 to always enable
     --print-empty         Print empty table if there is no data to show.
 
+
 Multiple files up me uploaded simultaneously by listing then after the container name:
 
 .. code-block:: bash
@@ -263,6 +267,7 @@ Multiple files up me uploaded simultaneously by listing then after the container
 
   The name of the object uploaded will include its relative local path, unless otherwise specified. For example, if ./FOLDER_1/FILE_1.txt is uploaded, it will be named FOLDER_1/FILE_1.txt in the container by default.
 
+
 Swift does not allow objects larger than 5GiB, so larger files must be segmented. Attempts to upload large files through the GUI or the Openstack client will fail, so the Swift client is required:
 
 .. code-block:: bash
@@ -271,11 +276,13 @@ Swift does not allow objects larger than 5GiB, so larger files must be segmented
   # <size> is the maximum segment size in Bytes, e.g. to upload segments no larger than 1GiB:
   swift upload CONTAINER_1 FILE_1.txt --segment-size 1G
 
+
 This will upload the segments into a separate container, by default named <container>_segments, and create a "manifest" file describing the entire object in <container>.
 
 .. note::
 
   A Dynamic Large Object is created by default, but if ``--use-slo`` is included with ``segment-size``, a Static Large Object will be created instead. This still allows concurrent upload of segments and downloads via a single object, but it does not rely on eventually consistent container listings.
+
 
 The entire object can be downloaded via the manifest file as if it were any other file, through the GUI or using the Openstack client:
 
@@ -295,6 +302,7 @@ Containers can be made publicly accessible to read through the Swift client usin
 
   swift post <container> --read-acl ".r:*,.rlistings"
 
+
 Similarly, containers can be made private using:
 
 .. code-block:: bash
@@ -311,6 +319,7 @@ The full contents of a container can be saved using the Openstack client. For ex
 
   openstack container save CONTAINER_1
 
+
 All files will be downloaded to your current directory, with directories implied by object names being created as necessary to recreate the structure.
 
 For example, saving the following container would save ``FILE_1.txt`` in ``./FOLDER_1``, which will be created if it does not exist:
@@ -324,6 +333,7 @@ For example, saving the following container would save ``FILE_1.txt`` in ``./FOL
   +---------------------+
   | FOLDER_1/FILE_1.txt |
   +---------------------+
+
 
 .. warning::
 
@@ -348,13 +358,16 @@ However, this command will fail if folders exist as unique objects in the contai
   This occurs if folders have been created using `+ Folder` via the GUI, or if ``swift upload <container> <empty folder>`` has been used.
   The choice of folder creation mechanism should not affect the file structure when downloading containers/files or viewing the GUI.
 
+
 In this case, the Swift client must be used to save containers:
 
 .. code-block:: bash
 
   swift download CONTAINER_1
 
+
 By default, this will save all files to the current directory, and, as before, any directories that do not exist will be created.
+
 
 References
 ----------
