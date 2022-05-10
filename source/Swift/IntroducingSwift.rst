@@ -265,7 +265,7 @@ Multiple files up me uploaded simultaneously by listing then after the container
 
 .. note::
 
-  The name of the object uploaded will include its relative local path, unless otherwise specified. For example, if ./FOLDER_1/FILE_1.txt is uploaded, it will be named FOLDER_1/FILE_1.txt in the container by default.
+  The name of the object uploaded will include its relative local path, unless otherwise specified using the ``--name`` option. For example, if ./FOLDER_1/FILE_1.txt is uploaded, it will be named FOLDER_1/FILE_1.txt in the container by default.
 
 
 Swift does not allow objects larger than 5GiB, so larger files must be segmented. Attempts to upload large files through the GUI or the Openstack client will fail, so the Swift client is required:
@@ -289,6 +289,33 @@ The entire object can be downloaded via the manifest file as if it were any othe
 .. code-block:: bash
 
   openstack object save CONTAINER_1 FILE_1.txt
+
+
+Creating Folders
+----------------
+
+Folders can be created when uploading a file. For example, ``FOLDER_1`` and ``FOLDER_2`` can be created with the following:
+
+.. code-block:: bash
+
+  openstack object create CONTAINER_1 FOLDER_1/FOLDER_2/FILE_1.txt
+
+  # This should return a table similar to:
+  +------------------------------+-------------+----------------------------------+
+  | object                       | container   | etag                             |
+  +------------------------------+-------------+----------------------------------+
+  | FOLDER_1/FOLDER_2/FILE_1.txt | CONTAINER_1 | 2205e48de5f93c784733ffcca841d2b5 |
+  +------------------------------+-------------+----------------------------------+
+
+
+To create an empty folder in a container, a local empty folder can be uploaded using the Swift client:
+
+.. code-block:: bash
+
+  swift upload CONTAINER_1 FOLDER_1/
+
+  # This should return the name of the created folder:
+  FOLDER_1/
 
 
 .. _swift_update_metadata:
