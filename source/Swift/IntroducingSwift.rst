@@ -301,6 +301,61 @@ Similarly, containers can be made private using:
 
   swift post <container> --read-acl ""
 
+
+Saving Containers
+-----------------
+
+The full contents of a container can be saved using the Openstack client. For example:
+
+.. code-block:: bash
+
+  openstack container save CONTAINER_1
+
+All files will be downloaded to your current directory, with directories implied by object names being created as necessary to recreate the structure.
+
+For example, saving the following container would save ``FILE_1.txt`` in ``./FOLDER_1``, which will be created if it does not exist:
+
+.. code-block:: bash
+
+ openstack object list CONTAINER_1
+
+  +---------------------+
+  | Name                |
+  +---------------------+
+  | FOLDER_1/FILE_1.txt |
+  +---------------------+
+
+.. warning::
+
+  Local files will be overwritten if files with the same name are downloaded.
+
+
+However, this command will fail if folders exist as unique objects in the container. For example, ``FOLDER_1/`` in the following:
+
+.. code-block:: bash
+
+ openstack object list CONTAINER_1
+
+  +---------------------+
+  | Name                |
+  +---------------------+
+  | FOLDER_1/           |
+  | FOLDER_1/FILE_1.txt |
+  +---------------------+
+
+.. note::
+
+  This occurs if folders have been created using `+ Folder` via the GUI, or if ``swift upload <container> <empty folder>`` has been used.
+  The choice of folder creation mechanism should not affect the file structure when downloading containers/files or viewing the GUI.
+
+In this case, the Swift client must be used to save containers:
+
+.. code-block:: bash
+
+  swift download CONTAINER_1
+
+By default, this will save all files to the current directory, and, as before, any directories that do not exist will be created.
+
 References
 ----------
 
