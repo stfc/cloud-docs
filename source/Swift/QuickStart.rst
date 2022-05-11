@@ -4,6 +4,7 @@
 Object Storage Quick Start
 ==========================
 
+
 .. _swift_create_container:
 
 Create a Container
@@ -29,6 +30,7 @@ Details of the container may be viewed by clicking on the listing. This will als
 
 .. image:: /assets/howtos/CreateAContainer/6-container-details.png
 
+
 .. _swift_create_object:
 
 Upload a File
@@ -44,8 +46,9 @@ Select a file to upload, and a unique name for it in the container. Then click `
 
 .. warning::
 
-  Files uploaded in this way must be less than 5GiB. See :ref:`Upload-Objects-CLI` for instructions on uploading larger files.
+  Files uploaded in this way must be less than 5GiB. See :ref:`swift_cli_large_objects` for instructions on uploading larger files.
   If `Error: Unable to upload the object` is displayed for a file smaller than this, you may need to contact the Cloud team to request a quota increase.
+
 
 If successful, the file will be listed below the `Upload` icon.
 
@@ -58,6 +61,7 @@ To view file details, select the arrow next to `Download` to view the options, t
 The file details will then be shown.
 
 .. image:: /assets/howtos/CreateAContainer/12-object-details.png
+
 
 .. _swift_create_folder:
 
@@ -84,6 +88,9 @@ The contents of a folder may be viewed by clicking the folder listing.
 
 .. image:: /assets/howtos/CreateAContainer/18-folder-contents.png
 
+
+.. _swift_create_deep_folder:
+
 Create Deep Folders
 -------------------
 
@@ -108,6 +115,8 @@ As when viewing a container, the next level of folders will be listed alongside 
 .. image:: /assets/howtos/CreateAContainer/23-subfolders-contents.png
 
 
+.. _swift_delete_object:
+
 Delete a File
 -------------
 
@@ -121,6 +130,8 @@ On the `Delete Files` screen, select `Delete` to begin deletion.
 
 If successful, a progress bar should fill, and the `Delete Files` screen can be dismissed by clicking `OK` or `X`.
 
+
+.. _swift_delete_folder:
 
 Delete a Folder
 ---------------
@@ -136,6 +147,8 @@ As for a file, on the `Delete Files` screen, select `Delete` to begin deletion.
 If successful, a progress bar should fill, and the `Delete Files` screen can be dismissed by clicking `OK` or `X`.
 
 
+.. _swift_delete_multiple_objects:
+
 Delete Multiple Files or Folders
 --------------------------------
 
@@ -150,6 +163,8 @@ Click the `Delete` icon next to `+ Folder`.
 As for individual files and folders, select `Delete` on the the `Delete Files` screen to begin deletion.
 
 
+.. _swift_delete_containers:
+
 Delete Containers
 -----------------
 
@@ -160,6 +175,9 @@ In order to delete a container, all files and folders in the container must firs
 On the the `Confirm Delete` screen, select `Delete` to begin deletion.
 
 .. image:: /assets/howtos/CreateAContainer/30-container-delete-final.png
+
+
+.. _swift_terms:
 
 Explanation of terms
 --------------------

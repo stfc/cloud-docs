@@ -1,3 +1,6 @@
+.. _introducing_swift:
+
+=====
 Swift
 =====
 
@@ -12,6 +15,8 @@ Files and data are uploaded as **objects**, which are organised into **container
 
 Although you cannot nest directories in object storage, a hierarchical structure can be simulated within a container through the inclusion of delimiters ('/') in object names.
 
+
+.. _swift_cli:
 
 Swift CLI
 ---------
@@ -63,6 +68,8 @@ This should return an empty line if there are no containers in your project, or 
   | CONTAINER_3 |
   +-------------+
 
+
+.. _swift_cli_commands:
 
 Commands
 --------
@@ -138,6 +145,8 @@ We are now able to run commands for working with containers and objects. Below i
 Further details and options can be seen using ``openstack container <command> --help``, ``openstack object <command> --help`` and ``swift <command> --help``.
 
 
+.. _swift_cli_create_containers:
+
 Creating Containers
 -------------------
 
@@ -190,13 +199,13 @@ For example:
 
 .. note::
 
-  Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_update_metadata>`.
+  Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_cli_update_metadata>`.
 
 
-.. _Upload-Objects-CLI:
+.. _swift_cli_upload_objects:
 
-Uploading Objects
------------------
+Uploading Files
+---------------
 
 Objects can be uploaded into containers using:
 
@@ -268,28 +277,7 @@ Multiple files up me uploaded simultaneously by listing then after the container
   The name of the object uploaded will include its relative local path, unless otherwise specified using the ``--name`` option. For example, if ./FOLDER_1/FILE_1.txt is uploaded, it will be named FOLDER_1/FILE_1.txt in the container by default.
 
 
-Swift does not allow objects larger than 5GiB, so larger files must be segmented. Attempts to upload large files through the GUI or the Openstack client will fail, so the Swift client is required:
-
-.. code-block:: bash
-
-  swift upload <container> <object> --segment-size <size>
-  # <size> is the maximum segment size in Bytes, e.g. to upload segments no larger than 1GiB:
-  swift upload CONTAINER_1 FILE_1.txt --segment-size 1G
-
-
-This will upload the segments into a separate container, by default named <container>_segments, and create a "manifest" file describing the entire object in <container>.
-
-.. note::
-
-  A Dynamic Large Object is created by default, but if ``--use-slo`` is included with ``segment-size``, a Static Large Object will be created instead. This still allows concurrent upload of segments and downloads via a single object, but it does not rely on eventually consistent container listings.
-
-
-The entire object can be downloaded via the manifest file as if it were any other file, through the GUI or using the Openstack client:
-
-.. code-block:: bash
-
-  openstack object save CONTAINER_1 FILE_1.txt
-
+.. _swift_cli_create_folders:
 
 Creating Folders
 ----------------
@@ -318,7 +306,7 @@ To create an empty folder in a container, a local empty folder can be uploaded u
   FOLDER_1/
 
 
-.. _swift_update_metadata:
+.. _swift_cli_update_metadata:
 
 Updating Metadata
 -----------------
@@ -336,6 +324,8 @@ Similarly, containers can be made private using:
 
   swift post <container> --read-acl ""
 
+
+.. _swift_cli_save_containers:
 
 Saving Containers
 -----------------
@@ -396,7 +386,9 @@ In this case, the Swift client must be used to save containers:
 By default, this will save all files to the current directory, and, as before, any directories that do not exist will be created.
 
 
-Deleting files
+.. _swift_cli_delete_objects:
+
+Deleting Files
 --------------
 
 Multiple objects can be deleted using:
@@ -409,7 +401,9 @@ Multiple objects can be deleted using:
 This will return nothing if successful.
 
 
-Deleting folders
+.. _swift_cli_delete_folders:
+
+Deleting Folders
 ----------------
 
 If a folder is not a unique object, but exists through file names, it can be deleted by deleting all files within the folder. For example, if ``FILE_1.txt`` and ``FILE_2.txt`` are the only files in ``FOLDER_1``, the following will delete the folder:
@@ -433,7 +427,9 @@ However, this will not delete any files within the folder. To delete the folder,
   openstack object delete CONTAINER_1 FOLDER_1/ FOLDER_1/FILE_1.txt FOLDER_1/FILE_2.txt
 
 
-Deleting containers
+.. _swift_cli_delete_containers:
+
+Deleting Containers
 -------------------
 
 A container can be deleted using:
@@ -444,6 +440,34 @@ A container can be deleted using:
 
 
 This will return nothing if successful. An error will be thrown if the container is not empty, unless the ``-r`` or ``--recursive`` options are used to delete all objects within the container at the same time.
+
+
+.. _swift_cli_large_objects:
+
+Large Files
+-----------
+
+Swift does not allow objects larger than 5GiB, so larger files must be segmented. Attempts to upload large files through the GUI or the Openstack client will fail, so the Swift client is required:
+
+.. code-block:: bash
+
+  swift upload <container> <object> --segment-size <size>
+  # <size> is the maximum segment size in Bytes, e.g. to upload segments no larger than 1GiB:
+  swift upload CONTAINER_1 FILE_1.txt --segment-size 1G
+
+
+This will upload the segments into a separate container, by default named <container>_segments, and create a "manifest" file describing the entire object in <container>.
+
+.. note::
+
+  A Dynamic Large Object is created by default, but if ``--use-slo`` is included with ``segment-size``, a Static Large Object will be created instead. This still allows concurrent upload of segments and downloads via a single object, but it does not rely on eventually consistent container listings.
+
+
+The entire object can be downloaded via the manifest file as if it were any other file, through the GUI or using the Openstack client:
+
+.. code-block:: bash
+
+  openstack object save CONTAINER_1 FILE_1.txt
 
 
 References
