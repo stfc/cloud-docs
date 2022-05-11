@@ -447,13 +447,19 @@ This will return nothing if successful. An error will be thrown if the container
 Large Files
 -----------
 
-Swift does not allow objects larger than 5GiB, so larger files must be segmented. Attempts to upload large files through the GUI or the Openstack client will fail, so the Swift client is required:
+Swift does not allow objects larger than 5GiB, so larger files must be segmented. This must be done using the Swift client:
 
 .. code-block:: bash
 
   swift upload <container> <object> --segment-size <size>
-  # <size> is the maximum segment size in Bytes, e.g. to upload segments no larger than 1GiB:
+  # <size> is the maximum segment size in Bytes. For example, to upload segments no larger than 1GiB:
   swift upload CONTAINER_1 FILE_1.txt --segment-size 1G
+
+
+.. warning::
+
+  Attempts to upload large files through the GUI or the Openstack client will fail.
+  This may not occur until after an attempt has been made to upload the file, which may take a significant length of time.
 
 
 This will upload the segments into a separate container, by default named <container>_segments, and create a "manifest" file describing the entire object in <container>.
@@ -468,6 +474,22 @@ The entire object can be downloaded via the manifest file as if it were any othe
 .. code-block:: bash
 
   openstack object save CONTAINER_1 FILE_1.txt
+
+
+To delete the entire object, the Swift client must be used. For example:
+
+.. code-block:: bash
+
+  swift delete CONTAINER_1 FILE_1.txt
+
+
+If successful, this will output the manifest file name, as well as the file names of each segment, all of which will have been deleted.
+The segments container must be deleted separately.
+
+.. warning::
+
+  Attempting to delete a segmented file using ``openstack object delete`` will delete the manifest file, but not the segments.
+  In this case, the folder containing the segments must be deleted manually, as described in the first example of :ref:`swift_cli_delete_folders`.
 
 
 References
