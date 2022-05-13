@@ -557,6 +557,10 @@ https://docs.openstack.org/swift/train/
 
 https://docs.openstack.org/swift/train/api/pseudo-hierarchical-folders-directories.html
 
+https://docs.openstack.org/python-openstackclient/train/cli/command-objects/container.html?
+
+https://docs.openstack.org/python-openstackclient/train/cli/command-objects/object.html
+
 https://docs.openstack.org/python-openstackclient/train/cli/decoder.html#swift-cli
 
 https://docs.openstack.org/python-swiftclient/train/cli/index.html
