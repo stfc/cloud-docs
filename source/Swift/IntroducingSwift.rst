@@ -401,6 +401,37 @@ Multiple objects can be deleted using:
 This will return nothing if successful.
 
 
+.. _swift_cli_save_files:
+
+Saving Files
+------------
+
+Individual files can be saved using using the Openstack client. For example:
+
+.. code-block:: bash
+
+  openstack object save CONTAINER_1 FILE_1.txt
+
+
+Multiple files can be saved using the Swift client. For example:
+
+.. code-block:: bash
+
+  swift download CONTAINER_1 FILE_1.txt FILE_2.txt
+
+
+.. _swift_cli_save_folders:
+
+Saving Folders
+--------------
+
+The full contents of a folder can be saved by using the Swift client to download each file. For example:
+
+.. code-block:: bash
+
+  swift download CONTAINER_1 FOLDER_1/FILE_1.txt FOLDER_1/FILE_2.txt
+
+
 .. _swift_cli_delete_folders:
 
 Deleting Folders
