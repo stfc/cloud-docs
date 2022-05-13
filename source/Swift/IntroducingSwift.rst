@@ -523,6 +523,31 @@ The segments container must be deleted separately.
   In this case, the folder containing the segments must be deleted manually, as described in the first example of :ref:`swift_cli_delete_folders`.
 
 
+.. _swift_cli_copy_files:
+
+Copying Files
+-------------
+
+Multiple files can be copied within a container, or between containers, using the Swift client.
+For example, copying FILE_1.txt and FILE_2.txt from ``CONTAINER_1`` to ``CONTAINER_2``:
+
+.. code-block:: bash
+
+  swift copy --destination /CONTAINER_2 CONTAINER_1 FILE_1.txt FILE_2.txt
+
+
+.. warning::
+
+  This will overwrite any destination files sharing the same name.
+
+
+If successful, this will create any containers and folders specified that do not exist, and output ``<file> copied to <destination>`` for each file.
+
+.. note::
+
+  The output will also include `created container <container>`, even for containers that already exist.
+
+
 References
 ----------
 
