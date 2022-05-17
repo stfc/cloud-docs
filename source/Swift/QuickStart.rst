@@ -165,8 +165,8 @@ As for individual files and folders, select `Delete` on the the `Delete Files` s
 
 .. _swift_delete_containers:
 
-Delete Containers
------------------
+Delete a Container
+------------------
 
 In order to delete a container, all files and folders in the container must first be deleted. Then, with the container selected, click the `Delete` icon next to its name.
 
