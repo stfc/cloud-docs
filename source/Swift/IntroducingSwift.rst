@@ -639,7 +639,7 @@ Copying Files
 -------------
 
 Multiple files can be copied within a container, or between containers, using the Swift client.
-For example, copying FILE_1.txt and FILE_2.txt from ``CONTAINER_1`` to ``CONTAINER_2``:
+For example, copying ``FILE_1.txt`` and ``FILE_2.txt`` from ``CONTAINER_1`` to ``CONTAINER_2``:
 
 .. code-block:: bash
 
