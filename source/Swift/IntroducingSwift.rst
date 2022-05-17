@@ -257,7 +257,7 @@ Objects can be uploaded into containers using:
     --print-empty         Print empty table if there is no data to show.
 
 
-Multiple files up me uploaded simultaneously by listing then after the container name:
+Multiple files may be uploaded simultaneously by listing then after the container name:
 
 .. code-block:: bash
 
