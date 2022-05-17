@@ -384,7 +384,7 @@ Multiple files may be uploaded simultaneously by listing then after the containe
 
 .. note::
 
-  The name of the object uploaded will include its relative local path, unless otherwise specified using the ``--name`` option. For example, if ./FOLDER_1/FILE_1.txt is uploaded, it will be named FOLDER_1/FILE_1.txt in the container by default.
+  The name of the object uploaded will include its relative local path, unless otherwise specified using the ``--name`` option. For example, if ``./FOLDER_1/FILE_1.txt`` is uploaded, it will be named ``FOLDER_1/FILE_1.txt`` in the container by default.
 
 
 .. _swift_cli_create_folders:
