@@ -145,6 +145,116 @@ We are now able to run commands for working with containers and objects. Below i
 Further details and options can be seen using ``openstack container <command> --help``, ``openstack object <command> --help`` and ``swift <command> --help``.
 
 
+.. _swift_cli_list:
+
+Listing Files
+-------------
+
+To list objects in ``CONTAINER_1``:
+
+.. code-block:: bash
+
+  openstack object list CONTAINER_1
+
+  # This should return a table similar to:
+  +---------------------+
+  | Name                |
+  +---------------------+
+  | FILE_1.txt          |
+  | FILE_2.txt          |
+  | FOLDER_1/FILE_1.txt |
+  +---------------------+
+
+
+.. _swift_cli_information:
+
+Getting Information About Containers and Files
+----------------------------------------------
+
+To print basic information about ``CONTAINER_1``:
+
+.. code-block:: bash
+
+  openstack container show CONTAINER_1
+
+  # This should return a table similar to:
+  +--------------+-------------+
+  | Field        | Value       |
+  +--------------+-------------+
+  | account      | v1          |
+  | bytes_used   | 18          |
+  | container    | CONTAINER_1 |
+  | object_count | 3           |
+  +--------------+-------------+
+
+To print more detailed information about ``CONTAINER_1``:
+
+.. code-block:: bash
+
+  swift stat CONTAINER_1
+
+  # This should return text similar to:
+                        Account: v1
+                      Container: CONTAINER_1
+                        Objects: 3
+                          Bytes: 18
+                      Read ACL:
+                      Write ACL:
+                        Sync To:
+                      Sync Key:
+                    X-Timestamp: 1652205950.32071
+  X-Container-Bytes-Used-Actual: 12288
+              X-Storage-Policy: default-placement
+                X-Storage-Class: STANDARD
+                  Last-Modified: Fri, 13 May 2022 20:04:16 GMT
+                    X-Trans-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
+        X-Openstack-Request-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
+                  Accept-Ranges: bytes
+                  Content-Type: text/plain; charset=utf-8
+
+
+To print basic information about ``FILE_1.txt`` in ``CONTAINER_1``:
+
+.. code-block:: bash
+
+  openstack object show CONTAINER_1 FILE_1.txt
+
+  # This should return a table similar to:
+  +----------------+----------------------------------+
+  | Field          | Value                            |
+  +----------------+----------------------------------+
+  | account        | v1                               |
+  | container      | CONTAINER_1                      |
+  | content-length | 4                                |
+  | content-type   | text/plain                       |
+  | etag           | 0cbc6611f5540bd0809a388dc95a615b |
+  | last-modified  | Tue, 17 May 2022 13:50:29 GMT    |
+  | object         | FILE_1.txt                       |
+  | properties     | Orig-Filename='FILE_1.txt'       |
+  +----------------+----------------------------------+
+
+
+To print further information about ``FILE_1.txt`` in ``CONTAINER_1``:
+
+.. code-block:: bash
+
+  swift stat CONTAINER_1 FILE_1.txt
+
+  # This should return text similar to:
+                 Account: v1
+              Container: CONTAINER_1
+                  Object: FILE_1.txt
+            Content Type: text/plain
+          Content Length: 4
+          Last Modified: Tue, 17 May 2022 13:50:29 GMT
+                    ETag: 0cbc6611f5540bd0809a388dc95a615b
+      Meta Orig-Filename: FILE_1.txt
+          Accept-Ranges: bytes
+            X-Timestamp: 1652795429.54108
+              X-Trans-Id: tx000000000000004ef007b-006283a908-218cd2a5a-default
+  X-Openstack-Request-Id: tx000000000000004ef007b-006283a908-218cd2a5a-default
+
+
 .. _swift_cli_create_containers:
 
 Creating Containers
