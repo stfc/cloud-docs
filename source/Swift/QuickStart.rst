@@ -195,6 +195,22 @@ On the `Edit File` screen, select `Choose file` to specifiy the new contents of 
 If successful, a success message will appear, and the file details will be updated.
 
 
+.. _swift_copy_objects:
+
+Copy a File
+-----------
+
+To copy a file, select the arrow next to `Download` to view the options, then click `Copy`.
+
+.. image:: /assets/howtos/CreateAContainer/11-object-options.png
+
+On the `Copy Object` screen, enter the name of the destination container and destination file name, then click `Copy Object`.
+
+.. image:: /assets/howtos/CreateAContainer/32-object-copy.png
+
+If successful, a success message will appear, and the copied file will be listed.
+
+
 .. _swift_terms:
 
 Explanation of terms
