@@ -194,6 +194,10 @@ On the `Edit File` screen, select `Choose file` to specifiy the new contents of 
 
 If successful, a success message will appear, and the file details will be updated.
 
+.. warning::
+
+  Editing a file will remove any existing properties, apart from ``Orig-Filename``, which will be set to the uploaded file name.
+  See also: :ref:`swift_cli_editing_objects`
 
 .. _swift_copy_objects:
 
