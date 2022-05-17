@@ -658,6 +658,97 @@ If successful, this will create any containers and folders specified that do not
   The output will also include `created container <container>`, even for containers that already exist.
 
 
+.. _swift_cli_editing_containers:
+
+Editing Container Properties
+----------------------------
+
+Multiple properties of a container can be added or overwritten simultaneously through repeated use of the ``--property`` option:
+
+.. code-block:: bash
+
+  openstack container set --property KEY_1=VALUE_1 --property KEY_2=VALUE_2 CONTAINER_1
+
+
+.. note::
+
+  Underscrores ('_') in the property key will be converted to dashes ('-').
+
+
+These properties will be listed when printing information about the container:
+
+.. code-block:: bash
+
+  openstack container show CONTAINER_1
+
+  +--------------+----------------------------------+
+  | Field        | Value                            |
+  +--------------+----------------------------------+
+  | account      | v1                               |
+  | bytes_used   | 8                                |
+  | container    | CONTAINER_1                      |
+  | object_count | 3                                |
+  | properties   | Key-1='VALUE_1', Key-2='VALUE_2' |
+  +--------------+----------------------------------+
+
+
+Multiple properties may also be removed from a container:
+
+.. code-block:: bash
+
+  openstack container unset --property KEY_1 --property KEY_2 CONTAINER_1
+
+
+.. _swift_cli_editing_objects:
+
+Editing Object Properties
+-------------------------
+
+As for containers, multiple object properties may be set simultaneously:
+
+.. code-block:: bash
+
+  openstack object set --property KEY_1=VALUE_1 --property KEY_2=VALUE_2 CONTAINER_1 FILE_1.txt
+
+
+.. warning::
+
+  Any existing object properties that are not listed will be removed, including the default ``Orig_Filename`` property.
+
+
+.. note::
+
+  Underscrores ('_') in the property key will be converted to dashes ('-').
+
+
+These properties will be listed when printing information about the object:
+
+.. code-block:: bash
+
+  openstack object show CONTAINER_1 FILE_1.txt
+
+  +----------------+----------------------------------+
+  | Field          | Value                            |
+  +----------------+----------------------------------+
+  | account        | v1                               |
+  | container      | CONTAINER_1                      |
+  | content-length | 4                                |
+  | content-type   | text/plain                       |
+  | etag           | 0cbc6611f5540bd0809a388dc95a615b |
+  | last-modified  | Tue, 17 May 2022 17:35:29 GMT    |
+  | object         | FILE_1.txt                       |
+  | properties     | Key-1='VALUE_1', Key-2='VALUE_2' |
+  +----------------+----------------------------------+
+
+
+Multiple properties may also be removed from objects:
+
+.. code-block:: bash
+
+  openstack object unset --property KEY_1 --property KEY_2 CONTAINER_1 FILE_1.txt
+
+
+
 References
 ----------
 
