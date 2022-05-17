@@ -179,6 +179,22 @@ On the the `Confirm Delete` screen, select `Delete` to begin deletion.
 If successful, a success message will appear, and the container will no longer be listed.
 
 
+.. _swift_edit_objects:
+
+Edit a File
+-----------
+
+To edit a file, select the arrow next to `Download` to view the options, then click `Edit`.
+
+.. image:: /assets/howtos/CreateAContainer/11-object-options.png
+
+On the `Edit File` screen, select `Choose file` to specifiy the new contents of the file, then click `Edit File`.
+
+.. image:: /assets/howtos/CreateAContainer/31-object-edit.png
+
+If successful, a success message will appear, and the file details will be updated.
+
+
 .. _swift_terms:
 
 Explanation of terms
