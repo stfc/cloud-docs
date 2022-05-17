@@ -160,7 +160,7 @@ Click the `Delete` icon next to `+ Folder`.
 
 .. image:: /assets/howtos/CreateAContainer/28-files-delete.png
 
-As for individual files and folders, select `Delete` on the the `Delete Files` screen to begin deletion.
+As for individual files and folders, select `Delete` on the the `Delete Files` screen to begin deletion. You can then dismiss the `Delete Files` screen.
 
 
 .. _swift_delete_containers:
