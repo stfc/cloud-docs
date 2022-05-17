@@ -176,6 +176,8 @@ On the the `Confirm Delete` screen, select `Delete` to begin deletion.
 
 .. image:: /assets/howtos/CreateAContainer/30-container-delete-final.png
 
+If successful, a success message will appear, and the container will no longer be listed.
+
 
 .. _swift_terms:
 
