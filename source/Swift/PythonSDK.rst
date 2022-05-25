@@ -111,6 +111,35 @@ However, the returned ``Object`` object returned (``obj_2``) differs slightly to
 For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
 
 
+An object's contents can be downloaded using ``Object`` objects (in the form of both ``obj_1`` and ``obj_2``):
+
+.. code-block:: python
+
+    file_1 = conn.object_store.download_object(obj)
+
+
+Alternatively, using a ``Response`` object:
+
+.. code-block:: python
+
+    file_1 = response.content
+
+
+In the two examples above, ``file_1`` will store the file contents as a ``bytes`` object. This can be written out in a number of ways, such as:
+
+.. code-block:: python
+
+    with open("SAVED_FILE_1.txt", "wb") as binary_file:
+        binary_file.write(file_1)
+
+
+Objects can also be saved directly, without storing an intermediate ``Object`` or ``Response`` object:
+
+.. code-block:: python
+
+    conn.get_object('CONTAINER_1', 'FILE_1.txt', outfile="SAVED_FILE_1.txt")
+
+
 References
 ----------
 
