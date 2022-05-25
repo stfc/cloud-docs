@@ -140,6 +140,15 @@ Objects can also be saved directly, without storing an intermediate ``Object`` o
     conn.get_object('CONTAINER_1', 'FILE_1.txt', outfile="SAVED_FILE_1.txt")
 
 
+Upload a new file:
+
+.. code-block:: python
+
+    new_obj = conn.object_store.upload_object(container="CONTAINER_1",
+                                            name="FILE_1.txt",
+                                            data="Hello, world!")
+
+
 References
 ----------
 
