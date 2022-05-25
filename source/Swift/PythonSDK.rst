@@ -127,6 +127,25 @@ The two examples above are equivalent to each other.
 
 However, the returned ``Object`` object returned (``obj_2``) differs slightly to those obtained via ``conn.object_store.objects()`` (``obj_1``).
 For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
+``obj_2`` includes metadata not included in ``obj_1``, such as ``accept-ranges`` and ``x-timestamp``.
+
+
+Get metadata for an object using the container and file names:
+
+.. code-block:: python
+
+    obj = conn.object_store.get_object_metadata("FILE_1.txt", "CONTAINER_1")
+    print(obj)
+
+
+Get metadata for a container using an ``Object`` object (in the form of both ``obj_1`` and ``obj_2``)::
+
+.. code-block:: python
+
+    obj = conn.object_store.get_object_metadata(obj)
+    print(obj)
+
+If an object in the form of ``obj_1`` is passed, the object returned will include all the attributes of both ``obj_1`` and ``obj_2``.
 
 
 An object's contents can be downloaded using ``Object`` objects (in the form of both ``obj_1`` and ``obj_2``):
