@@ -767,3 +767,5 @@ https://docs.openstack.org/python-openstackclient/train/cli/decoder.html#swift-c
 https://docs.openstack.org/python-swiftclient/train/cli/index.html
 
 https://docs.openstack.org/swift/train/overview_large_objects.html
+
+https://docs.openstack.org/swift/train/overview_acl.html
