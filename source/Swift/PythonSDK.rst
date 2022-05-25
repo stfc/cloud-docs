@@ -167,6 +167,23 @@ Upload a new file:
                                             data="Hello, world!")
 
 
+Delete an object using the container and file names:
+
+.. code-block:: python
+
+    conn.object_store.delete_object("FILE_1.txt", container="CONTAINER_1")
+
+
+Delete an object using an ``Object`` object:
+
+.. code-block:: python
+
+    conn.object_store.delete_object(obj)
+
+
+In the above two examples, an error will not be raised if the file specified is not found unless ``ignore_missing`` is set to ``False``.
+
+
 References
 ----------
 
