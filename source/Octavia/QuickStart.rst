@@ -4,9 +4,10 @@
 Load Balancer as a Service Quick Start
 ======================================
 
-This quick start assumes you have a VM set up with SSH and a webserver running as per :ref:`docker_nginx`.
+This quick start assumes you have a VM set up with SSH and a webserver that you want to expose. The steps included are applicable to other ports and services too.
+This example assumes you've configured your machine following :ref:`docker_nginx`. The steps will be similar for bespoke systems too.
 
-First we will create a load balancer and use it to provide ssh access to a VM initially and then add another listener and pool to point to the webserver on the VM.
+First we will create a load balancer and use it to provide ssh access to a VM initially, then add another listener and pool to point to the webserver on the VM.
 
 .. _octavia_create_loadbalancer:
 
@@ -27,7 +28,8 @@ On the "Load Balancer Details" screen enter a name for the load balancer and sel
 
 .. _create_octavia_listener:
 
-On the "Listener Details" screen select Protocol TCP and set Port 200. Enter the name as ssh. The other defaults are fine. Click "Next"
+On the "Listener Details" screen select Protocol TCP and set port 200 (which we've randomly selected). To avoid conflicts it's best to select random port numbers greater than 1024.
+Enter the name as ssh. The other defaults are fine. Click "Next"
 
 .. image:: /assets/howtos/CreateALoadBalancer/4-listener-details.png
 
