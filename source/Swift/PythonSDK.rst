@@ -45,6 +45,24 @@ Alternatively, get metadata for a container by passing a ``Container`` object:
     print(cont)
 
 
+Delete a container using its name:
+
+.. code-block:: python
+
+    conn.object_store.delete_container("CONTAINER_2")
+
+
+Delete a container using a ``Container`` object:
+
+.. code-block:: python
+
+    conn.object_store.delete_container(cont)
+
+
+In the two examples above, the container must be empty before deletion.
+Also note that this will not raise an error if the container specified is not found unless ``ignore_missing`` is set to ``False``.
+
+
 .. _swift_sdk_objects:
 
 Objects
