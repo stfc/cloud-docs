@@ -45,6 +45,72 @@ Alternatively, get metadata for a container by passing a ``Container`` object:
     print(cont)
 
 
+.. _swift_sdk_objects:
+
+Objects
+-------
+
+List objects in a container by passing a container name:
+
+.. code-block:: python
+
+    objs = conn.object_store.objects("CONTAINER_1")
+    for obj in objs:
+        print(obj)
+
+
+Alternatively, list objects in a container by passing a ``Container`` object:
+
+.. code-block:: python
+
+    objs = conn.object_store.objects(cont)
+    for obj in objs:
+        print(obj)
+
+
+In the two examples above, ``objs`` is a generator object. Specific ``Object`` objects can be obtained from this in a number of ways, such as list comprehension:
+
+.. code-block:: python
+
+    objs = conn.object_store.objects("CONTAINER_1")
+    obj_1 = [obj for obj in objs if obj.name=="FILE_1.txt"][0]
+
+
+Specific objects can also be accessed via the ``Connection`` object, passing the container name and file name. This will return a tuple, containing (headers, body) for the object specified:
+:
+
+.. code-block:: python
+
+    obj_tuple = conn.get_object('CONTAINER_1', 'FILE_1.txt')
+
+
+Similarly, using the ``Connection`` object, container name and file name, a ``Response`` for the object can be returned, which stores the object ``headers`` and ``content`` as attributes:
+
+.. code-block:: python
+
+    response = conn.get_object_raw('CONTAINER_1', 'FILE_1.txt')
+
+
+Objects can also be accessed via an ``Object Store`` object, using the container name and file name to return an ``Object`` object:
+
+.. code-block:: python
+
+    obj_2 = conn.object_store.get_object("FILE_1.txt", "CONTAINER_1")
+
+
+Alternatively:
+
+.. code-block:: python
+
+    obj_2 = conn.object_store.get_object_metadata("FILE_1.txt", "CONTAINER_1")
+
+
+The two examples above are equivalent to each other.
+
+However, the returned ``Object`` object returned (``obj_2``) differs slightly to those obtained via ``conn.object_store.objects()`` (``obj_1``).
+For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
+
+
 References
 ----------
 
