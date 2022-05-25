@@ -40,4 +40,12 @@ Get metadata for a container:
 References
 ----------
 
+https://docs.openstack.org/openstacksdk/train/user/resources/object_store/v1/container.html
+
+https://docs.openstack.org/openstacksdk/train/user/resources/object_store/v1/obj.html
+
+https://docs.openstack.org/openstacksdk/train/user/proxies/object_store.html
+
+https://docs.openstack.org/openstacksdk/train/user/connection.html
+
 https://docs.openstack.org/openstacksdk/train/user/guides/object_store.html
