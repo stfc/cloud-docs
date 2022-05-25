@@ -29,11 +29,19 @@ Create a new container:
     cont = conn.object_store.create_container(name="CONTAINER_1")
 
 
-Get metadata for a container:
+Get metadata for a container by passing its name:
 
 .. code-block:: python
 
     cont = conn.object_store.get_container_metadata("CONTAINER_1")
+    print(cont)
+
+
+Alternatively, get metadata for a container by passing a ``Container`` object:
+
+.. code-block:: python
+
+    cont = conn.object_store.get_container_metadata(cont)
     print(cont)
 
 
