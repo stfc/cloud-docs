@@ -198,19 +198,19 @@ To print more detailed information about ``CONTAINER_1``:
                       Container: CONTAINER_1
                         Objects: 3
                           Bytes: 18
-                      Read ACL:
+                       Read ACL:
                       Write ACL:
                         Sync To:
-                      Sync Key:
+                       Sync Key:
                     X-Timestamp: 1652205950.32071
   X-Container-Bytes-Used-Actual: 12288
-              X-Storage-Policy: default-placement
+               X-Storage-Policy: default-placement
                 X-Storage-Class: STANDARD
                   Last-Modified: Fri, 13 May 2022 20:04:16 GMT
-                    X-Trans-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
-        X-Openstack-Request-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
+                     X-Trans-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
+         X-Openstack-Request-Id: tx0000000000000058f1bbc-006283a793-21529d22a-default
                   Accept-Ranges: bytes
-                  Content-Type: text/plain; charset=utf-8
+                   Content-Type: text/plain; charset=utf-8
 
 
 To print basic information about ``FILE_1.txt`` in ``CONTAINER_1``:
@@ -516,7 +516,7 @@ This will return nothing if successful.
 Saving Files
 ------------
 
-Individual files can be saved using using the Openstack client. For example:
+Individual files can be saved using the Openstack client. For example:
 
 .. code-block:: bash
 
@@ -672,7 +672,7 @@ Multiple properties of a container can be added or overwritten simultaneously th
 
 .. note::
 
-  Underscrores ('_') in the property key will be converted to dashes ('-').
+  Underscores ('_') in the property key will be converted to dashes ('-').
 
 
 These properties will be listed when printing information about the container:
@@ -718,7 +718,7 @@ As for containers, multiple object properties may be set simultaneously:
 
 .. note::
 
-  Underscrores ('_') in the property key will be converted to dashes ('-').
+  Underscores ('_') in the property key will be converted to dashes ('-').
 
 
 These properties will be listed when printing information about the object:

@@ -165,7 +165,7 @@ Click the `Delete` icon next to `+ Folder`.
 
 .. image:: /assets/howtos/CreateAContainer/28-files-delete.png
 
-As for individual files and folders, select `Delete` on the the `Delete Files` screen to begin deletion. You can then dismiss the `Delete Files` screen.
+As for individual files and folders, select `Delete` on the `Delete Files` screen to begin deletion. You can then dismiss the `Delete Files` screen.
 
 
 .. _swift_delete_containers:
@@ -193,7 +193,7 @@ To edit a file, select the arrow next to `Download` to view the options, then cl
 
 .. image:: /assets/howtos/CreateAContainer/11-object-options.png
 
-On the `Edit File` screen, select `Choose file` to specifiy the new contents of the file, then click `Edit File`.
+On the `Edit File` screen, select `Choose file` to specify the new contents of the file, then click `Edit File`.
 
 .. image:: /assets/howtos/CreateAContainer/31-object-edit.png
 
