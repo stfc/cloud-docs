@@ -14,7 +14,15 @@ Object Storage using the Python SDK
 Containers
 ----------
 
-List containers for the account:
+Containers for an account can be interacted with using a ``Connection`` instance, ``conn``, and the Object Store service.
+Some examples are given below.
+
+.. note::
+
+    Containers can typically be passed into functions using either a ``Container`` instance or the container name as a string.
+
+
+Listing containers for an account:
 
 .. code-block:: python
 
@@ -22,22 +30,27 @@ List containers for the account:
         print(cont)
 
 
-Create a new container:
+Creating a new container:
 
 .. code-block:: python
 
-    cont = conn.object_store.create_container(name="CONTAINER_1")
+    cont = conn.object_store.create_container("CONTAINER_1")
 
 
-Get metadata for a container by passing its name:
+Deleting a container using its name:
 
 .. code-block:: python
 
-    cont = conn.object_store.get_container_metadata("CONTAINER_1")
-    print(cont)
+    conn.object_store.delete_container("CONTAINER_1")
 
 
-Alternatively, get metadata for a container by passing a ``Container`` object:
+.. note::
+
+    The container must be empty before deletion.
+    This command will not raise an error if the container specified is not found unless ``ignore_missing`` is set to ``False``.
+
+
+Getting metadata for a container by passing a ``Container`` instance:
 
 .. code-block:: python
 
@@ -45,42 +58,24 @@ Alternatively, get metadata for a container by passing a ``Container`` object:
     print(cont)
 
 
-Delete a container using its name:
+Setting system metadata for a container, such as the read and write access, as well as an example custom property, by passing a ``Container`` instance:
 
 .. code-block:: python
 
-    conn.object_store.delete_container("CONTAINER_2")
-
-
-Delete a container using a ``Container`` object:
-
-.. code-block:: python
-
-    conn.object_store.delete_container(cont)
-
-
-In the two examples above, the container must be empty before deletion.
-Also note that this will not raise an error if the container specified is not found unless ``ignore_missing`` is set to ``False``.
-
-
-Set metadata for a container, such as the read and write access, as well as a cutstom property, by passing a ``Container`` object:
-
-.. code-block:: python
-
-    conn.object_store.set_container_metadata(cont, write_ACL="example_project:example_user", read_ACL=".r:*,.rlistings", test_key="test_value")
+    conn.object_store.set_container_metadata(cont, write_ACL="example_project:example_user", read_ACL=".r:*,.rlistings", example_key="example_value")
 
 
 .. note::
 
-    As shown above, both custom and and system metadata are set in this way.
-    System metadata is set using the system keys: ``content_type``, ``is_content_type_detected``, ``versions_location``, ``read_ACL``, ``write_ACL``, ``sync_to``, ``sync_key``.
+    As shown above, both custom and system metadata can be set in the same way.
+    System metadata is set using system keys: ``content_type``, ``is_content_type_detected``, ``versions_location``, ``read_ACL``, ``write_ACL``, ``sync_to``, ``sync_key``.
 
 
-Delete metadata for a container by passing a ``Container`` object:
+Deleting metadata for a container by passing a ``Container`` instance:
 
 .. code-block:: python
 
-    conn.object_store.delete_container_metadata(cont, ["test_key", "write_ACL", "read_ACL"])
+    conn.object_store.delete_container_metadata(cont, ["example_key", "write_ACL", "read_ACL"])
 
 
 .. _swift_sdk_objects:
@@ -97,7 +92,7 @@ List objects in a container by passing a container name:
         print(obj)
 
 
-Alternatively, list objects in a container by passing a ``Container`` object:
+Alternatively, list objects in a container by passing a ``Container`` instance:
 
 .. code-block:: python
 
@@ -158,7 +153,7 @@ Get metadata for an object using the container and file names:
     print(obj)
 
 
-Get metadata for a container using an ``Object`` object (in the form of both ``obj_1`` and ``obj_2``)::
+Get metadata for a container using an ``Object`` object (in the form of both ``obj_1`` and ``obj_2``):
 
 .. code-block:: python
 
