@@ -63,6 +63,26 @@ In the two examples above, the container must be empty before deletion.
 Also note that this will not raise an error if the container specified is not found unless ``ignore_missing`` is set to ``False``.
 
 
+Set metadata for a container, such as the read and write access, as well as a cutstom property, by passing a ``Container`` object:
+
+.. code-block:: python
+
+    conn.object_store.set_container_metadata(cont, write_ACL="example_project:example_user", read_ACL=".r:*,.rlistings", test_key="test_value")
+
+
+.. note::
+
+    As shown above, both custom and and system metadata are set in this way.
+    System metadata is set using the system keys: ``content_type``, ``is_content_type_detected``, ``versions_location``, ``read_ACL``, ``write_ACL``, ``sync_to``, ``sync_key``.
+
+
+Delete metadata for a container by passing a ``Container`` object:
+
+.. code-block:: python
+
+    conn.object_store.delete_container_metadata(cont, ["test_key", "write_ACL", "read_ACL"])
+
+
 .. _swift_sdk_objects:
 
 Objects
