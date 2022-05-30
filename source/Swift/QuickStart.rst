@@ -22,6 +22,11 @@ On the `Create Container` screen, enter a name for the container and select whet
 
 .. image:: /assets/howtos/CreateAContainer/3-create-container-form.png
 
+.. warning::
+
+  Selecting "public" will allow the contents of a container to be viewed by anyone, with no authentication required.
+  See :ref:`swift_cli_update_metadata` or :ref:`swift_sdk_containers` for greater control over read and write access.
+
 If successful, the container will be listed below the `+ Container` button.
 
 .. image:: /assets/howtos/CreateAContainer/5-container-list.png
