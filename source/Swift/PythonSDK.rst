@@ -83,7 +83,15 @@ Deleting metadata for a container by passing a ``Container`` instance:
 Objects
 -------
 
-List objects in a container by passing a container name:
+Objects in a container can be interacted with using a ``Connection`` instance, ``conn``, and the Object Store service.
+Some examples are given below.
+
+.. note::
+
+    Similarly to interacting with containers, objects can typically be specified using either an ``Object`` instance or the object and container names as strings.
+
+
+Listing objects in a container by passing the container name:
 
 .. code-block:: python
 
@@ -92,85 +100,69 @@ List objects in a container by passing a container name:
         print(obj)
 
 
-Alternatively, list objects in a container by passing a ``Container`` instance:
+In the example above, ``objs`` is a generator object. Specific ``Object`` instances can be obtained from this in a number of ways, such as list comprehension:
 
 .. code-block:: python
 
-    objs = conn.object_store.objects(cont)
-    for obj in objs:
-        print(obj)
-
-
-In the two examples above, ``objs`` is a generator object. Specific ``Object`` objects can be obtained from this in a number of ways, such as list comprehension:
-
-.. code-block:: python
-
-    objs = conn.object_store.objects("CONTAINER_1")
     obj_1 = [obj for obj in objs if obj.name=="FILE_1.txt"][0]
 
 
-Specific objects can also be accessed via the ``Connection`` object, passing the container name and file name. This will return a tuple, containing (headers, body) for the object specified:
-:
-
-.. code-block:: python
-
-    obj_tuple = conn.get_object('CONTAINER_1', 'FILE_1.txt')
-
-
-Similarly, using the ``Connection`` object, container name and file name, a ``Response`` for the object can be returned, which stores the object ``headers`` and ``content`` as attributes:
-
-.. code-block:: python
-
-    response = conn.get_object_raw('CONTAINER_1', 'FILE_1.txt')
-
-
-Objects can also be accessed via an ``Object Store`` object, using the container name and file name to return an ``Object`` object:
+Objects can also be accessed directly using the container name and file name to return an ``Object`` instance:
 
 .. code-block:: python
 
     obj_2 = conn.object_store.get_object("FILE_1.txt", "CONTAINER_1")
 
 
-Alternatively:
+Equivalently:
 
 .. code-block:: python
 
     obj_2 = conn.object_store.get_object_metadata("FILE_1.txt", "CONTAINER_1")
 
 
-The two examples above are equivalent to each other.
+.. note::
 
-However, the returned ``Object`` object returned (``obj_2``) differs slightly to those obtained via ``conn.object_store.objects()`` (``obj_1``).
-For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
-``obj_2`` includes metadata not included in ``obj_1``, such as ``accept-ranges`` and ``x-timestamp``.
+    The ``Object`` instance returned by the two examples above (``obj_2``) differs slightly to that obtained using ``conn.object_store.objects()`` (``obj_1``).
+    For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
+    However, ``obj_2`` includes metadata not included in ``obj_1``, such as ``accept-ranges`` and ``x-timestamp``.
 
 
-Get metadata for an object using the container and file names:
+Specific objects can also be accessed via a ``Connection`` instance by passing the container name and file name. This will return a tuple, containing (headers, body) for the object specified:
 
 .. code-block:: python
 
-    obj = conn.object_store.get_object_metadata("FILE_1.txt", "CONTAINER_1")
-    print(obj)
+    obj_tuple = conn.get_object('CONTAINER_1', 'FILE_1.txt')
 
 
-Get metadata for a container using an ``Object`` object (in the form of both ``obj_1`` and ``obj_2``):
+Similarly, using a ``Connection`` instance, container name and file name, a ``Response`` object can be returned, which stores the object ``headers`` and ``content`` as attributes:
+
+.. code-block:: python
+
+    response = conn.get_object_raw('CONTAINER_1', 'FILE_1.txt')
+
+
+Getting metadata for a container using an ``Object`` instance (in the form of either ``obj_1`` or ``obj_2``):
 
 .. code-block:: python
 
     obj = conn.object_store.get_object_metadata(obj)
     print(obj)
 
-If an object in the form of ``obj_1`` is passed, the object returned will include all the attributes of both ``obj_1`` and ``obj_2``.
+
+.. note::
+
+    If an object in the form of ``obj_1`` is passed to ``get_object_metadata``, the object returned will include all the attributes of both ``obj_1`` and ``obj_2``.
 
 
-An object's contents can be downloaded using ``Object`` objects (in the form of both ``obj_1`` and ``obj_2``):
+Downloading an object's contents using an ``Object`` instance (in the form of either ``obj_1`` or ``obj_2``):
 
 .. code-block:: python
 
     file_1 = conn.object_store.download_object(obj)
 
 
-Alternatively, using a ``Response`` object:
+Alternatively, downloading contents using a ``Response`` object:
 
 .. code-block:: python
 
@@ -185,14 +177,14 @@ In the two examples above, ``file_1`` will store the file contents as a ``bytes`
         binary_file.write(file_1)
 
 
-Objects can also be saved directly, without storing an intermediate ``Object`` or ``Response`` object:
+Saving contents directly, without storing an intermediate ``Object`` or ``Response`` object:
 
 .. code-block:: python
 
     conn.get_object('CONTAINER_1', 'FILE_1.txt', outfile="SAVED_FILE_1.txt")
 
 
-Upload a new file:
+Uploading a new object:
 
 .. code-block:: python
 
@@ -201,21 +193,16 @@ Upload a new file:
                                             data="Hello, world!")
 
 
-Delete an object using the container and file names:
+Deleting an object using the container and file names:
 
 .. code-block:: python
 
     conn.object_store.delete_object("FILE_1.txt", container="CONTAINER_1")
 
 
-Delete an object using an ``Object`` object:
+.. note::
 
-.. code-block:: python
-
-    conn.object_store.delete_object(obj)
-
-
-In the above two examples, an error will not be raised if the file specified is not found unless ``ignore_missing`` is set to ``False``.
+    An error will not be raised if the object specified is not found unless ``ignore_missing`` is set to ``False``.
 
 
 References
