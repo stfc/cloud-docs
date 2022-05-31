@@ -225,17 +225,32 @@ If successful, a success message will appear, and the copied file will be listed
 Explanation of terms
 --------------------
 
-Object:
-An object is the basic storage entity and any optional metadata that represents the data you store. When you upload data, the data is stored as-is (with no compression or encryption).
+Object Store:
+This provides a system for data storage that enables users to access the same data, both as an object and as a file, simplifying management and controlling storage costs.
+
+Account:
+The top level of the Object Storage system hierarchy, defining a namespace for containers.
+Users own all resources in their account.
+Synonymous with a `project` or `tenant`.
 
 Container:
-A container is a storage compartment for your data and provides a way for you to organize your data. Containers can be visualised as directories in a Linux system. However, unlike directories, containers cannot be nested. Data must be stored in a container and hence the objects are created within a container.
+This defines a namespace for objects, providing a storage compartment for and a way to organise data, similar to directories in a Linux system.
+However, unlike directories, containers cannot be nested.
+Data must be stored in a container, and so objects are created within containers.
+Containers may also be referred to as buckets or pools.
+
+Object:
+The basic storage entity and any optional metadata that represents the data being stored.
+When data is uploaded, the data is stored as-is, with no compression or encryption.
 
 Folder/Pseudo-folder:
-Similar to folders in your desktop operating system. They are virtual collections defined by a common prefix on the object’s name.
+Similar to folders in a desktop operating system.
+They are virtual collections defined by a common prefix in objects' names.
+Placeholder objects may also exist to represent folders.
 
-Object Store:
-Object Store provides a system for data storage that enables users to access the same data, both as an object and as a file, thus simplifying management and controlling storage costs.
+Access Control List (ACL):
+Used to control access to objects within a container.
+An ACL cannot be stored with individual objects.
 
 
 References
@@ -246,3 +261,5 @@ https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.1/html/a
 https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.1/html/administration_guide/components_of_object_storage
 
 https://docs.openstack.org/horizon/train/user/manage-containers.html
+
+https://docs.openstack.org/swift/train/api/object_api_v1_overview.html
