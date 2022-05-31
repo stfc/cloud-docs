@@ -67,7 +67,6 @@ Setting system metadata for a container, such as the read and write access, as w
 
 .. note::
 
-    As shown above, both custom and system metadata can be set in the same way.
     System metadata is set using system keys: ``content_type``, ``is_content_type_detected``, ``versions_location``, ``read_ACL``, ``write_ACL``, ``sync_to``, ``sync_key``.
 
 
@@ -76,6 +75,17 @@ Deleting metadata for a container by passing a ``Container`` instance:
 .. code-block:: python
 
     conn.object_store.delete_container_metadata(cont, ["example_key", "write_ACL", "read_ACL"])
+
+
+.. note::
+
+    Alternatively, ``set_container_metadata`` can be used with values set to ``""`` to delete custom and system metadata.
+
+
+.. note::
+
+    When setting and deleting custom metadata, capitalisation is ignored, and when deleting custom metadata, '-' and '_' are treated equivalently.
+    This is not the case for system metadata.
 
 
 .. _swift_sdk_objects:
