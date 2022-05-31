@@ -205,6 +205,37 @@ Deleting an object using the container and file names:
     An error will not be raised if the object specified is not found unless ``ignore_missing`` is set to ``False``.
 
 
+Setting system and custom metadata for an object by passing an ``Object`` instance:
+
+.. code-block:: python
+
+    conn.object_store.set_object_metadata(obj, delete_after="3000", example_key="example_value")
+
+
+.. note::
+
+    System metadata is set using system keys: ``content_type``, ``content_encoding``, ``content_disposition``, ``delete_after``, ``delete_at``, ``is_content_type_detected``.
+    ``delete_at`` is also set automatically by ``delete_after``.
+
+
+Deleting custom metadata for an object using the file and container names:
+
+.. code-block:: python
+
+    conn.object_store.delete_object_metadata("FILE_1.txt", "CONTAINER_4", ["example-key"])
+
+
+.. note::
+
+    Alternatively, ``set_object_metadata`` can be used with values set to ``""`` to delete custom metadata.
+    However, neither option will delete system metadata.
+
+
+.. note::
+
+    When deleting custom metadata, the key should be in lower case, and underscores, '_', in the original key name should be replaced with dashes, '-'.
+
+
 References
 ----------
 
