@@ -748,6 +748,37 @@ Multiple properties may also be removed from objects:
   openstack object unset --property KEY_1 --property KEY_2 CONTAINER_1 FILE_1.txt
 
 
+.. _swift_cli_tempurl:
+
+Creating a Temporary URL
+------------------------
+
+Secret keys used in the cryptographic signature for temporary URLs can be created using the Swift client. For example, to set the secret key to ``MYKEY``:
+
+.. code-block:: bash
+
+  swift post -m "Temp-URL-Key:MYKEY"
+
+
+.. note::
+
+  Two secret key values per account, and two per container can be stored.
+
+
+A temporary URL for a Swift object can then be generated using the Swift client, typically to allow GET or PUT access. For example:
+
+.. code-block:: bash
+
+  swift tempurl GET 1000 https://s3.echo.stfc.ac.uk/swift/v1/CONTAINER_1/FILE_1.txt MYKEY
+
+  # This should return a URL similar to:
+  https://s3.echo.stfc.ac.uk/swift/v1/CONTAINER_1/FILE_1.txt?temp_url_sig=?temp_url_sig=da39a3ee5e6b4b0d3255bfef95601890afd80709&temp_url_expires=1323479485
+
+
+.. note::
+
+  The URL returned includes an ampersand, so must be enclosed in quotation marks in a command shell.
+
 
 References
 ----------
@@ -769,3 +800,5 @@ https://docs.openstack.org/python-swiftclient/train/cli/index.html
 https://docs.openstack.org/swift/train/overview_large_objects.html
 
 https://docs.openstack.org/swift/train/overview_acl.html
+
+https://docs.openstack.org/swift/train/api/temporary_url_middleware.html#secret-keys
