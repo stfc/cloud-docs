@@ -134,6 +134,7 @@ Equivalently:
 .. note::
 
     The ``Object`` instance returned by the two examples above (``obj_2``) differs slightly to that obtained using ``conn.object_store.objects()`` (``obj_1``).
+
     For example, the file name can be obtained via the ``name`` or ``id`` attributes of ``obj_1``, but only the ``id`` attribute of ``obj_2``.
     However, ``obj_2`` includes metadata not included in ``obj_1``, such as ``accept-ranges`` and ``x-timestamp``.
 
@@ -225,7 +226,8 @@ Setting system and custom metadata for an object by passing an ``Object`` instan
 .. note::
 
     System metadata is set using system keys: ``content_type``, ``content_encoding``, ``content_disposition``, ``delete_after``, ``delete_at``, ``is_content_type_detected``.
-    ``delete_at`` is also set automatically by ``delete_after``.
+
+    ``delete_at`` is also set automatically by setting ``delete_after``.
 
 
 Deleting custom metadata for an object using the file and container names:
@@ -248,6 +250,8 @@ Deleting custom metadata for an object using the file and container names:
 
 References
 ----------
+
+https://docs.openstack.org/openstacksdk/train/
 
 https://docs.openstack.org/openstacksdk/train/user/resources/object_store/v1/container.html
 
