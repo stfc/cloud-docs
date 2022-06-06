@@ -428,11 +428,28 @@ Containers can be made publicly accessible to read through the Swift client usin
   swift post <container> --read-acl ".r:*,.rlistings"
 
 
+.. warning::
+
+  The above command will allow the contents of a container to be viewed by anyone, with no authentication required.
+
+
+  Access can instead be shared with specific groups. For example: ``<project-id>:<user-id>``, ``<project-id>:*``, ``*:<user-id>`` ``*:*`` or ``<role_name>``.
+  User IDs, rather than names, should be used, as names are not globally unique.
+
+
 Similarly, containers can be made private using:
 
 .. code-block:: bash
 
   swift post <container> --read-acl ""
+
+
+.. note::
+  Container ACLs are stored in the `X-Container-Write` and `X-Container-Read` metadata, but are set by ``--write-acl`` and ``--read-acl`` respectively.
+
+  Write access grants the ability to perform PUT, POST and DELETE operations on objects within a container, but not POST or DELETE operations on the container itself.
+
+  Read access grants the ability to perform GET and HEAD operations on objects within a container, but access to privileged metadata such as `X-Container-Sync-Key` is not granted.
 
 
 .. _swift_cli_save_containers:
