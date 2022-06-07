@@ -220,6 +220,22 @@ On the `Copy Object` screen, enter the name of the destination container and des
 If successful, a success message will appear, and the copied file will be listed.
 
 
+.. _swift_limitations:
+
+Limitations
+-----------
+
+Some Swift features are unavabile through the GUI, and so must be performed using the :ref:`Python SDK <swift_python_sdk>` and/or the :ref:`CLI<swift_CLI>`. For example:
+
+- :ref:`Viewing all metadata for your account, containers and objects <swift_cli_information>`
+- :ref:`Uploading <swift_cli_upload_objects>` and :ref:`downloading <swift_cli_save_files>` multiple files simultaneously
+- Setting metadata for :ref:`containers <swift_cli_editing_objects>` and :ref:`objects <swift_cli_editing_containers>`
+- :ref:`Downloading containers <swift_cli_save_containers>`
+- :ref:`Downloading folders <swift_cli_save_folders>`
+- :ref:`Uploading files larger than 5GiB <swift_cli_large_objects>`
+- :ref:`Creating temporary URLs <swift_cli_tempurl>`
+
+
 .. _swift_terms:
 
 Explanation of terms
