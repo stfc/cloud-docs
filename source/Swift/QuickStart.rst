@@ -25,7 +25,7 @@ On the `Create Container` screen, enter a name for the container and select whet
 .. warning::
 
   Selecting "public" will allow the contents of a container to be viewed by anyone, with no authentication required.
-  See :ref:`swift_cli_update_metadata` or :ref:`swift_sdk_containers` for greater control over read and write access.
+  See :ref:`swift_cli_editing_containers` or :ref:`swift_sdk_containers` for greater control over read and write access.
 
 If successful, the container will be listed below the `+ Container` button.
 

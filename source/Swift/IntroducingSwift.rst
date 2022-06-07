@@ -168,8 +168,34 @@ To list objects in ``CONTAINER_1``:
 
 .. _swift_cli_information:
 
-Getting Information About Containers and Files
-----------------------------------------------
+Getting Information About Your Account, Containers and Files
+------------------------------------------------------------
+
+To print information about your account:
+
+.. code-block:: bash
+
+  swift stat
+
+  # This should return text similar to:
+                                      Account: v1
+                                   Containers: 3
+                                      Objects: 9
+                                        Bytes: 21
+  Objects in policy "default-placement-bytes": 0
+    Bytes in policy "default-placement-bytes": 0
+     Containers in policy "default-placement": 3
+        Objects in policy "default-placement": 9
+          Bytes in policy "default-placement": 21
+                            Meta Temp-Url-Key: MYKEY
+                                     Meta Key: value
+                                  X-Timestamp: 1654612569.67835
+                  X-Account-Bytes-Used-Actual: 20480
+                                   X-Trans-Id: tx000000000000008f227e6-00629f6259-218cd2a5a-default
+                       X-Openstack-Request-Id: tx000000000000008f227e6-00629f6259-218cd2a5a-default
+                                Accept-Ranges: bytes
+                                 Content-Type: text/plain; charset=utf-8
+
 
 To print basic information about ``CONTAINER_1``:
 
@@ -309,7 +335,7 @@ For example:
 
 .. note::
 
-  Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_cli_update_metadata>`.
+  Containers created using the Openstack client will not be publicly accessible. This can be changed via the GUI, or by :ref:`updating the container's metadata <swift_cli_editing_containers>`.
 
 
 .. _swift_cli_upload_objects:
@@ -414,42 +440,6 @@ To create an empty folder in a container, a local empty folder can be uploaded u
 
   # This should return the name of the created folder:
   FOLDER_1/
-
-
-.. _swift_cli_update_metadata:
-
-Updating Metadata
------------------
-
-Containers can be made publicly accessible to read through the Swift client using:
-
-.. code-block:: bash
-
-  swift post <container> --read-acl ".r:*,.rlistings"
-
-
-.. warning::
-
-  The above command will allow the contents of a container to be viewed by anyone, with no authentication required.
-
-
-  Access can instead be shared with specific groups. For example: ``<project-id>:<user-id>``, ``<project-id>:*``, ``*:<user-id>`` ``*:*`` or ``<role_name>``.
-  User IDs, rather than names, should be used, as names are not globally unique.
-
-
-Similarly, containers can be made private using:
-
-.. code-block:: bash
-
-  swift post <container> --read-acl ""
-
-
-.. note::
-  Container ACLs are stored in the `X-Container-Write` and `X-Container-Read` metadata, but are set by ``--write-acl`` and ``--read-acl`` respectively.
-
-  Write access grants the ability to perform PUT, POST and DELETE operations on objects within a container, but not POST or DELETE operations on the container itself.
-
-  Read access grants the ability to perform GET and HEAD operations on objects within a container, but access to privileged metadata such as `X-Container-Sync-Key` is not granted.
 
 
 .. _swift_cli_save_containers:
@@ -677,10 +667,10 @@ If successful, this will create any containers and folders specified that do not
 
 .. _swift_cli_editing_containers:
 
-Editing Container Properties
-----------------------------
+Editing Container Metadata
+--------------------------
 
-Multiple properties of a container can be added or overwritten simultaneously through repeated use of the ``--property`` option:
+Multiple custom properties of a container can be added or overwritten simultaneously through repeated use of the ``--property`` option:
 
 .. code-block:: bash
 
@@ -709,19 +699,50 @@ These properties will be listed when printing information about the container:
   +--------------+----------------------------------+
 
 
-Multiple properties may also be removed from a container:
+Custom properties may also be removed from a container:
 
 .. code-block:: bash
 
   openstack container unset --property KEY_1 --property KEY_2 CONTAINER_1
 
 
+Setting system metadata, such making a container public, can be done through the Swift client using:
+
+.. code-block:: bash
+
+  swift post <container> --read-acl ".r:*,.rlistings"
+
+
+.. warning::
+
+  The above command will allow the contents of a container to be viewed by anyone, with no authentication required.
+
+
+  Access can instead be shared with specific groups. For example: ``<project-id>:<user-id>``, ``<project-id>:*``, ``*:<user-id>`` ``*:*`` or ``<role_name>``.
+  User IDs, rather than names, should be used, as names are not globally unique.
+
+
+Similarly, containers can be made private using:
+
+.. code-block:: bash
+
+  swift post <container> --read-acl ""
+
+
+.. note::
+  Container ACLs are stored in the `X-Container-Write` and `X-Container-Read` metadata, but are set by ``--write-acl`` and ``--read-acl`` respectively.
+
+  Write access grants the ability to perform PUT, POST and DELETE operations on objects within a container, but not POST or DELETE operations on the container itself.
+
+  Read access grants the ability to perform GET and HEAD operations on objects within a container, but access to privileged metadata such as `X-Container-Sync-Key` is not granted.
+
+
 .. _swift_cli_editing_objects:
 
-Editing Object Properties
--------------------------
+Editing Object Metadata
+-----------------------
 
-As for containers, multiple object properties may be set simultaneously:
+As for containers, multiple custom properties for object may be set simultaneously:
 
 .. code-block:: bash
 
@@ -758,7 +779,7 @@ These properties will be listed when printing information about the object:
   +----------------+----------------------------------+
 
 
-Multiple properties may also be removed from objects:
+Custom properties may also be removed from objects:
 
 .. code-block:: bash
 
