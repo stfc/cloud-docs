@@ -7,4 +7,5 @@ Swift
 
    IntroducingSwift
    QuickStart
+   CLI
    PythonSDK
