@@ -351,6 +351,78 @@ Listing and downloading all text files in a container:
     The ``content_type`` object key may not exist for objects, such as placeholders, which can lead to errors if the above code is run.
 
 
+.. _swift_sdk_connection:
+
+Connection
+------------
+
+Below are two examples to illustrate the use of the swiftclient.Connection API.
+
+.. note::
+
+    There are a number of kwarg combinations that can be used when creating a `Connection` instance for authentication.
+
+
+Listing the response headers and containers for your account:
+
+.. code-block:: python
+
+    from swiftclient.client import Connection
+    from keystoneauth1 import session
+    from keystoneauth1.identity import v3
+
+    # Create a password auth plugin
+    auth = v3.Password(auth_url='https://openstack.stfc.ac.uk:5000/v3',
+                        username='example_user',
+                        password='example_passwprd',
+                        project_id='example_id',
+                        user_domain_name="example_domain_name")
+
+    # Create session
+    keystone_session = session.Session(auth=auth)
+
+    # Create swiftclient Connection
+    conn = Connection(session=keystone_session)
+
+    resp_headers, containers = conn.get_account()
+    print(f"Response headers: {resp_headers}")
+    for container in containers:
+        c_name = container["name"]
+        c_count = int(container["count"])
+        c_size = int(container["bytes"])
+        print(f"{c_name} [size: {c_size}] [count: {c_count}]")
+
+
+Deleting an object:
+
+.. code-block:: python
+
+    from swiftclient.client import Connection, ClientException
+    from keystoneauth1 import session
+    from keystoneauth1.identity import v3
+
+    # Create a password auth plugin
+    auth = v3.Password(auth_url='https://openstack.stfc.ac.uk:5000/v3',
+                        username='example_user',
+                        password='example_passwprd',
+                        project_id='example_id',
+                        user_domain_name="example_domain_name")
+
+    # Create session
+    keystone_session = session.Session(auth=auth)
+
+    # Create swiftclient Connection
+    conn = Connection(session=keystone_session)
+
+    obj = 'FILE_1.txt'
+    container = 'CONTAINER_1'
+    try:
+        conn.delete_object(container, obj)
+        print("Successfully deleted the object")
+    except ClientException as e:
+        print(f"Failed to delete the object with error: {e}")
+
+
 ----------
 References
 ----------
