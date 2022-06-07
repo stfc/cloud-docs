@@ -11,6 +11,7 @@ Object Storage using the Python SDK
 
 .. _swift_sdk_containers:
 
+----------
 Containers
 ----------
 
@@ -90,6 +91,7 @@ Deleting metadata for a container by passing a ``Container`` instance:
 
 .. _swift_sdk_objects:
 
+-------
 Objects
 -------
 
@@ -248,6 +250,108 @@ Deleting custom metadata for an object using the file and container names:
     When deleting custom metadata, the key should be in lower case, and underscores, '_', in the original key name should be replaced with dashes, '-'.
 
 
+
+.. _swift_sdk_alternative:
+
+-----------
+swiftclient
+-----------
+
+An alternative to openstacksdk is swiftclient, which comprises a command line tool (see :ref:`swift_cli`) and two separate APIs, `SwiftService` and `Connection`, for accessing swift programmatically.
+
+This can be installed using:
+
+.. code-block:: bash
+
+    pip install python-swiftclient
+
+
+.. _swift_sdk_swiftservice:
+
+SwiftService
+------------
+
+Below are two examples to illustrate the use of the swiftclient.SwiftService API.
+
+.. note::
+
+    There are several authentication mechanisms available, including setting environment variables that are automatically passed to your `SwiftService` instance. See :ref:`Use-OpenStack-CLI` for how to set these up.
+
+
+Listing containers for your account:
+
+.. code-block:: python
+
+    import logging
+    from swiftclient.service import SwiftService, SwiftError
+
+    logging.basicConfig(level=logging.ERROR)
+    logging.getLogger("requests").setLevel(logging.CRITICAL)
+    logging.getLogger("swiftclient").setLevel(logging.CRITICAL)
+    logger = logging.getLogger(__name__)
+
+    with SwiftService() as swift:
+        try:
+            list_parts_gen = swift.list()
+            for page in list_parts_gen:
+                if page["success"]:
+                    for item in page["listing"]:
+                        i_name = item["name"]
+                        i_size = int(item["bytes"])
+                        i_count = int(item["count"])
+                        print(f"{i_name} [size: {i_size}] [count: {i_count}]")
+        except SwiftError as e:
+            logger.error(e.value)
+
+
+Listing and downloading all text files in a container:
+
+.. code-block:: python
+
+    import logging
+    from swiftclient.service import SwiftService, SwiftError
+
+    logging.basicConfig(level=logging.ERROR)
+    logging.getLogger("requests").setLevel(logging.CRITICAL)
+    logging.getLogger("swiftclient").setLevel(logging.CRITICAL)
+    logger = logging.getLogger(__name__)
+
+    def is_txt(obj):
+        return (
+            obj["name"].lower().endswith('.txt') or
+            obj["content_type"] == 'text/plain'
+        )
+
+    container = "CONTAINER_1"
+
+    with SwiftService() as swift:
+        try:
+            list_options = {"prefix": "archive_2016-01-01/"}
+            list_parts_gen = swift.list(container=container)
+            for page in list_parts_gen:
+                if page["success"]:
+                    objects = [
+                        obj["name"] for obj in page["listing"] if is_txt(obj)
+                    ]
+                    for down_res in swift.download(
+                            container=container,
+                            objects=objects):
+                        if down_res['success']:
+                            print(f"'{down_res['object']}' downloaded")
+                        else:
+                            print(f"'{down_res['object']}' download failed")
+                else:
+                    raise page["error"]
+        except SwiftError as e:
+            logger.error(e.value)
+
+
+.. warning::
+
+    The ``content_type`` object key may not exist for objects, such as placeholders, which can lead to errors if the above code is run.
+
+
+----------
 References
 ----------
 
@@ -262,3 +366,5 @@ https://docs.openstack.org/openstacksdk/train/user/proxies/object_store.html
 https://docs.openstack.org/openstacksdk/train/user/connection.html
 
 https://docs.openstack.org/openstacksdk/train/user/guides/object_store.html
+
+https://docs.openstack.org/python-swiftclient/train/introduction.html
