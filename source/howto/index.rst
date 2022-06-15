@@ -8,6 +8,7 @@ How-To Articles
    AddingSSHKeyToOpenStackWebInterface
    AddingUserAccountsToVMs
    AssociateAFloatingIP
+   ChangingDNSServerForCluster
    ConfigureSSHAgentForwardingInWSL
    ConfigureXServerInWSL
    CreateAHeatStack
