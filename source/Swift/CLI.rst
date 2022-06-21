@@ -425,6 +425,11 @@ To create an empty folder in a container, a local empty folder can be uploaded u
   FOLDER_1/
 
 
+.. note::
+
+  The trailing `/` must be included to create a folder in this way.
+
+
 .. _swift_cli_save_containers:
 
 Saving Containers
@@ -472,8 +477,8 @@ However, this command will fail if folders exist as unique objects in the contai
 
 .. note::
 
-  This occurs if folders have been created using `+ Folder` via the GUI, or if ``swift upload <container> <empty folder>`` has been used.
-  The choice of folder creation mechanism should not affect the file structure when downloading containers/files or viewing the GUI.
+  This occurs if folders have been created using the `Create Folder` screen, rather than the `Upload File` screen with the GUI, or if ``swift upload <container> <empty folder>`` has been used.
+  The choice of folder creation mechanism should not affect the file structure when downloading containers/files or viewing files through the GUI.
 
 
 In this case, the Swift client must be used to save containers:
