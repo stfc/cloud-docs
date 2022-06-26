@@ -175,7 +175,7 @@ Downloading an object's contents using an ``Object`` instance (in the form of ei
     file_1 = conn.object_store.download_object(obj)
 
 
-Alternatively, downloading contents using a ``Response`` object:
+Alternatively, downloading contents using the ``Response`` object from above:
 
 .. code-block:: python
 
@@ -374,7 +374,7 @@ Listing the response headers and containers for your account:
     # Create a password auth plugin
     auth = v3.Password(auth_url='https://openstack.stfc.ac.uk:5000/v3',
                         username='example_user',
-                        password='example_passwprd',
+                        password='example_password',
                         project_id='example_id',
                         user_domain_name="example_domain_name")
 
@@ -404,7 +404,7 @@ Deleting an object:
     # Create a password auth plugin
     auth = v3.Password(auth_url='https://openstack.stfc.ac.uk:5000/v3',
                         username='example_user',
-                        password='example_passwprd',
+                        password='example_password',
                         project_id='example_id',
                         user_domain_name="example_domain_name")
 
