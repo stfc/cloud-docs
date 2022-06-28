@@ -41,6 +41,7 @@ Welcome to stfc-cloud-docs's documentation!
    Heat/index
    Magnum/index
    Octavia/index
+   Swift/index
 
 .. toctree::
    :maxdepth: 1  
