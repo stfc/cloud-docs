@@ -9,7 +9,7 @@ Contact Details
 ===============
 Contact Support
 ===============
-For support, queries and requests please email us at cloud-support@gridpp.rl.ac.uk
+For support, queries and requests please email us at cloud-support@stfc.ac.uk
 
 ============
 Mailing list
@@ -23,7 +23,7 @@ Slack
 
 You can join the STFC Cloud Slack to https://stfc-cloud.slack.com/ to chat with the Cloud team, share feedback and message other users.
 
-This is also the fastest way to get any notifications about the service. If you are unable to sign up, please email cloud-support@gridpp.rl.ac.uk and we will add your email domain to the white list.
+This is also the fastest way to get any notifications about the service. If you are unable to sign up, please email cloud-support@stfc.ac.uk and we will add your email domain to the white list.
 
 .. Important::
 

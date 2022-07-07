@@ -23,8 +23,8 @@ Click on Compute, then Overview: This screen will show you the quota limits set 
 .. image:: /assets/howtos/CreatingaVMInWebInterface/image2.png
     :align: center
     :alt:
-    
-If the quotas look fine, and you do not need them expanding (should you need this, you should contact cloud-support@gridpp.rl.ac.uk, after first checking with the other users of the project that all the VMs currently running or shutdown are needed !), Click on the Instances option on the Left Hand Side.
+
+If the quotas look fine, and you do not need them expanding (should you need this, you should contact cloud-support@stfc.ac.uk, after first checking with the other users of the project that all the VMs currently running or shutdown are needed !), Click on the Instances option on the Left Hand Side.
 Click on the “Launch Instance” button. You will see a pop-up window as follows:-
 
 .. image:: /assets/howtos/CreatingaVMInWebInterface/image3.png

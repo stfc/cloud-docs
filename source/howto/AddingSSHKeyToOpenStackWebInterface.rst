@@ -7,7 +7,7 @@ Overview
 #########
 
 This document describes how to add your public ssh key into the openstack ssh web user interface
-(https://openstack.stfc.ac.uk). It assumes you have already contacted cloud-support@gridpp.rl.ac.uk
+(https://openstack.stfc.ac.uk). It assumes you have already contacted cloud-support@stfc.ac.uk
 to either initiate a project, or to add user accounts to an existing project. It also assumes you already
 have an SSH key pair generated, and you just wish to add your existing public ssh key.
 You need to import you ssh public key into the Openstack web interface as then the system will

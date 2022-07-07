@@ -1,7 +1,7 @@
 OpenStack Magnum: Container-as-a-Service
 ========================================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@gridpp.rl.ac.uk
+    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@stfc.ac.uk
 
 Magnum is the Container-as-a-Service for OpenStack and can be used to create and launch clusters.
 

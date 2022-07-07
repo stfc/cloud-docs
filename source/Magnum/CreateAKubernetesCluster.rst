@@ -2,7 +2,7 @@
 Create a Kubernetes Cluster
 ===========================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@gridpp.rl.ac.uk
+    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@stfc.ac.uk
 
 Clusters are groups of resources (nova instances, neutron networks, security groups etc.) combined to function as one system.
 To do this, Magnum uses Heat to orchestrate and create a stack which contains the cluster.

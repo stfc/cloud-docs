@@ -2,7 +2,7 @@
 JupyterHub on Kubernetes
 =========================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@gridpp.rl.ac.uk
+    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@stfc.ac.uk
 
 This documentation assumes that you will be installing JupyterHub on a Kubernetes cluster that has been created using OpenStack Magnum.
 

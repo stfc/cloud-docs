@@ -73,7 +73,7 @@ Inside :bash:`/home/USERNAME/jupyterhub/test-hub`, there's a :bash:`requirements
 
 To launch notebook servers on OpenStack, JupyterHub must be installed on the VM. The easiest way to do this is by creating a VM using an image that has it pre-installed. You will need to create an image which has JupyterHub (including Python 3.6) installed, along with any software required by your community and a 'user folder' - this is the intended base folder for notebook servers (this option is set in the jupyterhub config file). As of writing, this folder is :bash:`/home/USERNAME/jupyterhub-user-folder`.
 
-This JupyterHub instance I used has a host certificate with it. This is because authentication uses SSL. A self signed certificate will work for testing or various tiers of more trusted certificates can be requested via cloud-support@gridpp.rl.ac.uk
+This JupyterHub instance I used has a host certificate with it. This is because authentication uses SSL. A self signed certificate will work for testing or various tiers of more trusted certificates can be requested via cloud-support@stfc.ac.uk
 
 It should be noted the project needs a security group to allow port 8000.
 

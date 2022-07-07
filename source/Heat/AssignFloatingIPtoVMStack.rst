@@ -5,7 +5,7 @@ Assign Floating IPs to VMs in a Heat Stack
 Floating IPs can be assigned to VMs that are on private networks in order for them to be accessible
 from an external network.
 
-  This document assumes that Floating IPs have been assigned to your project. If you do not have any floating IPs in your project, please contact the cloud team at cloud-support@gridpp.rl.ac.uk
+  This document assumes that Floating IPs have been assigned to your project. If you do not have any floating IPs in your project, please contact the cloud team at cloud-support@stfc.ac.uk
 
 There are two similar methods for assigning a floating IP to a virtual machine in a heat stack.
   1. Use the resource ``OS::Neutron::FloatingIPAssociation``.
