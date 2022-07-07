@@ -20,7 +20,7 @@ As a bare minimum, the following should be specified:-
 ##################################################
 How do I get support for the STFC cloud?
 ##################################################
-E-mail the Cloud support team on cloud-support@gridpp.rl.ac.uk .
+E-mail the Cloud support team on cloud-support@stfc.ac.uk .
 
 There is no telephone support number at this time.
 
@@ -29,9 +29,9 @@ There is no telephone support number at this time.
 ##########################################
 How do I get access to the cloud?
 ##########################################
-Contact the Cloud support team on cloud-support@gridpp.rl.ac.uk . For a new project see :ref:`new_project`. 
+Contact the Cloud support team on cloud-support@stfc.ac.uk . For a new project see :ref:`new_project`.
 
-If this is about an existing project please email with the project and account name you would like to add access for. 
+If this is about an existing project please email with the project and account name you would like to add access for.
 
 Once you have these, you can connect using https://cloud.stfc.ac.uk for a simple user interface, or http://openstack.stfc.ac.uk for advanced users.
 
@@ -47,7 +47,7 @@ By default VMs will be ssh-accessible from within the STFC network.
 
 If you are external to STFC we will usually open ssh to one of your floating IP addresses whilst setting up your project.
 
-If you are prompted for the password, ensure that your `private key is available <https://www.ssh.com/ssh/agent#adding-ssh-keys-to-the-agent>`_ 
+If you are prompted for the password, ensure that your `private key is available <https://www.ssh.com/ssh/agent#adding-ssh-keys-to-the-agent>`_
 and that you have used the right username. For example `ubuntu@<your_ip>` on Ubuntu instances.
 
 ########################################################
@@ -76,7 +76,7 @@ When I use "sudo" command on a VM I created, it says <my username> not in Sudoer
 Occasionally this happens to a VM if something goes wrong or is too slow during the boot process.
 
 In most cases a reboot of the VM from within OpenStack will fix this.
-If it doesn't please email cloud-support@gridpp.rl.ac.uk
+If it doesn't please email cloud-support@stfc.ac.uk
 
 #####################################################
 How do I get a remote X session displayed from a VM?
@@ -88,10 +88,10 @@ Enabling X forwarding comes with additional security considerations,
 as authentication spoofing and verification attacks can occur.
 `See the manual for additional details <https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#X11Forwarding>`_
 
-X11 Forwarding must be enabled on the remote server first. In `/etc/ssh/sshd_config` 
+X11 Forwarding must be enabled on the remote server first. In `/etc/ssh/sshd_config`
 set `X11Forwarding Yes`, if it is not already enabled and restart the sshd service.
 
-To enable X11 forwarding within the SSH session, simply add `-X` to your SSH command. 
+To enable X11 forwarding within the SSH session, simply add `-X` to your SSH command.
 `-C` is highly recommended for traffic routed via external networks. Support for forwarding
 is application specific, but most should work.
 
@@ -120,10 +120,10 @@ Please contact us for further support.
 #########################################################
 How do I create a VM with GPU capabilities in my project?
 #########################################################
-If you have g* flavors available in your project then you can create a GPU accelerated VM. 
+If you have g* flavors available in your project then you can create a GPU accelerated VM.
 See :ref:`flavors for details on the GPU types available<flavors>`.
 
-If you don't have g* flavors then you can contact cloud-support@gridpp.rl.ac.uk to request access.
+If you don't have g* flavors then you can contact cloud-support@stfc.ac.uk to request access.
 
 ###########################################################################
 How do I create a VM with shared disk space to my other VMs in my project?
@@ -134,30 +134,30 @@ Documentation coming soon.
 How do I connect to another VM in my project which I did not create?
 #####################################################################
 In most cases we expect users to configure access to their VMs as required.
-If this hasn't been possible then please contact cloud-support@gridpp.rl.ac.uk and we can help with this.
+If this hasn't been possible then please contact cloud-support@stfc.ac.uk and we can help with this.
 
 For adding members to a project, so that they can modify cloud resources see :ref:`add_access`
 
 ########################################################
 What do I do if a new VM that I create does not work?
 ########################################################
-Please contact us as cloud-support@gridpp.rl.ac.uk 
+Please contact us as cloud-support@stfc.ac.uk
 
 .. _firewall_exceptions:
 
 #########################################################
 How do I access my Virtual machines across the internet?
 #########################################################
-You will need to contact cloud-support@gridpp.rl.ac.uk to request a firewall hole for your floating IP.
+You will need to contact cloud-support@stfc.ac.uk to request a firewall hole for your floating IP.
 We will then conduct some security checks and help you through this process.
 
-Once the exception is added to your floating ip(s) you will need to add create and associate a security group with the 
+Once the exception is added to your floating ip(s) you will need to add create and associate a security group with the
 exception to your instance:
 
 To create a new security group with one or more ports:
 
 - Open Network, Security Groups
-- Create a new Security Group and enter a name (such as `HTTP + HTTPS`) 
+- Create a new Security Group and enter a name (such as `HTTP + HTTPS`)
 - Click next, leave the egress rules (as this allows traffic out) and add a rule per port
 - Ensure Ingress is selected, and enter the port number.
 
@@ -203,14 +203,14 @@ Contact us to discuss the possibility of adding one-off "additonal" policies for
 #######################################################################
 A VM machine I was using has died  - How can I get the data off of it?
 #######################################################################
-Depending on the way the VM has failed we may be able to help get this back. Contact us at cloud-support@gridpp.rl.ac.uk
+Depending on the way the VM has failed we may be able to help get this back. Contact us at cloud-support@stfc.ac.uk
 
 #######################################################################################################
 What are the current machine "flavors"? Can I have  a machine that looks like a flavor you don't have?
 #######################################################################################################
 
 For most people the pre-configured flavors should fit almost every workload.
-See :ref:`flavors` for the types available. 
+See :ref:`flavors` for the types available.
 
 Please contact us if you need assistance creating your own local project flavours.
 
@@ -230,15 +230,15 @@ If you have concerns or further queries please feel free to contact us.
 ###################################################################
 What sort of disk I/O performance should I expect locally on a VM?
 ###################################################################
-Instances are currently limited to 200 IOPS read and write. 
+Instances are currently limited to 200 IOPS read and write.
 
-For reference throughput (note: not latency) is comparable to a 15K SAS disk, 
+For reference throughput (note: not latency) is comparable to a 15K SAS disk,
 or double the speed of a typical hard drive found in a desktop.
 
 ########################################################
 What sort of network bandwidth should I expect on a VM?
 ########################################################
-Hypervisors are currently connected to either 10gb or 25gb links, so you can expect a share of this depending on the size of the VM 
+Hypervisors are currently connected to either 10gb or 25gb links, so you can expect a share of this depending on the size of the VM
 and the number of VMs on the same host.
 
 #############################################
@@ -271,7 +271,7 @@ If you have concerns please feel free to contact us for additional support.
 What are the default DNS servers for VMs on Openstack?
 ########################################################
 By default VMs in OpenStack use the DHCP agents within their Project networks as
-the DNS server IPs can change. 
+the DNS server IPs can change.
 
 The current DNS server IPs can be viewed by viewing the following file on non-Systemd machines (such as SL7):
 

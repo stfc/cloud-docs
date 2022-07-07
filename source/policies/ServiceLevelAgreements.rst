@@ -2,7 +2,7 @@
 Service Level Agreement
 ==========================
 
-The SCD Cloud is a service developed for use within Scientific Computing and the wider STFC for developing and supporting projects. SCD Cloud usage must comply with the Terms of Service. If you have any questions regarding the following, please contact cloud-support@gridpp.rl.ac.uk
+The SCD Cloud is a service developed for use within Scientific Computing and the wider STFC for developing and supporting projects. SCD Cloud usage must comply with the Terms of Service. If you have any questions regarding the following, please contact cloud-support@stfc.ac.uk
 
 By continuing to log in you accept the following Service Level for Virtual Machines (VMs):
 

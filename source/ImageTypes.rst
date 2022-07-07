@@ -37,4 +37,4 @@ We currently only offer the above operating systems as there is an overhead to p
 
 We do allow users to upload their own images although it is then the users' responsibility to ensure any VMs created with these comply with our :ref:`tos`. Any non compliant VMs will be deleted.
 
-Please contact us at cloud-support@gridpp.rl.ac.uk if you would like to upload your own images and discuss how to comply with the :ref:`tos`
+Please contact us at cloud-support@stfc.ac.uk if you would like to upload your own images and discuss how to comply with the :ref:`tos`

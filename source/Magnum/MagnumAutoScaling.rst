@@ -2,7 +2,7 @@
 Autoscaling Clusters
 ====================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@gridpp.rl.ac.uk
+    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@stfc.ac.uk
 
 The Cluster Autoscaler (CA) is a feature in OpenStack Magnum that can be enabled in order for the cluster to scale up or down the worker nodegroup.
 The default version which the Train release uses is v1.0. The version of CA to use can be changed at cluster creation by using the label ``autoscaler_tag``
