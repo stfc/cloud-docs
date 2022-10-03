@@ -6,6 +6,8 @@ Flavors
 
 The STFC Cloud provides a number of flavors to users but these fall into 3 categories at the moment.
 
+No flavor has resilient storage. If this is required you should boot from Volume at VM creation time
+
 Note: our flavors are created in so that they will efficiently pack onto the hardware we have - due to this we cannot create additional flavors as that may lead to scheduling difficulties and under utilisation.
 
 ################################
