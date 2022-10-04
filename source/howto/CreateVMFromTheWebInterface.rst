@@ -42,7 +42,7 @@ Now click on the “Source” option on the Left Hand Side:-
     :align: center
     :alt:
 
-In the Select Boot Source, the default should be “Image” and “Create new volume” should be set to “no” . What you select in this field determines what you see as options in “Available” just below.
+In the Select Boot Source, the default should be “Image” and “Create new volume” should be set to “no” unless you require your VM to have resilient storage for it's boot drive . What you select in this field determines what you see as options in “Available” just below.
 “Image” should provide one of the standard template STFC Cloud ready images that we support: By default, we usually have the last 3 Ubuntu supported images, with a GUI and non-gui option, and we also have a Scientific Linux 6  and 7 gui and non-gui option. We are expcting to have a Centos 7 image available sometime in the near future.
 Select the image you wish by clicking on the up arrow the option I the Available area. This should transfer it to the “Allocated” area.
 (We will not explore the other options for boot source in this scenario).
