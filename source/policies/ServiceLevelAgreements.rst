@@ -25,8 +25,9 @@ Availability
 Storage
 -------
 
- * The storage underlying the SCD Cloud is resilient for the purposes of availability of VMs.
- * VMs on the SCD Cloud should not be used as a persistent Datastore.
+ * The storage underlying the SCD Cloud Volume (Cinder), Image (Glance), Object (Swift) and Fileshare (Manila) services is resilient for the purposes of availability.
+ * VMs on the SCD Cloud should not be used as a persistent Datastore and have no resiliency of storage.
+ * Boot from Volume VMs should be used where resiliency is required
  * If you require more security for your data then arrange to back up your VMs.
 
 
