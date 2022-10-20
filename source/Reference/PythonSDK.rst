@@ -9,6 +9,8 @@ Introduction
 
 This document provides a brief setup guide for advanced users who want to use the Python SDK. This document assumes a good understanding of Python.
 
+.. _clouds_yaml:
+
 Setting Up Clouds.yaml
 ######################
 

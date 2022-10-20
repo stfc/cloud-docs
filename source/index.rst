@@ -37,15 +37,16 @@ Welcome to stfc-cloud-docs's documentation!
    :caption: Advanced Material:
 
    Aodh-and-Gnocchi/index
+   ClusterAPI/index
    ImproveTheDocs
    Heat/index
-   Magnum/index
    Octavia/index
 
 .. toctree::
    :maxdepth: 1  
    :caption: Legacy Documentation:
 
+   Magnum/index
    Legacy/index
 
 Indices and tables
