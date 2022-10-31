@@ -50,13 +50,14 @@ can be installed and configured using the following commands:
 .. code-block:: bash
 
     # Docker
-    sudo apt install docker.io
+    sudo apt install -y docker.io
     sudo usermod -aG docker $USER
     # Kubectl
     sudo snap install kubectl --classic
     # KinD
-    sudo snap install go --classic && go install sigs.k8s.io/kind@v0.14.0
+    sudo snap install go --classic
     export PATH="/home/$USER/go/bin:$PATH"
+    go install sigs.k8s.io/kind@v0.14.0
     # YQ (Used by Cluster API)
     sudo snap install yq
     # Clusterctl
@@ -113,7 +114,7 @@ Configuring the cluster
 
     wget https://raw.githubusercontent.com/kubernetes-sigs/cluster-api-provider-openstack/master/templates/env.rc -O /tmp/env.rc
     # Substitute cloud-name for the name used in clouds.yaml
-    source /tmp/env.rc ~/.config/openstack/clouds.yaml cloud-name
+    source /tmp/env.rc ~/.config/openstack/clouds.yaml <cloud-name>
     export OPENSTACK_DNS_NAMESERVERS=130.246.209.132
     export OPENSTACK_FAILURE_DOMAIN=ceph
     export OPENSTACK_EXTERNAL_NETWORK_ID=External
@@ -153,10 +154,10 @@ Configuring the cluster
 
 .. code-block:: bash
 
-    clusterctl generate cluster $CLUSTER_NAME \
     # This is based on the K8s in the built image
+    # It's recommended to have an odd quorum of control machines, i.e. 1/3/5
+    clusterctl generate cluster $CLUSTER_NAME \
     --kubernetes-version v1.x.y \
-    # It's recommended to have an odd quorum, i.e. 1/3/5
     --control-plane-machine-count=3 \
     --worker-machine-count=1 > $CLUSTER_NAME.yaml
 
@@ -196,7 +197,7 @@ Provisioning the new cluster
 
     kubectl apply -f $CLUSTER_NAME.yaml
 
-- Openstack deployment can be monitored with `kubectl logs deploy/capo-controller-manager -n capo-system`
+- Openstack deployment can be monitored with `kubectl logs deploy/capo-controller-manager -n capo-system -f`
 - Wait for `kubectl get kubeadmcontrolplane` to show the control plane initialised but unavailable:
 
 .. code-block::
