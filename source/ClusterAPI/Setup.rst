@@ -143,6 +143,12 @@ Configuring the cluster
 
     export CLUSTER_NAME=demo
 
+- Initialise clusterctl on the KinD bootstrap cluster
+
+.. code-block:: bash
+
+    clusterctl init --infrastructure openstack
+
 - Generate the cluster config:
 
 .. code-block:: bash
