@@ -1,7 +1,8 @@
 Manila: Shared File Systems as a Service 
 ###########################################
 
-.. info::
+.. warning::
+
     OpenStack Manila is currently in technical preview on STFC Cloud. If you have any feedback or suggestions, please sent it to cloud-support@stfc.ac.uk
 
 OpenStack Manila provides services for managing shared file systems and is the third storage OpenStack component alongside Cinder and Swift. 
@@ -15,6 +16,7 @@ Manila Commands
 In OpenStack Train, the Manila CLI is mainly used for handling shares. There are some limited commands in the OpenStack CLI for shares.
 
 .. note::
+
     To use Manila commands in OpenStack Train, the compatible version of the python package `python-manilaclient` needs to be installed. For OpenStack Train, this is `v2.0.0`. 
     This can be installed using `pip install python-manilaclient=2.0.0`. 
 
@@ -25,6 +27,7 @@ OpenStack CLI
 In the OpenStack CLI the following commands are available:
 
 .. code-block:: bash 
+
     openstack share --help
 
     share create # create a new share 
@@ -38,14 +41,16 @@ Manila CLI
 Manila provides a CLI for not only for managing shares, but also for viewing the share types available, managing access rules for a share, and viewing the quota for share in your project.
 Commands are run using `manila <sub-command>`. The next section will demonstrate how to do some of the Manila commands. 
 
-How to...
+Usage
 ---------------
 
 View Share Quota 
 ~~~~~~~~~~~~~~~~~~~
-You can view either the overall quota using `manila quota-show`, or the quota and the total quota used with `manila absolute-limits'.
 
-.. code-block:: bash  
+You can view either the overall quota using `manila quota-show`, or the quota and the total quota used with `manila absolute-limits`.
+
+.. code-block:: bash 
+
     $ manila quota-show
     +-----------------------+----------------------------------+
     | Property              | Value                            |
@@ -61,6 +66,7 @@ You can view either the overall quota using `manila quota-show`, or the quota an
     +-----------------------+----------------------------------+
 
 .. code-block:: bash 
+
     $ manila absolute-limits
     +----------------------------+-------+
     | Name                       | Value |
@@ -82,6 +88,7 @@ List Share Types Available
 Share types available can be listed using `manila share-type list` or `openstack share list`. This will list the share types currently available and supported. 
 
 .. code-block:: bash 
+
     $ openstack share list
     +--------------------------------------+-----------------------+------+-------------+-----------+-----------+-----------------+------+-------------------+
     | ID                                   | Name                  | Size | Share Proto | Status    | Is Public | Share Type Name | Host | Availability Zone |
@@ -95,6 +102,7 @@ Create a Share
 Shares can be created by users using the manila create command. The required arguments are the share protocol and the size of the share in GiB. 
 
 .. code-block:: bash 
+
    $ manila create --help
     usage: manila create [--snapshot-id <snapshot-id>] [--name <name>] [--metadata [<key=value> [<key=value> ...]]] [--share-network <network-info>] [--description <description>] [--share-type <share-type>]
                         [--public] [--availability-zone <availability-zone>] [--share-group <share-group>]
@@ -170,6 +178,7 @@ Once a share has been created in Manila, there are only three properties which c
 
 
 .. code-block:: bash
+
     $ manila update --help
     usage: manila update [--name <name>] [--description <description>] [--is-public <is_public>] <share>
 
@@ -188,11 +197,13 @@ Once a share has been created in Manila, there are only three properties which c
 For example, we can update the name of a share from demo_share to updated_demo_share in the following way:
 
 .. code-block:: bash 
+
     $ manila update --name updated_demo_share demo_share
 
 Then we can see the updated share in the list of shares in the current project:
 
 .. code-block:: bash 
+
     $ manila list
     +--------------------------------------+-----------------------+------+-------------+-----------+-----------+-----------------+------+-------------------+
     | ID                                   | Name                  | Size | Share Proto | Status    | Is Public | Share Type Name | Host | Availability Zone |
@@ -206,6 +217,7 @@ Extend a Share
 The size of a share can be increased using the manila extend command.
 
 .. code-block:: bash
+
     $ manila extend --help
     usage: manila extend <share> <new_size>
 
@@ -218,6 +230,7 @@ The size of a share can be increased using the manila extend command.
 For example, if we want to extend a demo share from 1GiBs to 2Gibs, we can do the following:
 
 .. code-block:: bash 
+
     $ manila extend updated_demo_share 2
 
 Viewing the details of the share we can see that the size of the share has been updated.
@@ -264,12 +277,14 @@ Viewing the details of the share we can see that the size of the share has been 
 Shrink a Share 
 ~~~~~~~~~~~~~~~~
 
-.. info:: 
+.. warning:: 
+
     This can only be done through the command line only.
 
 The size of a share can be reduced using the manila shrink command.
 
 .. code-block:: bash
+
     $ manila shrink --help
     usage: manila shrink <share> <new_size>
 
@@ -282,11 +297,13 @@ The size of a share can be reduced using the manila shrink command.
 Using the example in the previous section, we can reduce the size of a share from 2GiB to 1Gib using:
 
 .. code-block:: bash 
+
     $ manila shrink updated_demo_share 1
 
 We can see using manila show updated_demo_share that the size of the share has been updated:
 
 .. code-block:: bash
+
     $ manila show updated_demo_share
     +---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
     | Property                              | Value                                                                                                                       |
@@ -329,12 +346,14 @@ Add Access Rule through CLI
 Access rules can be created for a share through the Web UI or on the command line. 
 
 .. warning::
+
     Only cephx access rules can be used for shares as only CephFS shares are currently supported. Any other type of access rule created will go into error state.
 
 
 To create a new access rule for a share, e.g. a share named demo_share, we can use the manila access-allow command:
 
 .. code-block:: bash 
+
     $ manila access-allow --help
     usage: manila access-allow [--access-level <access_level>] [--metadata [<key=value> [<key=value> ...]]] <share> <access_type> <access_to>
 
@@ -356,6 +375,7 @@ To create a new access rule for a share, e.g. a share named demo_share, we can u
 Then we can view the access rules for the share using:
 
 .. code-block:: bash 
+
     $ manila access-list demo_share 
     +--------------------------------------+-------------+----------------+--------------+--------+------------------------------------------+----------------------------+----------------------------+
     | id                                   | access_type | access_to      | access_level | state  | access_key                               | created_at                 | updated_at                 |
@@ -371,6 +391,7 @@ Remove Access Rule through CLI
 Access rules can be removed from a share using `manila access-deny`:
 
 .. code-block:: bash 
+
     $ manila access-deny --help
     usage: manila access-deny <share> <id>
 
@@ -387,6 +408,7 @@ Delete a Share
 A share can be deleted by using the manila delete command:
 
 .. code-block:: bash
+
     $ manila delete --help
     usage: manila delete [--share-group <share-group>] <share> [<share> ...]
 
