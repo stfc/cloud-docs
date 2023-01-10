@@ -2,7 +2,9 @@
 OpenStack Magnum Users
 ============================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@stfc.ac.uk
+.. warning::  Deprecated
+
+  Magnum is deprecated and will be replaced in the future with Cluster API. 
 
 When a cluster is created, Magnum creates unique credentials for each cluster. This allows the cluster to make changes to its structure
 (e.g. create load balancers for specific services, create and attach cinder volumes, update the stack, etc.) without exposing the user's cloud credentials.
