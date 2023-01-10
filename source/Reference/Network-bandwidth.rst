@@ -9,13 +9,7 @@ The network bandwidth available to VMs will depend on the type of network your V
 
 Internal (172.16.*.*):
 
-- You can expect to see 16-20gbps both VM to VM and VM to other hosts on the STFC site (e.g. Deneb or Echo)
-
 Private (project private networks eg 10.*.*.* or 192.168.*.*):
-
-- You can expect to see 16-20gbps between VMs on the same private networks
-
-- You can expect to see 8gbps between a VM on the private network and other hosts on the STFC site (e.g. Deneb or Echo)
 
 How can I test network bandwidth?
 #################################
