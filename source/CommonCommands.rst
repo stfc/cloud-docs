@@ -2,7 +2,7 @@
 Common Commands
 ================
 
-On Queens, Hypervisors often disable themselves and remove their services from the pool of resources if
+On Train, Hypervisors often disable themselves and remove their services from the pool of resources if
 there are 10 build failures in a row on a hypervisor.
 
 #######################
