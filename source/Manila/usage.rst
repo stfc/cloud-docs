@@ -426,13 +426,17 @@ How to access a CephFS Share
 -------------------------------
 
 There are two methods that can be used to mount a share onto a VM:
+
 - Kernel method 
+  
 - Ceph FUSE method 
 
 The following examples assume that the following have been set up:
 
 - VM (examples use an Ubuntu VM)
+  
 - CephFS Share 
+  
 - cephx share access rules 
 
 
@@ -444,8 +448,7 @@ the ``mount`` command of the form:
 
 .. code-block:: bash 
 
-    mount -t ceph {mon1 ip addr}:6789,{mon2 ip addr}:6789,{mon3 ip addr}:6789:/ \
-    {mount-point} -o name={access-id},secret={access-key}
+    mount -t ceph {mon1 ip addr}:6789,{mon2 ip addr}:6789,{mon3 ip addr}:6789:/{mount-point} -o name={access-id},secret={access-key}
 
 
 Access a share using the FUSE Client 
