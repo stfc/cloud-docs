@@ -13,9 +13,10 @@ Note: our flavors are created in so that they will efficiently pack onto the har
 ################################
 c*.* (e.g. c1.small or c3.large)
 ################################
-.. Warning:: Deprecated
 
-    Please use l* flavors instead
+.. Warning:: C-flavors
+
+    In the future C flavors are going to be decommissioned. It is recommend to use l flavors instead.
     
 These are flavors with dedicated CPU cores meaning that a VCPU core assigned to your VM is dedicated to you.
 
