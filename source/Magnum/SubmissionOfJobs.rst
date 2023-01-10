@@ -2,7 +2,9 @@
 Submitting jobs to a Kubernetes Cluster
 ========================================
 
-    **Important:** Magnum is currently in technical preview on STFC Cloud. If you have any feedback or suggestions please send it to cloud-support@gridpp.rl.ac.uk
+.. warning::  Deprecated
+
+  Magnum is deprecated and will be replaced in the future with Cluster API. 
 
 A Kubernetes job creates one or more pods on a cluster and have the added benefit of being retried until a specified number of pods successfully terminate. Jobs
 are described by YAML and can be executed using `kubectl`.
