@@ -422,6 +422,76 @@ A share can be deleted by using the manila delete command:
                             Optional share group name or ID which contains the share (Experimental, Default=None).
 
 
+How to access a CephFS Share 
+-------------------------------
+
+There are two methods that can be used to mount a share onto a VM:
+- Kernel method 
+- Ceph FUSE method 
+
+The following examples assume that the following have been set up:
+
+- VM (examples use an Ubuntu VM)
+- CephFS Share 
+- cephx share access rules 
+
+
+Access a share using the Kernel Client
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The kernel client requires the ``ceph-common`` package to be installed. To access the filesystem on a share, we can use 
+the ``mount`` command of the form:
+
+.. code-block:: bash 
+
+    mount -t ceph {mon1 ip addr}:6789,{mon2 ip addr}:6789,{mon3 ip addr}:6789:/ \
+    {mount-point} -o name={access-id},secret={access-key}
+
+
+Access a share using the FUSE Client 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to use the FUSE client, make sure the version of the ``ceph-fuse`` package is at least ``octopus``. The version of the package can be found using:
+
+.. code-block:: bash 
+
+    ~$ ceph-fuse --version
+    ceph version 15.2.16 (d46a73d6d0a67a79558054a3a5a72cb561724974) octopus (stable)
+
+
+To use the FUSE client, we need to set up a ``keyring`` and a ``ceph.conf`` file. If we have named the cephx rule ``alice``, then 
+the keyring file will need to be named ``alice.keyring`` and needs to contain the following:
+
+.. code-block:: bash 
+    
+    [client.alice]
+        key = CEPHX_KEY
+
+Then for the ``ceph.conf`` file, we need to add the IP addresses for the monitors from the ceph cluster. 
+The IP address for the ceph monitors for the share can be found using ``manila show <share-id>`` under the `export locations` field.
+
+.. code-block:: bash 
+
+    [client]
+        client quota = True
+        mon host = MON_HOST_IP_ADDRESSES
+
+
+Then the filesystem can be mounted to a ``test`` directory using the ``alice`` cephx access rule:
+
+.. code-block:: bash
+
+    sudo ceph-fuse ~/mnt \
+    --id=alice \
+    --conf=./ceph.conf \
+    --keyring=./alice.keyring \
+    --client-mountpoint={mount-point}
+
+Here the mount point is the path to the share on the ceph cluster. 
+The share path can be found using ``manila show <share-id>`` under the ``export locations`` field.
+
+
+
 References:
 -------------
 
