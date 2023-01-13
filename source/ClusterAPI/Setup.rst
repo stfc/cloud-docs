@@ -2,6 +2,11 @@
 Setup a new cluster using Cluster API
 #####################################
 
+.. warning:: Under Testing
+    Cluster API is currently under release testing
+    between interested users and the cloud team.
+    It is not rated for production workloads at this time.
+
 .. contents::
 
 Deployment Considerations
