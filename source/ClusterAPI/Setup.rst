@@ -71,8 +71,8 @@ can be installed and configured using the following commands:
     sudo mv ./clusterctl /usr/local/bin/clusterctl
 
 - You will need to exit and login again if you have installed docker to pick up the new group membership
-- Go modules can be permanently added to the path by appending `export PATH="/home/$USER/go/bin:$PATH"` to the users `~/.bashrc`.
-  Alternatively, the command can be re-ran after logging out and in.
+- Go modules can be permanently added to the path by appending `export PATH="/home/$USER/go/bin:$PATH"`
+  to the users `~/.bashrc` file, then `source ~/.bashrc`.
 
 
 clouds.yaml Prep
@@ -80,14 +80,14 @@ clouds.yaml Prep
 
 - Follow the steps in: :ref:`clouds_yaml`
 - Currently clusterctl will attempt to verify the CA chain using a provided public CA certificate, but this is not required for Openstack components.
-  `verify: false` must be added to clouds.yaml: 
+  `verify: false` **must** be added to clouds.yaml:
 
 The resulting file should look like:
 
 .. code-block:: yaml
 
     clouds:
-        cloud-name:
+        openstack:
             auth:
                 auth_url: https://openstack.stfc.ac.uk:5000/v3
                 username: "username"
@@ -99,6 +99,15 @@ The resulting file should look like:
             verify: false
             interface: "public"
             identity_api_version: 3 
+
+- Ensure the credentials work with the following command
+
+.. code-block:: bash
+
+    openstack --os-cloud openstack keypair list
+
+*Note: Keypairs are associated with individual accounts. You may need to
+create a new keypair if you are using a service account.*
 
 Openstack Preparation
 ---------------------
@@ -118,8 +127,8 @@ Configuring the cluster
 .. code-block:: bash
 
     wget https://raw.githubusercontent.com/kubernetes-sigs/cluster-api-provider-openstack/master/templates/env.rc -O /tmp/env.rc
-    # Substitute cloud-name for the name used in clouds.yaml
-    source /tmp/env.rc ~/.config/openstack/clouds.yaml <cloud-name>
+    # Substitute openstack for the name in your clouds.yaml, typically "openstack"
+    source /tmp/env.rc ~/.config/openstack/clouds.yaml openstack
     export OPENSTACK_DNS_NAMESERVERS=130.246.209.132
     export OPENSTACK_FAILURE_DOMAIN=ceph
     export OPENSTACK_EXTERNAL_NETWORK_ID=External
@@ -202,7 +211,12 @@ Provisioning the new cluster
 
     kubectl apply -f $CLUSTER_NAME.yaml
 
-- Openstack deployment can be monitored with `kubectl logs deploy/capo-controller-manager -n capo-system -f`
+- Openstack deployment can be optionally monitored with
+
+.. code-block:: bash
+
+    kubectl logs deploy/capo-controller-manager -n capo-system -f`
+
 - Wait for `kubectl get kubeadmcontrolplane` to show the control plane initialised but unavailable:
 
 .. code-block::
