@@ -9,7 +9,7 @@ OpenStack Manila provides services for managing shared file systems and is the t
 Manila provides a way to provision remote, sharable file systems (shares) which can be accessed by multiple instances simultaneously and file systems can have access rules assigned to control read-write and read-only access to the file system.
 On STFC Cloud, Manila provides a way to create **Ceph file sytems** (CephFS).
 
-
+.. contents::
 
 Manila Commands
 -----------------
