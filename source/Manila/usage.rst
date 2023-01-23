@@ -136,7 +136,7 @@ So if we want to create a new CephFS share of size 1GiB, we can use the followin
 
 .. code-block:: bash 
 
-    $ manila create --name demo_share --description "Demo creating a share" --share-type SHARE_TYPE_ID CephFS 1
+    $ manila create --name demo_share --description "Demo creating a share" --share-type cephfs cephfs 1
     +---------------------------------------+------------------------------------------------------------------+
     | Property                              | Value                                                            |
     +---------------------------------------+------------------------------------------------------------------+
@@ -158,7 +158,7 @@ So if we want to create a new CephFS share of size 1GiB, we can use the followin
     | source_share_group_snapshot_member_id | None                                                             |
     | user_id                               | USER_ID                                                          |
     | name                                  | demo_share                                                       |
-    | share_type                            | SHARE_TYPE_ID                                                    |
+    | share_type                            | cephfs                                                    |
     | has_replicas                          | False                                                            |
     | replication_type                      | None                                                             |
     | created_at                            | 2022-10-19T15:03:28.000000                                       |
