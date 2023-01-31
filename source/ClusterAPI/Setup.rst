@@ -49,7 +49,10 @@ recommended to use this cluster for any production workloads.
 Bootstrap Machine Prep
 ----------------------
 
-A Ubuntu machine is used to provide the KinD cluster. The following packages are required and 
+A Ubuntu machine is used to provide the KinD cluster. This should use the normal
+cloud Ubuntu image, not the stripped down CAPI image designed for nodes.
+
+The following packages are required and
 can be installed and configured using the following commands:
 
 .. code-block:: bash
