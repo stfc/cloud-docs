@@ -60,6 +60,9 @@ can be installed and configured using the following commands:
     # Docker
     sudo apt install -y docker.io
     sudo usermod -aG docker $USER
+    # Snap
+    sudo apt-get update && sudo apt-get install -y snapd
+    export PATH=$PATH:/snap/bin
     # Kubectl
     sudo snap install kubectl --classic
     # KinD
@@ -74,8 +77,12 @@ can be installed and configured using the following commands:
     sudo mv ./clusterctl /usr/local/bin/clusterctl
 
 - You will need to exit and login again if you have installed docker to pick up the new group membership
-- Go modules can be permanently added to the path by appending `export PATH="/home/$USER/go/bin:$PATH"`
-  to the users `~/.bashrc` file, then `source ~/.bashrc`.
+- Go modules can be permanently added to the path by appending the following to the user's .bashrc file:
+  Then source ~/.bashrc or logout and login again.
+
+.. code-block:: bash
+
+    export PATH="/home/$USER/go/bin:$PATH"
 
 
 clouds.yaml Prep
@@ -102,12 +109,6 @@ The resulting file should look like:
             verify: false
             interface: "public"
             identity_api_version: 3 
-
-- Ensure the credentials work with the following command
-
-.. code-block:: bash
-
-    openstack --os-cloud openstack keypair list
 
 *Note: Keypairs are associated with individual accounts. You may need to
 create a new keypair if you are using a service account.*
@@ -147,7 +148,7 @@ Configuring the cluster
     # The public cluster API image as found in the Openstack web interface
     export OPENSTACK_IMAGE_NAME=<image_name>
     # The SSH key pair name from in the Openstack web interface
-    export OPENSTACK_SSH_KEY_NAME=<ssh key pair name>
+    export OPENSTACK_SSH_KEY_NAME="<ssh key pair name>"
 
 - Create the KinD bootstrap cluster:
 
@@ -218,7 +219,7 @@ Provisioning the new cluster
 
 .. code-block:: bash
 
-    kubectl logs deploy/capo-controller-manager -n capo-system -f`
+    kubectl logs deploy/capo-controller-manager -n capo-system -f
 
 - Wait for `kubectl get kubeadmcontrolplane` to show the control plane initialised but unavailable:
 
