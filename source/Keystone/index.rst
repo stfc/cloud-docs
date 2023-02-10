@@ -1,4 +1,4 @@
-Keystone
+Authentication
 ===========================================
 
 .. toctree::

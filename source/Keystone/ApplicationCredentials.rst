@@ -7,6 +7,9 @@ without embedding the main user's password in the application configuration.
 
 Application credentials can be created either through the web interface or command line
 
+.. note::
+
+  Here we assume that users are familiar with using ``clouds.yaml``.
 
 
 Create Credential from the Web interface
@@ -21,7 +24,7 @@ The form has 7 fields:
 
 - **Description:** Description of the application credential. This could be the description of which application will use this credential or the purpose of the credential.
 
-- **Secret:** A password for the credential which will be used in order to authenticate access through keystone. **This must be different to the user's password.**
+- **Secret:** A password for the credential which will be used in order to authenticate access through keystone. If left blank a secret will be generated automatically.
 
 - **Expiration Date:** Date that the application credential expires and will be deleted. If left blank, the application credential will not expire.
 
@@ -106,12 +109,8 @@ Below is an example of creating an application credential which expires on 06/07
 
     The secret is only revealed **once**. If a user has forgotten the secret, a new application credential as to be generated.
 
-g
-**Q:** What happens once an application credential has expired?
-
-**A:** After the application credential has expired, it is still visible in the application credential list.
+After an application credential has expired, it is still visible in the application credential list.
 If the application credential is used after it has expired, nothing will happen and no one can get access to the project via the expired credential.
-
 
 RC source and clouds.yaml file
 ##############################
@@ -134,19 +133,11 @@ clouds.yaml
   # OS_CLOUD=openstack or --os-cloud=openstack
   clouds:
     openstack:
-
       auth:
-
         auth_url: AUTH_URL
-
         application_credential_id: "APP_CREDENTAL_ID"
         application_credential_secret: "APP_CREDENTIAL_SECRET"
-
-
-
       region_name: "RegionOne"
-
-
       interface: "public"
       identity_api_version: 3
       auth_type: "v3applicationcredential"
@@ -158,7 +149,6 @@ RC File
 .. code-block:: bash
 
   #!/usr/bin/env bash
-
   export OS_AUTH_TYPE=v3applicationcredential
   export OS_AUTH_URL=https://AUTH-URL #this will be the Identity service endpoint URL under API Access
   export OS_IDENTITY_API_VERSION=3
@@ -166,8 +156,6 @@ RC File
   export OS_INTERFACE=public
   export OS_APPLICATION_CREDENTIAL_ID=APP_CREDENTIAL_ID
   export OS_APPLICATION_CREDENTIAL_SECRET=APP_CREDENTIAL_SECRET
-
-
 
 
 References
