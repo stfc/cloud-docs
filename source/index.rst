@@ -40,6 +40,7 @@ Welcome to the STFC Cloud documentation!
    ClusterAPI/index
    ImproveTheDocs
    Heat/index
+   Keystone/index
    Manila/index
    Octavia/index
    Swift/index
