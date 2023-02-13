@@ -13,6 +13,7 @@ Welcome to stfc-cloud-docs's documentation!
    :caption: Getting Started:
 
    CommonCommands
+   Keystone/index
    howto/index
    policies/index
 
@@ -40,7 +41,6 @@ Welcome to stfc-cloud-docs's documentation!
    ClusterAPI/index
    ImproveTheDocs
    Heat/index
-   Keystone/index
    Manila/index
    Octavia/index
    Swift/index
