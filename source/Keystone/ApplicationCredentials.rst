@@ -9,7 +9,8 @@ Application credentials can be created either through the web interface or comma
 
 .. note::
 
-  Here we assume that users are familiar with using ``clouds.yaml``.
+  Here we assume that users are familiar with using ``clouds.yaml``. 
+  See :ref:`clouds_yaml` for more information.
 
 
 Create Credential from the Web interface
@@ -24,7 +25,7 @@ The form has 7 fields:
 
 - **Description:** Description of the application credential. This could be the description of which application will use this credential or the purpose of the credential.
 
-- **Secret:** A password for the credential which will be used in order to authenticate access through keystone. If left blank a secret will be generated automatically.
+- **Secret:** A password for the credential which will be used in order to authenticate access through keystone. We recommend you leave this blank or use a tool like *pwgen* to generate this automatically
 
 - **Expiration Date:** Date that the application credential expires and will be deleted. If left blank, the application credential will not expire.
 
