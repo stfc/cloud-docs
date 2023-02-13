@@ -12,16 +12,6 @@ Setup a new cluster using Cluster API
 Deployment Considerations
 =========================
 
-Deployment Account
-------------------
-
-The deployment is tied to the account which created it. This includes their
-credentials being encoded as an opaque secret within the cluster for the cluster API openstack component.
-
-For production workloads, and long-lived clusters with multiple accounts a service account it recommended.
-This means the cluster isn't tied to the lifetime of a single user's account or password. A service
-account can be requested through our :ref:`contact_details`.
-
 Management Machine
 ------------------
 
@@ -33,7 +23,7 @@ to quickly gain access and perform recovery or upgrades as required.
 Account Security
 ----------------
 
-A `clouds.yaml` file with the user's password is also required. This file should be removed or restricted
+A `clouds.yaml` file with the application credentials is also required. This file should be removed or restricted
 on shared machines to prevent unauthorized access.
 
 Preparing to Deploy
@@ -55,70 +45,96 @@ cloud Ubuntu image, not the stripped down CAPI image designed for nodes.
 The following packages are required and
 can be installed and configured using the following commands:
 
+- Docker is used to run a Kubernetes staging cluster locally
+
 .. code-block:: bash
 
     # Docker
     sudo apt install -y docker.io
     sudo usermod -aG docker $USER
-    # Snap
-    sudo apt-get update && sudo apt-get install -y snapd
-    export PATH=$PATH:/snap/bin
-    # Kubectl
-    sudo snap install kubectl --classic
-    # KinD
-    sudo snap install go --classic
-    export PATH="/home/$USER/go/bin:$PATH"
-    go install sigs.k8s.io/kind@v0.14.0
-    # YQ (Used by Cluster API)
-    sudo snap install yq
-    # Clusterctl
-    curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.2.4/clusterctl-linux-amd64 -o clusterctl
-    chmod +x ./clusterctl
-    sudo mv ./clusterctl /usr/local/bin/clusterctl
 
 - You will need to exit and login again if you have installed docker to pick up the new group membership
+- Snap is used to install kubectl, go (for KinD) and Helm
+
+.. code-block:: bash
+
+    sudo apt-get update && sudo apt-get install -y snapd
+    export PATH=$PATH:/snap/bin
+    for i in kubectl go helm; do sudo snap install $i --classic; done
+
 - Go modules can be permanently added to the path by appending the following to the user's .bashrc file:
-  Then source ~/.bashrc or logout and login again.
+  Then `source ~/.bashrc` or logout and login again.
 
 .. code-block:: bash
 
     export PATH="/home/$USER/go/bin:$PATH"
 
+- Start the KinD cluster to bootstrap the main cluster
+
+.. code-block:: bash
+
+    go install sigs.k8s.io/kind@v0.14.0
+    kind create cluster
+
+- Install clusterctl and the Openstack provider into your KinD cluster:
+
+.. code-block:: bash
+
+    # YQ (Used by Cluster API)
+    sudo snap install yq
+    # Clusterctl
+    curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.3.3/clusterctl-linux-amd64 -o clusterctl
+    chmod +x ./clusterctl
+    sudo mv ./clusterctl /usr/local/bin/clusterctl
+    clusterctl init --infrastructure openstack
+
+These steps only have to be completed once per management machine.
+
+Openstack Preparation
+---------------------
+
+- `Ensure a dedicated floating IP exists. <https://openstack.stfc.ac.uk/project/floating_ips/>`_ If required, allocate an IP to the project from the External pool.
+- Clone https://github.com/DavidFair/scd-capi-values (this will be upstreamed soon)
 
 clouds.yaml Prep
 ----------------
 
-- Follow the steps in: :ref:`clouds_yaml`
-- Currently clusterctl will attempt to verify the CA chain using a provided public CA certificate, but this is not required for Openstack components.
-  `verify: false` **must** be added to clouds.yaml:
-
-The resulting file should look like:
+- Generate your application credentials: :ref:`Openstack Application Credentials<application_credentials>`. 
+  It is recommended you use Horizon (the web interface) to download the clouds.yaml file.
+- Move your clouds.yaml file into the `scd-capi-values` directory, it should have the following format:
 
 .. code-block:: yaml
 
     clouds:
         openstack:
             auth:
-                auth_url: https://openstack.stfc.ac.uk:5000/v3
-                username: "username"
-                password: "password"
-                project_id: project_id
-                project_name: "project_name"
-                user_domain_name: "stfc"
-            region_name: "RegionOne"
-            verify: false
-            interface: "public"
-            identity_api_version: 3 
+            auth_url: https://openstack.stfc.ac.uk:5000/v3
+            application_credential_id: ""
+            application_credential_secret: ""
+        region_name: "RegionOne"
+        interface: "public"
+        identity_api_version: 3
+        auth_type: "v3applicationcredential"
 
-*Note: Keypairs are associated with individual accounts. You may need to
-create a new keypair if you are using a service account.*
+- Add the UUID of the project to create the cluster in. This can be found `here <https://openstack.stfc.ac.uk/identity/>`_.
 
-Openstack Preparation
----------------------
+Your clouds.yaml should now look like:
 
-- `Ensure a keypair exists <https://openstack.stfc.ac.uk/project/key_pairs>`_
-- `Make a note of the latest public Cluster API image name and K8s version <https://openstack.stfc.ac.uk/project/images>`_
-- `Ensure a dedicated floating IP exists. <https://openstack.stfc.ac.uk/project/floating_ips/>`_ If required, allocate an IP to the project from the External pool.
+.. code-block:: yaml
+
+    clouds:
+        openstack:
+            auth:
+            auth_url: https://openstack.stfc.ac.uk:5000/v3
+            application_credential_id: ""
+            application_credential_secret: ""
+            project_id: ""
+        region_name: "RegionOne"
+        interface: "public"
+        identity_api_version: 3
+        auth_type: "v3applicationcredential"
+
+- Place this file in the scd-capi-values directory you cloned earlier.
 
 Creating the cluster
 ====================
@@ -126,121 +142,35 @@ Creating the cluster
 Configuring the cluster
 -----------------------
 
-- Prepare the environment variables with details from the pre-prepared Openstack file:
+- The mandatory values in `user-values.yaml` must be set. Optional
+  values may also be changed as required.
+- The `flavors.yaml` file contains the Openstack flavors to use for
+  worker nodes. These can be changed as required but will use l3.nano by default if unspecified.
 
 .. code-block:: bash
 
-    wget https://raw.githubusercontent.com/kubernetes-sigs/cluster-api-provider-openstack/master/templates/env.rc -O /tmp/env.rc
-    # Substitute openstack for the name in your clouds.yaml, typically "openstack"
-    source /tmp/env.rc ~/.config/openstack/clouds.yaml openstack
-    export OPENSTACK_DNS_NAMESERVERS=130.246.209.132
-    export OPENSTACK_FAILURE_DOMAIN=ceph
-    export OPENSTACK_EXTERNAL_NETWORK_ID=External
+    cd scd-capi-values
+    export CLUSTER_NAME="demo-cluster"  # or your cluster name
+    
+    # Install the custom resource definitions (CRDs)
+    helm repo add capi-addons https://stackhpc.github.io/cluster-api-addon-provider
+    helm upgrade cluster-api-addon-provider capi-addons/cluster-api-addon-provider --install --version ">=0.1.0-dev.0.main.0,<0.1.0-dev.0.main.9999999999" --wait
 
-- The following environment variables should be set based on user requirements.
-  (If you need GPU or other specialised nodes it's recommended to use a generic VM such as l2.tiny then
-  create a machine deployment as described in TODO)
+    # Deploy the cluster called "demo-cluster"
+    helm repo add capi https://stackhpc.github.io/capi-helm-charts
+    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml
 
-.. code-block:: bash
-
-    export OPENSTACK_CONTROL_PLANE_MACHINE_FLAVOR=<flavour>
-    export OPENSTACK_NODE_MACHINE_FLAVOR=<flavour>
-    # The public cluster API image as found in the Openstack web interface
-    export OPENSTACK_IMAGE_NAME=<image_name>
-    # The SSH key pair name from in the Openstack web interface
-    export OPENSTACK_SSH_KEY_NAME="<ssh key pair name>"
-
-- Create the KinD bootstrap cluster:
-
-.. code-block:: bash
-
-    kind create cluster && kubectl cluster-info
-
-- Pick a name for the cluster, this will be used in subsequent commands:
-
-.. code-block:: bash
-
-    export CLUSTER_NAME=demo
-
-- Initialise clusterctl on the KinD bootstrap cluster
-
-.. code-block:: bash
-
-    clusterctl init --infrastructure openstack
-
-- Generate the cluster config:
-
-.. code-block:: bash
-
-    # This is based on the K8s in the built image
-    # It's recommended to have an odd quorum of control machines, i.e. 1/3/5
-    clusterctl generate cluster $CLUSTER_NAME \
-    --kubernetes-version v1.x.y \
-    --control-plane-machine-count=3 \
-    --worker-machine-count=1 > $CLUSTER_NAME.yaml
-
-- Edit the generated `$CLUSTER_NAME.yaml` file to specify the allocated floating IP. 
-
-.. warning::
-
-    If the selected floating IP is already being used by an existing load balancer in the
-    same project it will be disassociated and re-allocated to the new load balancer.
-
-The existing block needs changing from:
-
-.. code-block:: yaml
-
-    spec:
-      apiServerLoadBalancer:
-        enabled: true
-
-To the floating IP pre-allocated in the project:
-
-.. code-block:: yaml
-
-    spec:
-      apiServerFloatingIP: 130.246.x.y
-      apiServerLoadBalancer:
-        enabled: true
-
-This ensures the cluster load balancer will always use the same address, and will not
-use the entire project's quota allocating new floating IPs if there are any problems.
-
-Provisioning the new cluster
-----------------------------
-
-- Create the cluster by applying the generated cluster definition:
-
-.. code-block:: bash
-
-    kubectl apply -f $CLUSTER_NAME.yaml
-
-- Openstack deployment can be optionally monitored with
+- Progress can be monitored with the following command in a separate terminal:
 
 .. code-block:: bash
 
     kubectl logs deploy/capo-controller-manager -n capo-system -f
 
-- Wait for `kubectl get kubeadmcontrolplane` to show the control plane initialised but unavailable:
-
-.. code-block::
-
-    NAME                    CLUSTER   INITIALIZED   API SERVER AVAILABLE   REPLICAS   READY   UPDATED   UNAVAILABLE   AGE     VERSION
-    demo-control-plane      demo-v1   true                                 2                  2         2             6m47s   v1.x.y
-
-- Download the kubeconfig for the new cluster:
+- When the deployment is complete clusterctl will report the cluster as Ready: True
 
 .. code-block:: bash
 
-    clusterctl get kubeconfig $CLUSTER_NAME > $CLUSTER_NAME.kubeconfig
-
-- Deploy a networking overlay. This tutorial assumes the use of Calico. The latest release can be found `here <https://projectcalico.docs.tigera.io/release-notes/>`_
-
-.. code-block:: bash
-
-    kubectl --kubeconfig=$CLUSTER_NAME.kubeconfig apply -f https://docs.projectcalico.org/manifests/calico.yaml
-
-- The remaining nodes will now come up and show as ready in `kubectl get nodes --kubeconfig $CLUSTER_NAME.kubeconfig`
+    clusterctl describe cluster $CLUSTER_NAME
 
 Moving the control plane
 ========================
@@ -260,14 +190,15 @@ Moving from KinD cluster
 
 .. code-block:: bash
 
-    clusterctl init --infrastructure openstack --kubeconfig=$CLUSTER_NAME.kubeconfig
-    clusterctl move --to-kubeconfig $CLUSTER_NAME.kubeconfig
+    clusterctl get kubeconfig $CLUSTER_NAME > kubeconfig.$CLUSTER_NAME
+    clusterctl init --infrastructure openstack --kubeconfig=kubeconfig.$CLUSTER_NAME
+    clusterctl move --to-kubeconfig kubeconfig.$CLUSTER_NAME
 
 - Ensure the control plane is now running on the new cluster:
 
 .. code-block:: bash
 
-    kubectl get kubeadmcontrolplane --kubeconfig=$CLUSTER_NAME.kubeconfig
+    kubectl get kubeadmcontrolplane --kubeconfig=kubeconfig.$CLUSTER_NAME
 
 KinD Shutdown
 -------------
@@ -276,9 +207,12 @@ KinD Shutdown
 
 .. code-block:: bash
 
-    cp -v $CLUSTER_NAME.kubeconfig ~/.kube/config
+    cp -v kubeconfig.$CLUSTER_NAME ~/.kube/config
     # Ensure kubectl now uses the new kubeconfig displayed the correct nodes:
     kubectl get nodes
+    
+    # Update the cluster to ensure everything lines up with your helm chart
+    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml
 
 - Remove KinD bootstrap cluster
 
@@ -286,3 +220,4 @@ KinD Shutdown
 
     kind delete cluster
 
+Your cluster is now complete
