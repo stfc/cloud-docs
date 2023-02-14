@@ -23,8 +23,9 @@ to quickly gain access and perform recovery or upgrades as required.
 Account Security
 ----------------
 
-A `clouds.yaml` file with the application credentials is also required. This file should be removed or restricted
-on shared machines to prevent unauthorized access.
+A `clouds.yaml` file with the application credentials is also required. The credentials should not be unrestricted,
+as a compromised cluster would allow an attacker to create additional credentials.
+This file should be removed or restricted on shared machines to prevent unauthorized access.
 
 Preparing to Deploy
 ===================
@@ -32,8 +33,8 @@ Preparing to Deploy
 Background
 ----------
 
-A Kuberenetes cluster is required to create the cluster. To break this "chicken-egg" problem
-a Kuberenetes-in-Docker (KinD) cluster is created to bootstrap the main cluster. It is not
+A Kubernetes cluster is required to create the cluster. To break this "chicken-egg" problem
+a Kubernetes-in-Docker (KinD) cluster is created to bootstrap the main cluster. It is not
 recommended to use this cluster for any production workloads.
 
 Bootstrap Machine Prep
@@ -116,7 +117,8 @@ clouds.yaml Prep
         identity_api_version: 3
         auth_type: "v3applicationcredential"
 
-- Add the UUID of the project to create the cluster in. This can be found `here <https://openstack.stfc.ac.uk/identity/>`_.
+- Add the UUID of the project you want to create the cluster in. This is the project ID under the Openstack section which is omitted by default. 
+  This can be found `here <https://openstack.stfc.ac.uk/identity/>`_.
 
 Your clouds.yaml should now look like:
 
@@ -138,6 +140,23 @@ Your clouds.yaml should now look like:
 
 Creating the cluster
 ====================
+
+Yaml Files
+----------
+
+The configuration is spread across multiple yaml files to make it easier to manage.
+These are as follows:
+
+- `values.yaml` contains the default values for the cluster using the STFC Cloud service. These should not be changed.
+- `user-values.yaml` contains some values that must be set by the user. There are also optional values that can be changed too for advanced users.
+- `flavors.yaml` contains the Openstack flavors to use for worker nodes. Common flavors are provided and can be uncommented and changed as required.
+   By default the cluster will use l3.nano workers by default if unspecified.
+- `clouds.yaml` contains the Openstack application credentials. This file should be in the same directory as the other yaml files.
+
+The cloud team will periodically update `flavors.yaml`, `values.yaml`, and `user-values.yaml` to reflect changes in the STFC Cloud service.
+These include new versions of Kubernetes or machine images, best practices, new flavors...etc. A user will pull these changes 
+by running `git pull` in the scd-capi-values directory in the future.
+
 
 Configuring the cluster
 -----------------------
