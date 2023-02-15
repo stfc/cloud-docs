@@ -23,7 +23,7 @@ to quickly gain access and perform recovery or upgrades as required.
 Account Security
 ----------------
 
-A `clouds.yaml` file with the application credentials is also required. The credentials should not be unrestricted,
+A ``clouds.yaml`` file with the application credentials is also required. The credentials should not be unrestricted,
 as a compromised cluster would allow an attacker to create additional credentials.
 This file should be removed or restricted on shared machines to prevent unauthorized access.
 
@@ -113,7 +113,7 @@ clouds.yaml Prep
 
 - Generate your application credentials: :ref:`Openstack Application Credentials<application_credentials>`. 
   It is recommended you use Horizon (the web interface) to download the clouds.yaml file.
-- Move your clouds.yaml file into the `scd-capi-values` directory, it should have the following format:
+- Move your clouds.yaml file into the ``scd-capi-values`` directory, it should have the following format:
 
 .. code-block:: yaml
 
@@ -158,24 +158,27 @@ Yaml Files
 The configuration is spread across multiple yaml files to make it easier to manage.
 These are as follows:
 
-- `values.yaml` contains the default values for the cluster using the STFC Cloud service. These should not be changed.
-- **`user-values.yaml` contains some values that must be set by the user.** There are also optional values that can be changed too for advanced users.
-- `flavors.yaml` contains the Openstack flavors to use for worker nodes. Common flavors are provided and can be uncommented and changed as required.
-   By default the cluster will use l3.nano workers by default if unspecified.
-- `clouds.yaml` contains the Openstack application credentials. This file should be in the same directory as the other yaml files.
+- ``values.yaml`` contains the default values for the cluster using the STFC Cloud service. These should not be changed.
 
-The cloud team will periodically update `flavors.yaml`, `values.yaml`, and `user-values.yaml` to reflect changes in the STFC Cloud service.
+-  ``user-values.yaml`` contains some values that must be set by the user. There are also optional values that can be changed too for advanced users.
+
+- ``flavors.yaml`` contains the Openstack flavors to use for worker nodes. Common flavors are provided and can be uncommented and changed as required. By default the cluster will use ``l3.nano`` workers by default if unspecified.
+
+- ``clouds.yaml`` contains the Openstack application credentials. This file should be in the same directory as the other yaml files.
+
+The cloud team will periodically update ``flavors.yaml``, ``values.yaml``, and ``user-values.yaml`` to reflect changes in the STFC Cloud service.
 These include new versions of Kubernetes or machine images, best practices, new flavors...etc. A user will pull these changes 
-by running `git pull` in the scd-capi-values directory in the future.
+by running ``git pull`` in the ``scd-capi-values`` directory in the future.
 
 
 Configuring the cluster
 -----------------------
 
-- The mandatory values in `user-values.yaml` must be set. Optional
+- The mandatory values in ``user-values.yaml`` must be set. Optional
   values may also be changed as required.
-- The `flavors.yaml` file contains the Openstack flavors to use for
-  worker nodes. These can be changed as required but will use l3.nano by default if unspecified.
+
+- The ``flavors.yaml`` file contains the Openstack flavors to use for worker nodes. 
+  These can be changed as required but will use ``l3.nano`` by default if unspecified.
 
 .. code-block:: bash
 
