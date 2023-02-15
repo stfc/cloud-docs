@@ -54,7 +54,8 @@ can be installed and configured using the following commands:
     sudo apt install -y docker.io
     sudo usermod -aG docker $USER
 
-- You will need to exit and login again if you have installed docker to pick up the new group membership
+- You will need to exit and login again if you have added yourself to the docker group (usermod).
+  This is to pick up the new group membership
 - Snap is used to install kubectl, go (for KinD) and Helm
 
 .. code-block:: bash
@@ -64,11 +65,12 @@ can be installed and configured using the following commands:
     for i in kubectl go helm; do sudo snap install $i --classic; done
 
 - Go modules can be permanently added to the path by appending the following to the user's .bashrc file:
-  Then `source ~/.bashrc` or logout and login again.
 
 .. code-block:: bash
 
-    export PATH="/home/$USER/go/bin:$PATH"
+    echo "/home/$USER/go/bin:$PATH" >> ~/.bashrc
+
+- Then `source ~/.bashrc` or logout and login again.
 
 - Start the KinD cluster to bootstrap the main cluster
 
@@ -89,7 +91,16 @@ can be installed and configured using the following commands:
     sudo mv ./clusterctl /usr/local/bin/clusterctl
     clusterctl init --infrastructure openstack
 
-These steps only have to be completed once per management machine.
+If you run into GitHub rate limiting you will have to generate a personal API token as described
+`here. <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_
+This only requires the Repo scope, and is set on the CLI as follows
+
+.. code-block:: bash
+
+    export GITHUB_TOKEN=<your token>
+
+
+These setup steps only have to be completed once per management machine.
 
 Openstack Preparation
 ---------------------
@@ -126,11 +137,11 @@ Your clouds.yaml should now look like:
 
     clouds:
         openstack:
-            auth:
-            auth_url: https://openstack.stfc.ac.uk:5000/v3
-            application_credential_id: ""
-            application_credential_secret: ""
-            project_id: ""
+          auth:
+          auth_url: https://openstack.stfc.ac.uk:5000/v3
+          application_credential_id: ""
+          application_credential_secret: ""
+          project_id: ""
         region_name: "RegionOne"
         interface: "public"
         identity_api_version: 3
@@ -148,7 +159,7 @@ The configuration is spread across multiple yaml files to make it easier to mana
 These are as follows:
 
 - `values.yaml` contains the default values for the cluster using the STFC Cloud service. These should not be changed.
-- `user-values.yaml` contains some values that must be set by the user. There are also optional values that can be changed too for advanced users.
+- **`user-values.yaml` contains some values that must be set by the user.** There are also optional values that can be changed too for advanced users.
 - `flavors.yaml` contains the Openstack flavors to use for worker nodes. Common flavors are provided and can be uncommented and changed as required.
    By default the cluster will use l3.nano workers by default if unspecified.
 - `clouds.yaml` contains the Openstack application credentials. This file should be in the same directory as the other yaml files.
@@ -177,7 +188,7 @@ Configuring the cluster
 
     # Deploy the cluster called "demo-cluster"
     helm repo add capi https://stackhpc.github.io/capi-helm-charts
-    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml
+    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml --wait
 
 - Progress can be monitored with the following command in a separate terminal:
 
