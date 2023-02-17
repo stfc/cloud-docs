@@ -16,7 +16,7 @@ c*.* (e.g. c1.small or c3.large)
 
 .. Warning:: C-flavors
 
-    In the future C flavors are going to be decommissioned. It is recommend to use l flavors instead.
+    C flavors are now deprecated and new VMs will not be able to be created after the 12th of April 2023. It is recommend to use l flavors instead.
     
 These are flavors with dedicated CPU cores meaning that a VCPU core assigned to your VM is dedicated to you.
 
