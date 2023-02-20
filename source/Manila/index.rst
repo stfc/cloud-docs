@@ -6,3 +6,4 @@ Manila
    :caption: Contents:
 
    usage
+   manilaKubernetes
