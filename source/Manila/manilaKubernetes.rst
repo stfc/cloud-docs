@@ -60,8 +60,8 @@ You should then be able to see the following pods in the `ceph-csi-cephfs` names
 manila-csi
 ~~~~~~~~~~~~~~~~~~
 
-Before deploying the Helm chart for ``manila-csi``, we need to modify the ``values.yaml`` file in order to deploy 
-the csi supporting ``CephFS`` shares:
+Before deploying the Helm chart for ``manila-csi``, we need to create a ``values.yaml`` file in order to deploy 
+the csi to support ``CephFS`` shares:
 
 .. code-block:: yaml
 
@@ -109,7 +109,14 @@ Then you should see pods similar to the following being created onto the cluster
     manila-csi-openstack-manila-csi-nodeplugin-qpd9m                  2/2     Running   0          14d
     manila-csi-openstack-manila-csi-nodeplugin-slktx                  2/2     Running   0          14d
 
-Next step is to manually create the secret for the manila-csi to use in order to interact with OpenStack. The secrets template looks similar to this:
+Next step is to manually create the secret for the manila-csi to use in order to interact with OpenStack.
+
+.. note::
+
+  This is close but not identical to the contents of a ``clouds.yaml`` secret, we are planning on providing a fix upstream to bring them into line.
+
+
+The secrets template looks similar to this:
 
 .. code-block:: yaml 
 
@@ -185,8 +192,8 @@ Static Share Provisioning
           name: csi-manila-secret
           namespace: kube-system
         volumeAttributes:
-          shareID: <share-id>
-          shareAccessID: <access-rule-id>
+          shareID: <share-id> # the share ID of the share you want to use as the persistent volume in the cluster
+          shareAccessID: <access-rule-id> # the ID of a cephx access rule created for the share.
     ---
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -205,6 +212,13 @@ Static Share Provisioning
           operator: In
           values: ["preprovisioned-cephfs-share"]
 
+.. note::
+
+  The ID of access rules for a specific share can be found using ``manila access-list <share-name/ID>``. 
+  This will list all the access rules for a given share and include the ID for each rule.
+  Access rules can be managed in the web UI or using the CLI. For more information on 
+  how to create a access rule using the CLI, see https://stfc-cloud-docs.readthedocs.io/en/latest/Manila/usage.html#add-access-rule-through-cli
+  
 
 You should be able to create the persistent volume claim created successfully here:
 
