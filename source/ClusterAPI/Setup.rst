@@ -240,7 +240,11 @@ minikube Shutdown
     kubectl get nodes
     
     # Update the cluster to ensure everything lines up with your helm chart
-    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml
+    helm upgrade cluster-api-addon-provider capi-addons/cluster-api-addon-provider --install --version ">=0.1.0-dev.0.main.0,<0.1.0-dev.0.main.9999999999" --wait
+    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml --wait
+
+    # Check the cluster status
+    clusterctl describe cluster $CLUSTER_NAME
 
 - Remove minikube bootstrap cluster
 
