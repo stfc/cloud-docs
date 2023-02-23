@@ -34,13 +34,13 @@ Background
 ----------
 
 A Kubernetes cluster is required to create the cluster. To break this "chicken-egg" problem
-a Kubernetes-in-Docker (KinD) cluster is created to bootstrap the main cluster. It is not
+a minikube cluster is created to bootstrap the main cluster. It is not
 recommended to use this cluster for any production workloads.
 
 Bootstrap Machine Prep
 ----------------------
 
-A Ubuntu machine is used to provide the KinD cluster. This should use the normal
+A Ubuntu machine is used to provide the minikube cluster. This should use the normal
 cloud Ubuntu image, not the stripped down CAPI image designed for nodes.
 
 The following packages are required and
@@ -56,30 +56,25 @@ can be installed and configured using the following commands:
 
 - You will need to exit and login again if you have added yourself to the docker group (usermod).
   This is to pick up the new group membership
-- Snap is used to install kubectl, go (for KinD) and Helm
+- Snap is used to install kubectl and Helm
 
 .. code-block:: bash
 
     sudo apt-get update && sudo apt-get install -y snapd
     export PATH=$PATH:/snap/bin
-    for i in kubectl go helm; do sudo snap install $i --classic; done
+    sudo snap install kubectl --classic
+    sudo snap install helm --classic
 
-- Go modules can be permanently added to the path by appending the following to the user's .bashrc file:
-
-.. code-block:: bash
-
-    echo "/home/$USER/go/bin:$PATH" >> ~/.bashrc
-
-- Then `source ~/.bashrc` or logout and login again.
-
-- Start the KinD cluster to bootstrap the main cluster
+- Install minikube and start a cluster:
 
 .. code-block:: bash
 
-    go install sigs.k8s.io/kind@v0.14.0
-    kind create cluster
+    wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    chmod +x minikube-linux-amd64
+    sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+    minikube start --driver=docker
 
-- Install clusterctl and the Openstack provider into your KinD cluster:
+- Install clusterctl and the Openstack provider into your minikube cluster:
 
 .. code-block:: bash
 
@@ -208,7 +203,7 @@ Configuring the cluster
 Moving the control plane
 ========================
 
-At this point the control plane is still on the KinD cluster. This is not recommended for
+At this point the control plane is still on the minikube cluster. This is not recommended for
 long-lived or production workloads. We can pivot the cluster to self-manage:
 
 .. warning::
@@ -216,8 +211,8 @@ long-lived or production workloads. We can pivot the cluster to self-manage:
     After moving the control plane the kubeconfig cannot be retrieved if lost.
     Ensure a copy of the kubeconfig is placed into secure storage for production clusters.
 
-Moving from KinD cluster
-------------------------
+Moving from minikube cluster
+----------------------------
 
 - Install clusterctl into the new cluster and move the control plane
 
@@ -233,10 +228,10 @@ Moving from KinD cluster
 
     kubectl get kubeadmcontrolplane --kubeconfig=kubeconfig.$CLUSTER_NAME
 
-KinD Shutdown
--------------
+minikube Shutdown
+-----------------
 
-- Replace the existing KinD kubeconfig with the new cluster's kubeconfig
+- Replace the existing minikube kubeconfig with the new cluster's kubeconfig
 
 .. code-block:: bash
 
@@ -245,12 +240,16 @@ KinD Shutdown
     kubectl get nodes
     
     # Update the cluster to ensure everything lines up with your helm chart
-    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml
+    helm upgrade cluster-api-addon-provider capi-addons/cluster-api-addon-provider --install --version ">=0.1.0-dev.0.main.0,<0.1.0-dev.0.main.9999999999" --wait
+    helm upgrade $CLUSTER_NAME capi/openstack-cluster --install -f values.yaml -f clouds.yaml -f user-values.yaml -f flavors.yaml --wait
 
-- Remove KinD bootstrap cluster
+    # Check the cluster status
+    clusterctl describe cluster $CLUSTER_NAME
+
+- Remove minikube bootstrap cluster
 
 .. code-block:: bash
 
-    kind delete cluster
+    minikube delete
 
 Your cluster is now complete
