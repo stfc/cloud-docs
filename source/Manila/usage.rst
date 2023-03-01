@@ -431,6 +431,10 @@ There are two methods that can be used to mount a share onto a VM:
   
 - Ceph FUSE method 
 
+.. note:: 
+
+    The kernel method is preferred as it uses significantly less CPU marshalling data through userspace.
+
 The following examples assume that the following have been set up:
 
 - VM (examples use an Ubuntu VM)
