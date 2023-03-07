@@ -1,3 +1,5 @@
+.. _application_credentials:
+
 =======================
 Application Credentials
 =======================
