@@ -108,7 +108,8 @@ clouds.yaml Prep
 
 - Generate your application credentials: :ref:`Openstack Application Credentials<application_credentials>`. 
   It is recommended you use Horizon (the web interface) to download the clouds.yaml file.
-- Move your clouds.yaml file into the ``scd-capi-values`` directory, it should have the following format:
+
+The ``clouds.yaml`` file should have the following format:
 
 .. code-block:: yaml
 
@@ -126,7 +127,7 @@ clouds.yaml Prep
 - Add the UUID of the project you want to create the cluster in. This is the project ID under the Openstack section which is omitted by default. 
   This can be found `here <https://openstack.stfc.ac.uk/identity/>`_.
 
-Your clouds.yaml should now look like:
+Your ``clouds.yaml`` should now look like:
 
 .. code-block:: yaml
 
@@ -142,7 +143,7 @@ Your clouds.yaml should now look like:
         identity_api_version: 3
         auth_type: "v3applicationcredential"
 
-- Place this file in the scd-capi-values directory you cloned earlier.
+- Place this file in the ``cloud-capi-values`` directory you cloned earlier.
 
 Creating the cluster
 ====================
@@ -163,7 +164,7 @@ These are as follows:
 
 The cloud team will periodically update ``flavors.yaml``, ``values.yaml``, and ``user-values.yaml`` to reflect changes in the STFC Cloud service.
 These include new versions of Kubernetes or machine images, best practices, new flavors...etc. A user will pull these changes 
-by running ``git pull`` in the ``scd-capi-values`` directory in the future.
+by running ``git pull`` in the ``cloud-capi-values`` directory in the future.
 
 
 Configuring the cluster
@@ -177,7 +178,7 @@ Configuring the cluster
 
 .. code-block:: bash
 
-    cd scd-capi-values
+    cd cloud-capi-values
     export CLUSTER_NAME="demo-cluster"  # or your cluster name
     
     # Install the custom resource definitions (CRDs)
