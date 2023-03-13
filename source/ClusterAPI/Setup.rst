@@ -101,7 +101,7 @@ Openstack Preparation
 ---------------------
 
 - `Ensure a dedicated floating IP exists. <https://openstack.stfc.ac.uk/project/floating_ips/>`_ If required, allocate an IP to the project from the External pool.
-- Clone https://github.com/DavidFair/scd-capi-values (this will be upstreamed soon)
+- Clone https://github.com/stfc/cloud-capi-values
 
 clouds.yaml Prep
 ----------------
