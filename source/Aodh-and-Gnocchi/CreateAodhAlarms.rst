@@ -2,7 +2,9 @@
 Create Aodh Alarms
 ==================
 
-This document is in progress.
+.. warning::
+
+  This component is currently disabled and not available.
 
 Aodh alarms can be created using the Openstack CLI or by using Aodh Resources in a heat template.
 
