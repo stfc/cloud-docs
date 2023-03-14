@@ -1,6 +1,10 @@
 Monitoring Virtual Machines: Gnocchi and OpenStack Aodh
 #########################################################
 
+.. warning::
+
+  This component is currently disabled and not available.
+  
 This document is a brief introduction to Aodh and Gnocchi.
 
 We can monitor virtual machines by using alarms which fire when a threshold for a given measurement (e.g memory usage) has been met, when a VM has unexpectedly powered off, or when a VM has entered an error state.

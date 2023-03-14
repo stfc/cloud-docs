@@ -2,6 +2,10 @@
 Gnocchi
 =========
 
+.. warning::
+
+  This component is currently disabled and not available.
+  
 Gnocchi processes data from Ceilometer and stores the processed data which can be accessed by users.
 It correlates measurements from Ceilometer to **resources** and **metrics**.
 
