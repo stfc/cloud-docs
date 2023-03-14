@@ -1,10 +1,6 @@
 Manila: Shared File Systems as a Service 
 ###########################################
 
-.. warning::
-
-    OpenStack Manila is currently in technical preview on STFC Cloud. If you have any feedback or suggestions, please sent it to cloud-support@stfc.ac.uk
-
 OpenStack Manila provides services for managing shared file systems and is the third storage OpenStack component alongside Cinder and Swift. 
 Manila provides a way to provision remote, sharable file systems (shares) which can be accessed by multiple instances simultaneously and file systems can have access rules assigned to control read-write and read-only access to the file system.
 On STFC Cloud, Manila provides a way to create **Ceph file sytems** (CephFS).
