@@ -1,6 +1,16 @@
-=====================================
-Using Openstack Load Balancers in K8s
-=====================================
+==========================================================
+Openstack Load Balancers in External K8s configurations
+==========================================================
+
+.. warning::
+    The deployment setup for Cluster API and helm 
+    charts will automatically deploy Openstack 
+    load balancers. Attempting to deploy this method
+    too will result in conflicts.
+
+    These instructions are for users who have deployed
+    RKE2 / K3s or other K8s deployments without the
+    helm chart.
 
 Background
 ==========
