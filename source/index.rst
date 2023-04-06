@@ -38,7 +38,7 @@ Welcome to the STFC Cloud documentation!
    :caption: Advanced Material:
 
    Aodh-and-Gnocchi/index
-   ClusterAPI/index
+   Kubernetes/index
    ImproveTheDocs
    Heat/index
    Manila/index
