@@ -339,7 +339,7 @@ We can see using manila show ``updated_demo_share`` that the size of the share h
 
 Add Access Rule through CLI 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Access rules can be created for a share through the Web UI or on the command line. 
+Access rules can be created for a share through the Web UI or on the command line. You can allow either read-write (RW) or read-only (RO) access to the share.
 
 .. warning::
 
@@ -367,6 +367,10 @@ To create a new access rule for a share, e.g. a share named ``demo_share``, we c
                             Space Separated list of key=value pairs of metadata items. OPTIONAL: Default=None.
 
     $ manila access-allow demo_share cephx alice
+
+.. note:: 
+    Here, ``access_to`` refers to the name given to the cephx access rule. This could be the name of a user to give share access to for example. The value given for ``access_to`` is used 
+    in later examples demonstrating how to mount a share.
 
 Then we can view the access rules for the share using:
 
@@ -435,9 +439,9 @@ The following examples assume that the following have been set up:
 
 - VM (examples use an Ubuntu VM)
   
-- CephFS Share 
+- CephFS Share and have the export path given in the share details copied to use
   
-- cephx share access rules 
+- cephx share access rules
 
 
 Access a share using the Kernel Client
@@ -447,9 +451,14 @@ The kernel client requires the ``ceph-common`` package to be installed. To acces
 the ``mount`` command of the form:
 
 .. code-block:: bash 
+    
+    # breakdown of the command 
 
-    mount -t ceph {mon1 ip addr}:6789,{mon2 ip addr}:6789,{mon3 ip addr}:6789:/{mount-point} -o name={access-id},secret={access-key}
+    mount -t ceph {mon1 ip addr}:6789,{mon2 ip addr}:6789,{mon3 ip addr}:6789:/{mount-point}  # export path for the share
+    
+    -o name={access-rule-name},secret={access-key} # name of the access rule and the secret associated to it
 
+    {mount-path} # path you want to attach the share to
 
 Access a share using the FUSE Client 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -462,13 +471,15 @@ In order to use the FUSE client, make sure the version of the ``ceph-fuse`` pack
     ceph version 15.2.16 (d46a73d6d0a67a79558054a3a5a72cb561724974) octopus (stable)
 
 
-To use the FUSE client, we need to set up a ``keyring`` and a ``ceph.conf`` file. If we have named the cephx rule ``alice``, then 
+To use the FUSE client, we need to set up a ``keyring`` and a ``ceph.conf`` file. If we have named the cephx rule created with the name ``alice``, then 
 the keyring file will need to be named ``alice.keyring`` and needs to contain the following:
 
 .. code-block:: bash 
     
     [client.alice]
         key = CEPHX_KEY
+
+Where ``CEPHX_KEY`` is the secret for the specific access rule.
 
 Then for the ``ceph.conf`` file, we need to add the IP addresses for the monitors from the ceph cluster. 
 The IP address for the ceph monitors for the share can be found using ``manila show <share-id>`` under the `export locations` field.
