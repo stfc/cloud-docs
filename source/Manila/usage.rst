@@ -460,6 +460,13 @@ the ``mount`` command of the form:
 
     {mount-path} # path you want to attach the share to
 
+The directory will be owned by ``root`` by default. To allow another user to read and write add the appropriate user and group like so:
+
+.. code-block:: bash 
+
+    chown user:user {mount-path}
+
+    
 Access a share using the FUSE Client 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
