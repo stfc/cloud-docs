@@ -44,7 +44,7 @@ These have the same CPU configuration as c*.* flavors but have a GPU attached:
 
 - g-p4000.* have one or more NVidia Quadro P4000 cards attached (the smallest has 1, the largest has 4)
 - g-rtx4000.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
-- g-rtx4000.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
+- g-rtx4000-ref.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
     - these are old out of warranty nodes which have been refitted with new GPUs. For this reason these are reserved for short term use such as training courses. If you have a use case you want to use these for then please get in touch with support.
 - g-a4000.* have one or more NVidia RTX A4000 cards attached (the smallest has 1, the largest has 4)
 - g-a4000-ref.* have one or more NVidia RTX A4000 cards attached (the smallest has 1, the largest has 4)
