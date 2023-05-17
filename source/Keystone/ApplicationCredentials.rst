@@ -14,6 +14,10 @@ Application credentials can be created either through the web interface or comma
   Here we assume that users are familiar with using ``clouds.yaml``. 
   See :ref:`clouds_yaml` for more information.
 
+.. warning:: 
+
+  We **strongly** recommend that any application credentials created have a lifetime greater than one hour. 
+
 
 Create Credential from the Web interface
 ########################################
