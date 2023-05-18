@@ -17,7 +17,7 @@ c*.* (e.g. c1.small or c3.large)
 .. Warning:: C-flavors
 
     C flavors are now deprecated and new VMs will not be able to be created after the 12th of April 2023. It is recommend to use l flavors instead.
-    
+
 These are flavors with dedicated CPU cores meaning that a VCPU core assigned to your VM is dedicated to you.
 
 These flavors are great for computation and are optimised to either be within a single NUMA node providing great performance or balanced equally across the NUMA nodes in the hypervisor.
@@ -44,6 +44,18 @@ These have the same CPU configuration as c*.* flavors but have a GPU attached:
 
 - g-p4000.* have one or more NVidia Quadro P4000 cards attached (the smallest has 1, the largest has 4)
 - g-rtx4000.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
+- g-rtx4000-ref.* have one or more NVidia Quadro RTX 4000 cards attached (the smallest has 1, the largest has 4)
+    - these are old out of warranty nodes which have been refitted with new GPUs. For this reason these are reserved for short term use such as training courses. If you have a use case you want to use these for then please get in touch with support.
+- g-a4000.* have one or more NVidia RTX A4000 cards attached (the smallest has 1, the largest has 4)
+- g-a4000-ref.* have one or more NVidia RTX A4000 cards attached (the smallest has 1, the largest has 4)
+    - these are old out of warranty nodes which have been refitted with new GPUs. For this reason these are reserved for short term use such as training courses. If you have a use case you want to use these for then please get in touch with support.
 - g-p100.* have one or more NVidia Tesla P100 cards attached (the smallest has 1, the largest has 2)
 - g-v100.* have one or more NVidia Tesla V100 32GB cards attached (small has 1,medium has 2 and large has 4)
 - g-a100.* have one or more NVidia Tesla A100 40GB) cards attached (the smallest has 1, the largest has 4)
+- g-a100-n100.* have one or more NVidia Tesla A100 40GB cards attached (the smallest has 1, the largest has 4) with higher core count and more network bandwidth
+    - These are currently reserved for a specific project.
+- g-a100-80gb.* have one or more NVidia Tesla A100 80GB cards attached (the smallest has 1, the largest has 8)
+- g-arc-a770.* have one or two Intel Arc A770 16GB cards
+    - These are very limited in number
+- g-w6600.* have one or more AMD W6600 8GB cards (the smallest has 1, the largest has 4)
+    - These are very limited in number
