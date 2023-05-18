@@ -14,9 +14,9 @@ Application credentials can be created either through the web interface or comma
   Here we assume that users are familiar with using ``clouds.yaml``. 
   See :ref:`clouds_yaml` for more information.
 
-.. warning:: 
+.. warning::
 
-  We **strongly** recommend that any application credentials created have a lifetime greater than one hour. 
+  We **strongly** recommend that any application credentials created have a lifetime greater than one hour.
 
 
 Create Credential from the Web interface
@@ -24,6 +24,10 @@ Create Credential from the Web interface
 
 The option for generating application credentials can be found under *Identity -> Application Credentials*.
 Select *Create Application Credential*.
+
+The currently selected project will be used to generate application credentials for the user and project pair.
+If you have access to multiple projects, the project these credentials are valid for can be changed by selecting 
+the project from the drop down menu at the top of the page.
 
 The form has 7 fields:
 
