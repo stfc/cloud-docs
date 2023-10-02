@@ -36,7 +36,8 @@ To apply new group you must logout and log back in
 
 .. code-block:: bash
 
-  su - ${USER}
+  exit
+  ssh user@<your_ip>
 
 You can confirm changes have applied by running
 
