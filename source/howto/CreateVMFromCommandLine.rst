@@ -4,7 +4,7 @@ Create a Virtual Machine from command line in STFC Openstack
 
 It’s common to want to create VMs from command line. To do this, you need to be on a host that has the openstack command line interface installed.
 
-On our Ubuntu Focal 20.04 image the correct repository is already available, so you can use you install the client by running:
+On Ubuntu machines, we can simply install the client by running:
 
 .. code-block:: bash
 
@@ -101,7 +101,7 @@ Here is an example command, putting together information from the previous comma
 
 .. code-block:: bash
 
-  openstack server create --flavor <flavor ID/name> --image <image ID/name> --network <network> --security-group default --key-name <key name> <server name>
+  openstack server create --flavor l3.nano --image Ubuntu-22.04 --network Internal --security-group default --key-name key_name the_servers_name
 
 To delete a host, you can use the command:-
 
@@ -114,7 +114,8 @@ For example:-
 
 .. code-block:: bash
 
-  openstack --debug server create --flavor <flavor ID/name> --image <image ID/name> --network <network> --security-group default --key-name <key name> <server name>
+  openstack --debug server create --flavor l3.nano --image Ubuntu-22.04 --network Internal --security-group default --key-name key_name the_servers_name
+
 ##########
 References
 ##########
