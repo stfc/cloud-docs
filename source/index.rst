@@ -6,6 +6,12 @@
 Welcome to the STFC Cloud documentation!
 ===========================================
 
+.. Warning:: New Confluence
+
+    We are in the process of migrating this document repository to our new confluence: https://stfc.atlassian.net/wiki/spaces/CLOUDKB/overview so pages here will be updated with a link to the equivalent document in the new space.
+
+
+
 .. comment Depth == 1 to get people to navigate to sub-page so we don't overfill contents bar
 
 .. toctree::
