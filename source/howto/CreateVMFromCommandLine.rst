@@ -18,33 +18,9 @@ Setting up the environment to select project
 
 After logging into a host, you have to set your environment variables.
 
-The recommended method is downloading this script to set these up for you from: https://openstack.stfc.ac.uk/project/api_access/openrc/ (You will need to be signed in to the project you wish to use in the OpenStack web interface for this to work.)
+Please download the openrc script to set these up for you, from: https://openstack.stfc.ac.uk/project/api_access/openrc/ 
 
-Or set them yourself in a script:-
-
-.. code-block:: bash
-
-  export OS_AUTH_URL=https://openstack.stfc.ac.uk:5000/v3
-  export OS_PROJECT_ID=<project ID>
-  export OS_PROJECT_NAME=<project name>
-  export OS_PROJECT_DOMAIN_NAME=<domain name>
-  export OS_USER_DOMAIN_NAME=<user domain>
-  export OS_PROJECT_DOMAIN_ID=<project domain ID>
-  export OS_USERNAME=<fed ID>
-  export OS_PASSWORD=<password>
-  export OS_INTERFACE=public
-  export OS_IDENTITY_API_VERSION=3
-
-Please take note of the required details from openstack by going to the desired project, and going into the submenu API_ACCESS (https://openstack.stfc.ac.uk/project/api_access/) and click on view credentials.
-
-.. csv-table:: variables
-  :header: "Parameter", "Description"
-
-  "OS_PROJECT_NAME", "they are the project that you wish to create the new VMs in."
-  "OS_USERNAME and OS_PROJECT_DOMAIN_NAME", "Are the username and the domain that user is in, which you are using to create the VM."
-  "OS_PASSWORD",  "Is your login to openstack (in plain text)." 
-
-It is common to put all of the above in a shell file (just as above, but with a file extension of .sh) and then “source” the environment variables so that they are part of your command shell.
+You will need to be signed in to the project you wish to use in the OpenStack web interface for this to work.
 
 ####################################
 Finding images
